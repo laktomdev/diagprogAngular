@@ -1,0 +1,19 @@
+header {
+  position: relative;
+  height: 130px;
+  background: #009688;
+}
+:host  {
+  .mat-toolbar-single-row {
+    height: 120px;
+    padding: 20px 0 20px 50px;
+  }
+}
+.app-logo {
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+  font-size: 12px;
+  }
+}
