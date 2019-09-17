@@ -1,21 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {Device} from '../models/device';
-import { DevicesService } from './devices.service';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-
+import { Device } from 'src/app/models/device';
+import { DevicesService } from '../devices.service';
 
 @Component({
-  selector: 'app-devices',
-  templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.scss']
+  selector: 'app-device-list',
+  templateUrl: './device-list.component.html',
+  styleUrls: ['./device-list.component.scss']
 })
+export class DeviceListComponent implements OnInit {
 
-export class DevicesComponent implements OnInit {
 
   devices: Device[];
-  deviceCount : any;
+  deviceCount: any;
   dataSource: MatTableDataSource<Device> = new MatTableDataSource<Device>(this.devices);
-  displayedColumns: string[] = ['deviceNumber', 'customerName', 'sellerName', 'packageName'];
+  displayedColumns: string[] = ['deviceNumber', 'customerName', 'sellerName', 'packageName', 'actions'];
   constructor(private dS: DevicesService) { }
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 

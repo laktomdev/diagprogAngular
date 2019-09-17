@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DevicesComponent } from './devices.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatPaginatorModule, MatFormFieldModule } from '@angular/material';
+import { DeviceListComponent } from './device-list/device-list.component';
+import { DeviceDetailsComponent } from './device-details/device-details.component';
+import { DevicesRoutingModule } from './devices-routing.module';
 
 
 
 @NgModule({
-  declarations: [DevicesComponent],
+  declarations: [DeviceListComponent, DeviceDetailsComponent],
   imports: [
     CommonModule,
     SharedModule,
     MatPaginatorModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    DevicesRoutingModule
   ]
 })
 export class DevicesModule { }
