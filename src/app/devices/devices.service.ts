@@ -14,16 +14,16 @@ private devices: Device[] = [
 
 ];
 
-getAll(): Observable<any> {
-  return this.http.get("https://localhost:44313/devices");
+getAll(): Observable<Device[]> {
+  return this.http.get<Device[]>('https://localhost:44313/devices');
 }
 
-getById(id: number | string): any {
-  return this.http.get(`https:/localhost:44313/devices/details/${id}/`);
+getById(id: number | string): Observable<Device> {
+  return this.http.get<Device>(`https:/localhost:44313/devices/details/${id}`);
 }
 
-getCount(): any {
-  return this.http.get("https:/localhost:44313/devices/count");
+getCount(): Observable<number> {
+  return this.http.get<number>('https:/localhost:44313/devices/count');
 }
 
   constructor(private http: HttpClient) { }

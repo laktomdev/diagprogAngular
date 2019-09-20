@@ -1,7 +1,10 @@
+import { Customer } from './customer';
+import { Seller } from './seller';
+
 export interface Device {
   id: number;
   deviceNumber: string;
   packageName: string;
-  customerName: string;
-  sellerName: string;
+  customer: Customer;
+  seller: Seller;
 }

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DevicesService } from '../devices.service';
 import { Device } from 'src/app/models/device';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-device-details',
@@ -12,17 +11,22 @@ export class DeviceDetailsComponent implements OnInit {
 
   device: Device;
 
+  @Input()
+  customId: number;
+  isInEditMode = false;
 
-  constructor(private dS: DevicesService, private route: ActivatedRoute) { }
+
+  constructor(private dS: DevicesService
+    ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    this.dS.getById(Number(id)).subscribe(
+    this.dS.getById(Number(this.customId)).subscribe(
       (data) => {
         this.device = data;
+      },
+      (error) => {
+        console.log(error);
       }
     );
   }
-
 }

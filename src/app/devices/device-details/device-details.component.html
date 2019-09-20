@@ -1,1 +1,26 @@
-{{device | json}}
+<div class="row">
+  <div class="col-md-4">
+    <dl>
+      <dt>Nr. urządzenia:</dt>
+      <dd> {{device?.deviceNumber}}</dd>
+    </dl>
+  </div>
+  <div class="col-md-4">
+    <dl>
+      <dt>Klient:</dt>
+      <dd> <div *ngIf="!isInEditMode">{{device?.customer?.name}}  <button class="btn btn-link" (click)='isInEditMode = !isInEditMode'>zmień</button></div>
+        <app-customers-form *ngIf="isInEditMode" [selectedCustomerId]='device?.customer?.id'></app-customers-form>
+      </dd>
+
+      <dt>Sprzedawca:</dt>
+      <dd>{{device?.seller?.name}}</dd>
+    </dl>
+  </div>
+  <div class="col-md-4">
+    <dl>
+      <dt>Pakiet:</dt>
+      <dd> {{device?.packageName}}</dd>
+    </dl>
+  </div>
+
+</div>
