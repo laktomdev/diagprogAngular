@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DevicesService } from '../devices.service';
 import { Device } from 'src/app/models/device';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-device-details',
@@ -18,6 +19,11 @@ export class DeviceDetailsComponent implements OnInit {
 
   constructor(private dS: DevicesService
     ) { }
+
+    onEventTrigger(newCustomer: Customer) {
+      this.device.customer = newCustomer;
+      this.isInEditMode = false;
+    }
 
   ngOnInit() {
     this.dS.getById(Number(this.customId)).subscribe(

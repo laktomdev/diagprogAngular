@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, Input, SimpleChanges, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Customer } from 'src/app/models/customer';
 import { CustomersService } from '../customers.service';
 import { FormControl } from '@angular/forms';
@@ -15,7 +15,7 @@ export class CustomersFormComponent
   implements OnInit, OnDestroy {
 
   @Input() selectedCustomerId: number;
-
+  @Output() valueChange = new EventEmitter<Customer>();
 
   constructor(private cS: CustomersService) {}
 
@@ -32,6 +32,10 @@ export class CustomersFormComponent
 
   submitted = false;
   changed = false;
+
+  changeValue(value: Customer) {
+    this.valueChange.emit(value);
+  }
 
   ngOnInit() {
     this.cS.getAll().subscribe(
@@ -50,8 +54,11 @@ export class CustomersFormComponent
             this.filterCustomers();
           });
 
-        this.customerCtrl.valueChanges.subscribe(() =>
-          this.changed = true
+        this.customerCtrl.valueChanges.subscribe(() => {
+              this.changed = true;
+              console.log(this.customerCtrl.value.id);
+            }
+
         );
       },
       error => {
@@ -66,13 +73,15 @@ export class CustomersFormComponent
   }
 
   onSubmit()  {
-    console.log(this.submitted);
     if (this.submitted) {
       console.log('zapisano');
+      this.changeValue(this.customerCtrl.value);
+
     }
   }
 
   cancelEdit() {
+    this.customerCtrl.setValue(this.customers.find(i => i.id === this.selectedCustomerId));
     this.changed = false;
   }
 

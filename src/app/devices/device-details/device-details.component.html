@@ -9,7 +9,7 @@
     <dl>
       <dt>Klient:</dt>
       <dd> <div *ngIf="!isInEditMode">{{device?.customer?.name}}  <button class="btn btn-link" (click)='isInEditMode = !isInEditMode'>zmień</button></div>
-        <app-customers-form *ngIf="isInEditMode" [selectedCustomerId]='device?.customer?.id'></app-customers-form>
+        <app-customers-form *ngIf="isInEditMode" (valueChange)="onEventTrigger($event)" [selectedCustomerId]='device?.customer?.id'></app-customers-form>
       </dd>
 
       <dt>Sprzedawca:</dt>
