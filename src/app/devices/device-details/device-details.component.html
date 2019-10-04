@@ -1,25 +1,48 @@
 <div class="row">
   <div class="col-md-4">
+    <h4>Identyfikacja <button class="btn btn-link">więcej</button></h4>
+    <hr />
     <dl>
       <dt>Nr. urządzenia:</dt>
-      <dd> {{device?.deviceNumber}}</dd>
+      <dd> {{device?.deviceIdentification?.deviceNumber}}</dd>
+      <dt>Real Serial Number:</dt>
+      <dd> {{device?.deviceIdentification?.realSN}}</dd>
+      <dt>Wersja bootloadera:</dt>
+      <dd> {{device?.deviceIdentification?.bootVersion}}</dd>
+      <dt>Wersja hardware:</dt>
+      <dd> {{device?.deviceIdentification?.hardwareVersion}}</dd>
     </dl>
   </div>
   <div class="col-md-4">
+    <h4>Informacje <button class="btn btn-link">więcej</button></h4>
+    <hr />
     <dl>
-      <dt>Klient:</dt>
-      <dd> <div *ngIf="!isInEditMode">{{device?.customer?.name}}  <button class="btn btn-link" (click)='isInEditMode = !isInEditMode'>zmień</button></div>
-        <app-customers-form *ngIf="isInEditMode" (valueChange)="onEventTrigger($event)" [selectedCustomerId]='device?.customer?.id'></app-customers-form>
-      </dd>
-
       <dt>Sprzedawca:</dt>
-      <dd>{{device?.seller?.name}}</dd>
+      <dd>{{device?.deviceInfo?.seller?.name}}</dd>
+      <dt>Klient:</dt>
+      <dd>
+        <div *ngIf="!isInEditMode">{{device?.deviceInfo?.customer?.name}} <button class="btn btn-link"
+            (click)='isInEditMode = !isInEditMode'>zmień</button></div>
+        <app-customers-form *ngIf="isInEditMode" (customerChange)="onCustomerChange($event)"
+          [selectedCustomerId]='device?.deviceInfo.customer?.id'></app-customers-form>
+      </dd>
+      <dt>Pakiet:</dt>
+      <dd> {{device?.deviceInfo.package?.name}}</dd>
+      <dt>Timelock:</dt>
+      <dd> {{device?.deviceInfo?.timeLock | date: 'dd.MM.yyyy'}}</dd>
     </dl>
   </div>
   <div class="col-md-4">
+    <h4>Status <button class="btn btn-link">więcej</button></h4><hr/>
     <dl>
-      <dt>Pakiet:</dt>
-      <dd> {{device?.packageName}}</dd>
+        <dt>Data stworzenia:</dt>
+        <dd> {{device?.deviceStatusInfo?.createDate | date: 'dd.MM.yyyy'}}</dd>
+        <dt>Pierwsza aktywacja:</dt>
+        <dd> {{device?.deviceStatusInfo?.firstActivation | date: 'dd.MM.yyyy'}}</dd>
+        <dt>Ostatnia aktywacja:</dt>
+        <dd> {{device?.deviceStatusInfo?.lastActivation | date: 'dd.MM.yyyy'}}</dd>
+        <dt>Rezerwacja:</dt>
+        <dd> {{device?.deviceStatusInfo?.reservationDate | date: 'dd.MM.yyyy'}}</dd>
     </dl>
   </div>
 

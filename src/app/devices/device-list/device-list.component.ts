@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
-import { Device } from 'src/app/models/device';
+import { Device } from 'src/app/models/Device/device';
 import { DevicesService } from '../devices.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { DeviceShort } from 'src/app/models/Device/deviceShort';
 
 @Component({
   selector: 'app-device-list',
@@ -18,12 +19,11 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class DeviceListComponent implements OnInit {
 
-  dataSource: MatTableDataSource<Device>;
-  devices: Device[];
+  dataSource: MatTableDataSource<DeviceShort>;
+  devices: DeviceShort[];
   columnsToDisplay = ['deviceNumber', 'seller.name', 'customer.name', 'packageName'];
   expandedElement: Device | null;
   deviceCount: number;
-
 
 
   constructor(private dS: DevicesService) { }
@@ -34,7 +34,9 @@ export class DeviceListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
+  onDeviceChanged(newDevice: Device) {
+    this.dataSource.data.find(dev => dev.id === newDevice.id).customer = newDevice.deviceInfo.customer;
+  }
 
   ngOnInit() {
 
@@ -46,9 +48,9 @@ export class DeviceListComponent implements OnInit {
 
     this.dS.getAll().subscribe(
       (data) => {
-        this.devices = data;
-        this.dataSource =  new MatTableDataSource<Device>(data);
 
+        this.devices = data;
+        this.dataSource =  new MatTableDataSource<DeviceShort>(data);
         // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
         // tslint:disable-next-line:no-shadowed-variable
         this.dataSource.filterPredicate = (data: any, filter) => {

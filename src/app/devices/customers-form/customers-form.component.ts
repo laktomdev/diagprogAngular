@@ -15,7 +15,7 @@ export class CustomersFormComponent
   implements OnInit, OnDestroy {
 
   @Input() selectedCustomerId: number;
-  @Output() valueChange = new EventEmitter<Customer>();
+  @Output() customerChange = new EventEmitter<Customer>();
 
   constructor(private cS: CustomersService) {}
 
@@ -33,8 +33,8 @@ export class CustomersFormComponent
   submitted = false;
   changed = false;
 
-  changeValue(value: Customer) {
-    this.valueChange.emit(value);
+  passCustomerToParent(value: Customer) {
+    this.customerChange.emit(value);
   }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class CustomersFormComponent
 
         // load select initial value
         this.customerCtrl.setValue(this.customers.find(i => i.id === this.selectedCustomerId));
-        // load the initial bank list
+        // load the initial customers list
         this.filteredCustomers.next(this.customers.slice());
 
         // listen for search field value changes
@@ -56,7 +56,6 @@ export class CustomersFormComponent
 
         this.customerCtrl.valueChanges.subscribe(() => {
               this.changed = true;
-              console.log(this.customerCtrl.value.id);
             }
 
         );
@@ -74,15 +73,14 @@ export class CustomersFormComponent
 
   onSubmit()  {
     if (this.submitted) {
-      console.log('zapisano');
-      this.changeValue(this.customerCtrl.value);
-
+      this.passCustomerToParent(this.customerCtrl.value);
     }
   }
 
   cancelEdit() {
     this.customerCtrl.setValue(this.customers.find(i => i.id === this.selectedCustomerId));
     this.changed = false;
+    this.passCustomerToParent(this.customerCtrl.value);
   }
 
   private filterCustomers() {

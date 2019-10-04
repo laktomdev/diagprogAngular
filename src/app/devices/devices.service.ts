@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Device } from '../models/device';
+import { Device } from '../models/Device/device';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DeviceShort } from '../models/Device/deviceShort';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    Authorization: 'Bearer ' + localStorage.getItem('token')
+  })
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +18,13 @@ import { Observable } from 'rxjs';
 
 export class DevicesService {
 
-private devices: Device[] = [
+
+private devices: DeviceShort[] = [
 
 ];
 
-getAll(): Observable<Device[]> {
-  return this.http.get<Device[]>('https://localhost:44313/devices');
+getAll(): Observable<DeviceShort[]> {
+   return this.http.get<DeviceShort[]>('https://localhost:44313/devices', httpOptions);
 }
 
 getById(id: number | string): Observable<Device> {
