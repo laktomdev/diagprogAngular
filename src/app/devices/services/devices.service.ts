@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Device } from '../models/Device/device';
+import { Device } from '../../models/Device/device';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DeviceShort } from '../models/Device/deviceShort';
+import { DeviceShort } from '../../models/Device/deviceShort';
 
 const httpOptions = {
   headers: new HttpHeaders({

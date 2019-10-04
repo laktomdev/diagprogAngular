@@ -18,12 +18,15 @@
     <hr />
     <dl>
       <dt>Sprzedawca:</dt>
-      <dd>{{device?.deviceInfo?.seller?.name}}</dd>
+      <div *ngIf="!sellerInEditMode">{{device?.deviceInfo?.seller?.name}} <button class="btn btn-link"
+        (click)='sellerInEditMode = !sellerInEditMode'>zmień</button></div>
+    <app-sellers-form *ngIf="sellerInEditMode" (customerChange)="onSellerChange($event)"
+      [selectedSellerUserId]='device?.deviceInfo.seller?.userId'></app-sellers-form>
       <dt>Klient:</dt>
       <dd>
-        <div *ngIf="!isInEditMode">{{device?.deviceInfo?.customer?.name}} <button class="btn btn-link"
-            (click)='isInEditMode = !isInEditMode'>zmień</button></div>
-        <app-customers-form *ngIf="isInEditMode" (customerChange)="onCustomerChange($event)"
+        <div *ngIf="!customerInEditMode">{{device?.deviceInfo?.customer?.name}} <button class="btn btn-link"
+            (click)='customerInEditMode = !customerInEditMode'>zmień</button></div>
+        <app-customers-form *ngIf="customerInEditMode" (customerChange)="onCustomerChange($event)"
           [selectedCustomerId]='device?.deviceInfo.customer?.id'></app-customers-form>
       </dd>
       <dt>Pakiet:</dt>

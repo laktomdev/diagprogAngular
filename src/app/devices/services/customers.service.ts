@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Customer } from '../models/customer';
+import { Customer } from '../../models/customer';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class CustomersService {
 
-  private devices: Customer[] = [
-
+  private customers: Customer[] = [
+    {id: 1, name: 'abcdef'},
+    {id: 2, name: 'efghij'}
   ];
 
   getAll(): Observable<Customer[]> {

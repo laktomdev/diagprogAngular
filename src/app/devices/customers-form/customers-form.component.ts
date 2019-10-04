@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewChild, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Customer } from 'src/app/models/customer';
-import { CustomersService } from '../customers.service';
+import { CustomersService } from '../services/customers.service';
 import { FormControl } from '@angular/forms';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Subject, ReplaySubject } from 'rxjs';
 import { MatSelect } from '@angular/material';
 

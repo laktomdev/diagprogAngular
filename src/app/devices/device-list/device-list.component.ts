@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { Device } from 'src/app/models/Device/device';
-import { DevicesService } from '../devices.service';
+import { DevicesService } from '../services/devices.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
 
@@ -36,6 +36,7 @@ export class DeviceListComponent implements OnInit {
 
   onDeviceChanged(newDevice: Device) {
     this.dataSource.data.find(dev => dev.id === newDevice.id).customer = newDevice.deviceInfo.customer;
+    this.dataSource.data.find(dev => dev.id === newDevice.id).seller = newDevice.deviceInfo.seller;
   }
 
   ngOnInit() {
