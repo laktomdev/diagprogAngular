@@ -51,6 +51,7 @@ export class DeviceListComponent implements OnInit {
       (data) => {
 
         this.devices = data;
+        console.log(this.devices);
         this.dataSource =  new MatTableDataSource<DeviceShort>(data);
         // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
         // tslint:disable-next-line:no-shadowed-variable

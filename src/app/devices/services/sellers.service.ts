@@ -7,19 +7,17 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class SellersService {
-
-  private customers: Seller[] = [
-
-  ];
+  private customers: Seller[] = [];
 
   getAll(): Observable<Seller[]> {
     return this.http.get<Seller[]>('https://localhost:44313/sellers');
   }
 
   getById(id: number | string): Observable<Seller> {
-    return this.http.get<Seller>(`https:/localhost:44313/sellers/details/${id}`);
+    return this.http.get<Seller>(
+      `https:/localhost:44313/sellers/details/${id}`
+    );
   }
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 }

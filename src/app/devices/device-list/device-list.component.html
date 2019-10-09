@@ -41,7 +41,7 @@
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
         <div class="example-element-detail"  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-          <app-device-details (deviceChange)="onDeviceChanged($event)" *ngIf="expandedElement==element" class="device-details border border-primary" [customId]="element.id"></app-device-details>
+          <app-device-details (deviceChange)="onDeviceChanged($event)" *ngIf="expandedElement==element" class="device-details border border-primary" [deviceId]="element.id"></app-device-details>
         </div>
       </td>
     </ng-container>

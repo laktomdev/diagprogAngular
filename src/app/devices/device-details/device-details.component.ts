@@ -13,8 +13,9 @@ export class DeviceDetailsComponent implements OnInit {
 
   device: Device;
 
+
   @Input()
-  customId: number;
+  deviceId: number;
   customerInEditMode = false;
   sellerInEditMode = false;
 
@@ -25,8 +26,7 @@ export class DeviceDetailsComponent implements OnInit {
   }
 
 
-  constructor(private dS: DevicesService
-    ) { }
+  constructor(private dS: DevicesService) { }
 
     onCustomerChange(newCustomer: Customer) {
       this.device.deviceInfo.customer = newCustomer;
@@ -41,7 +41,7 @@ export class DeviceDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.dS.getById(Number(this.customId)).subscribe(
+    this.dS.getById(Number(this.deviceId)).subscribe(
       (data) => {
         this.device = data;
       },
@@ -49,5 +49,7 @@ export class DeviceDetailsComponent implements OnInit {
         console.log(error);
       }
     );
+
+
   }
 }

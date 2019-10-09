@@ -6,11 +6,11 @@ import { DeviceDetailsComponent } from './device-details/device-details.componen
 import { DevicesRoutingModule } from './devices-routing.module';
 import { CustomersFormComponent } from './customers-form/customers-form.component';
 import { SellersFormComponent } from './sellers-form/sellers-form.component';
-
+import { DeviceMessagesComponent } from './device-messages/device-messages.component';
 
 
 @NgModule({
-  declarations: [DeviceListComponent, DeviceDetailsComponent, CustomersFormComponent, SellersFormComponent],
+  declarations: [DeviceListComponent, DeviceDetailsComponent, CustomersFormComponent, SellersFormComponent, DeviceMessagesComponent],
   imports: [
     CommonModule,
     SharedModule,
