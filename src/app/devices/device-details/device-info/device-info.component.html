@@ -1,0 +1,20 @@
+<h4>Informacje <button class="btn btn-link">więcej</button></h4>
+<hr />
+<dl>
+  <dt>Sprzedawca:</dt>
+  <div *ngIf="!sellerInEditMode">{{deviceInfo?.seller?.name}} <button class="btn btn-link"
+    (click)='sellerInEditMode = !sellerInEditMode'>zmień</button></div>
+<app-sellers-form *ngIf="sellerInEditMode" (customerChange)="onSellerChange($event)"
+  [selectedSellerUserId]='deviceInfo.seller?.userId'></app-sellers-form>
+  <dt>Klient:</dt>
+  <dd>
+    <div *ngIf="!customerInEditMode">{{deviceInfo?.customer?.name}} <button class="btn btn-link"
+        (click)='customerInEditMode = !customerInEditMode'>zmień</button></div>
+    <app-customers-form *ngIf="customerInEditMode" (customerChange)="onCustomerChange($event)"
+      [selectedCustomerId]='deviceInfo.customer?.id'></app-customers-form>
+  </dd>
+  <dt>Pakiet:</dt>
+  <dd> {{deviceInfo?.package?.name}}</dd>
+  <dt>Timelock:</dt>
+  <dd> {{deviceInfo?.timeLock | date: 'dd.MM.yyyy'}}</dd>
+</dl>

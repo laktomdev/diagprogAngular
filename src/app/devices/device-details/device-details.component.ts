@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DevicesService } from '../services/devices.service';
 import { Device } from 'src/app/models/Device/device';
-import { Customer } from 'src/app/models/customer';
-import { Seller } from 'src/app/models/seller';
+import { DeviceInfo } from 'src/app/models/Device/deviceInfo';
 
 @Component({
   selector: 'app-device-details',
@@ -16,29 +15,25 @@ export class DeviceDetailsComponent implements OnInit {
 
   @Input()
   deviceId: number;
-  customerInEditMode = false;
-  sellerInEditMode = false;
+
 
   @Output() deviceChange = new EventEmitter<Device>();
 
-  passDeviceToParrent() {
+  passDeviceToListComponent() {
+    console.log('device changed sent to device-list-component');
     this.deviceChange.emit(this.device);
+  }
+
+  onDeviceInfoChange(newInfo: DeviceInfo) {
+    console.log('new deviceInfo received');
+    this.device.deviceInfo = newInfo;
+    this.passDeviceToListComponent();
   }
 
 
   constructor(private dS: DevicesService) { }
 
-    onCustomerChange(newCustomer: Customer) {
-      this.device.deviceInfo.customer = newCustomer;
-      this.customerInEditMode = false;
-      this.passDeviceToParrent();
-    }
 
-    onSellerChange(newSeller: Seller) {
-      this.device.deviceInfo.seller = newSeller;
-      this.sellerInEditMode = false;
-      this.passDeviceToParrent();
-    }
 
   ngOnInit() {
     this.dS.getById(Number(this.deviceId)).subscribe(

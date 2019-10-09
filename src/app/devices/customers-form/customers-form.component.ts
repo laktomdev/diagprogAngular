@@ -33,7 +33,8 @@ export class CustomersFormComponent
   submitted = false;
   changed = false;
 
-  passCustomerToParent(value: Customer) {
+  passCustomerToDeviceInfoComponent(value: Customer) {
+    console.log('customer changed sent to device-info-component');
     this.customerChange.emit(value);
   }
 
@@ -73,14 +74,14 @@ export class CustomersFormComponent
 
   onSubmit()  {
     if (this.submitted) {
-      this.passCustomerToParent(this.customerCtrl.value);
+      this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);
     }
   }
 
   cancelEdit() {
     this.customerCtrl.setValue(this.customers.find(i => i.id === this.selectedCustomerId));
     this.changed = false;
-    this.passCustomerToParent(this.customerCtrl.value);
+    this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);
   }
 
   private filterCustomers() {

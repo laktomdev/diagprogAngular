@@ -4,6 +4,7 @@ import { Package } from '../package';
 import { Time } from '@angular/common';
 
 export interface DeviceInfo {
+  id: number;
   customer: Customer;
   seller: Seller;
   package: Package;

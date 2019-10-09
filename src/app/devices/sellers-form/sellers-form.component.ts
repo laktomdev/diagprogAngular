@@ -32,7 +32,8 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
   submitted = false;
   changed = false;
 
-  passSellerToParent(value: Seller) {
+  passSellerToDeviceInfo(value: Seller) {
+    console.log('seller changed sent to device-info-component');
     this.customerChange.emit(value);
   }
 
@@ -40,7 +41,7 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
     this.sS.getAll().subscribe(
       data => {
         this.sellers = data;
-        console.log(this.sellers);
+
         // load select initial value
         this.sellerCtrl.setValue(this.sellers.find(i => i.userId === this.selectedSellerUserId));
         // load the initial customers list
@@ -71,14 +72,14 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
 
   onSubmit()  {
     if (this.submitted) {
-      this.passSellerToParent(this.sellerCtrl.value);
+      this.passSellerToDeviceInfo(this.sellerCtrl.value);
     }
   }
 
   cancelEdit() {
     this.sellerCtrl.setValue(this.sellers.find(i => i.userId === this.selectedSellerUserId));
     this.changed = false;
-    this.passSellerToParent(this.sellerCtrl.value);
+    this.passSellerToDeviceInfo(this.sellerCtrl.value);
   }
 
   private filterSellers() {
