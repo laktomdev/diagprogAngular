@@ -1,14 +1,22 @@
-<div class="row">
-  <div class="col-md-4">
-    <app-device-identification [deviceId]="deviceId"></app-device-identification>
-  </div>
-  <div class="col-md-4">
-    <app-device-info [deviceId]="deviceId" (deviceInfoChange)="onDeviceInfoChange($event)"></app-device-info>
-  </div>
-  <div class="col-md-4">
-    <app-device-status [deviceId]="deviceId" ></app-device-status>
-  </div>
-  <div class="col-md-12">
+<mat-tab-group>
+  <mat-tab label="Informacje">
+    <ng-template matTabContent>
+      <app-device-info [deviceId]="deviceId" (deviceInfoChange)="onDeviceInfoChange($event)"></app-device-info>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Identyfikacja">
+    <ng-template matTabContent>
+      <app-device-identification [deviceId]="deviceId"></app-device-identification>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Status">
+    <ng-template matTabContent>
+      <app-device-status [deviceId]="deviceId"></app-device-status>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Komunikaty">
+    <ng-template matTabContent>
       <app-device-messages [deviceId]="deviceId"></app-device-messages>
-  </div>
-</div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

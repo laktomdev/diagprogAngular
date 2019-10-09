@@ -1,11 +1,21 @@
-<h4>Status <button class="btn btn-link">więcej</button></h4><hr/>
-<dl>
-    <dt>Data stworzenia:</dt>
-    <dd> {{deviceStatus?.createDate | date: 'dd.MM.yyyy'}}</dd>
-    <dt>Pierwsza aktywacja:</dt>
-    <dd> {{deviceStatus?.firstActivation | date: 'dd.MM.yyyy'}}</dd>
-    <dt>Ostatnia aktywacja:</dt>
-    <dd> {{deviceStatus?.lastActivation | date: 'dd.MM.yyyy'}}</dd>
-    <dt>Rezerwacja:</dt>
-    <dd> {{deviceStatus?.reservationDate | date: 'dd.MM.yyyy'}}</dd>
-</dl>
+<br />
+<h4 class="text-center">Status</h4>
+<hr />
+<div class="row container-fluid">
+  <div class="col-md-5">
+    <dl>
+      <dt>Pierwsza aktywacja:</dt>
+      <dd> {{deviceStatus?.firstActivation | date: 'dd.MM.yyyy'}}</dd>
+      <dt>Ostatnia aktywacja:</dt>
+      <dd> {{deviceStatus?.lastActivation | date: 'dd.MM.yyyy'}}</dd>
+    </dl>
+  </div>
+  <div class="col-md-5 offset-md-2">
+    <dl>
+      <dt>Data stworzenia:</dt>
+      <dd> {{deviceStatus?.createDate | date: 'dd.MM.yyyy'}}</dd>
+      <dt>Rezerwacja:</dt>
+      <dd> {{deviceStatus?.reservationDate | date: 'dd.MM.yyyy'}}</dd>
+    </dl>
+  </div>
+</div>

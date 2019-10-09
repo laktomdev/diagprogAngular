@@ -1,20 +1,36 @@
-<h4>Informacje <button class="btn btn-link">więcej</button></h4>
+<br />
+<h4 class="text-center">Informacje</h4>
 <hr />
-<dl>
-  <dt>Sprzedawca:</dt>
-  <div *ngIf="!sellerInEditMode">{{deviceInfo?.seller?.name}} <button class="btn btn-link"
-    (click)='sellerInEditMode = !sellerInEditMode'>zmień</button></div>
-<app-sellers-form *ngIf="sellerInEditMode" (customerChange)="onSellerChange($event)"
-  [selectedSellerUserId]='deviceInfo.seller?.userId'></app-sellers-form>
-  <dt>Klient:</dt>
-  <dd>
-    <div *ngIf="!customerInEditMode">{{deviceInfo?.customer?.name}} <button class="btn btn-link"
-        (click)='customerInEditMode = !customerInEditMode'>zmień</button></div>
-    <app-customers-form *ngIf="customerInEditMode" (customerChange)="onCustomerChange($event)"
-      [selectedCustomerId]='deviceInfo.customer?.id'></app-customers-form>
-  </dd>
-  <dt>Pakiet:</dt>
-  <dd> {{deviceInfo?.package?.name}}</dd>
-  <dt>Timelock:</dt>
-  <dd> {{deviceInfo?.timeLock | date: 'dd.MM.yyyy'}}</dd>
-</dl>
+
+<div class="container-fluid row">
+  <dl class="col-5">
+    <dt>Sprzedawca:</dt>
+    <dd>
+      <div *ngIf="!sellerInEditMode">{{deviceInfo?.seller?.name}}
+        <button class="btn btn-link btn-change" (click)='sellerInEditMode = !sellerInEditMode'>zmień
+        </button>
+      </div>
+      <app-sellers-form *ngIf="sellerInEditMode" (customerChange)="onSellerChange($event)"
+        [selectedSellerUserId]='deviceInfo.seller?.userId'></app-sellers-form>
+    </dd>
+    <dt>Klient:</dt>
+    <dd>
+      <div *ngIf="!customerInEditMode">{{deviceInfo?.customer?.name}}
+        <button class="btn btn-link btn-change" (click)='customerInEditMode = !customerInEditMode'>zmień
+        </button>
+      </div>
+      <app-customers-form *ngIf="customerInEditMode" (customerChange)="onCustomerChange($event)"
+        [selectedCustomerId]='deviceInfo.customer?.id'></app-customers-form>
+    </dd>
+  </dl>
+
+  <dl class="col-5 offset-2">
+    <dt>Pakiet:</dt>
+    <dd> <div>{{deviceInfo?.package?.name}}</div></dd>
+    <dt>Timelock:</dt>
+    <dd>
+      <div>{{deviceInfo?.timeLock | date: 'dd.MM.yyyy'}}</div>
+      <div *ngIf="!deviceInfo?.timeLock">brak</div>
+    </dd>
+  </dl>
+</div>
