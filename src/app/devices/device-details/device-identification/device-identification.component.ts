@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DevicesService } from '../../services/devices.service';
 import { DeviceIdentification } from 'src/app/models/Device/deviceIdentification';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-device-identification',

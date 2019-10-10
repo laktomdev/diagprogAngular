@@ -8,12 +8,15 @@ import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DevicesModule } from './devices/devices.module';
 import { AuthorizationComponent } from './authorization/authorization.component';
+import { DmessagesModule } from './dmessages/dmessages.module';
+import { EnumAsStringPipe } from './pipes/enum-as-string.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -22,6 +25,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
     SharedModule,
     HomeModule,
     DevicesModule,
+    DmessagesModule,
     HttpClientModule
   ],
   providers: [],

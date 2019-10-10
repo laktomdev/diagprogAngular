@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { DeviceMessage } from 'src/app/models/Device/Message/deviceMessage';
-import { MessagesService } from '../../services/messages.service';
+import { MessagesService } from 'src/app/services/messages.service';
+
 
 @Component({
   selector: 'app-device-messages',

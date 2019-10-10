@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DevicesService } from '../../services/devices.service';
 import { DeviceInfo } from 'src/app/models/Device/deviceInfo';
 import { Customer } from 'src/app/models/customer';
 import { Seller } from 'src/app/models/seller';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-device-info',

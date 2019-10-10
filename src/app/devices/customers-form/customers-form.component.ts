@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Customer } from 'src/app/models/customer';
-import { CustomersService } from '../services/customers.service';
 import { FormControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject, ReplaySubject } from 'rxjs';
 import { MatSelect } from '@angular/material';
+import { CustomersService } from 'src/app/services/customers.service';
 
 @Component({
   selector: 'app-customers-form',

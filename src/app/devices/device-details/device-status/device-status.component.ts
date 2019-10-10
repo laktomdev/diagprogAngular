@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeviceStatusInfo } from 'src/app/models/Device/deviceStatusInfo';
-import { DevicesService } from '../../services/devices.service';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-device-status',

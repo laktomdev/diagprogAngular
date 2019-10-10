@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { Device } from 'src/app/models/Device/device';
-import { DevicesService } from '../services/devices.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-device-list',

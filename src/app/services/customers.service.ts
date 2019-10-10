@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Customer } from '../../models/customer';
 import { Observable } from 'rxjs';
+import { Customer } from 'src/app/models/customer';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CustomersService {
   getAll(): Observable<Customer[]> {

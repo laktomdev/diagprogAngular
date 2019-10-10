@@ -21,7 +21,6 @@ export class AuthorizationComponent implements OnInit {
 
   ngOnInit() {}
 
-
   login() {
     this.authService.login(this.user).subscribe();
   }

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Device } from '../../models/Device/device';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DeviceShort } from '../../models/Device/deviceShort';
-import { DeviceIdentification } from 'src/app/models/Device/deviceIdentification';
-import { DeviceInfo } from 'src/app/models/Device/deviceInfo';
-import { DeviceStatusInfo } from 'src/app/models/Device/deviceStatusInfo';
+import { DeviceShort } from '../models/Device/deviceShort';
+import { Device } from '../models/Device/device';
+import { DeviceIdentification } from '../models/Device/deviceIdentification';
+import { DeviceInfo } from '../models/Device/deviceInfo';
+import { DeviceStatusInfo } from '../models/Device/deviceStatusInfo';
+
 
 const httpOptions = {
   headers: new HttpHeaders({

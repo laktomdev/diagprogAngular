@@ -1,30 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DeviceMessage } from 'src/app/models/Device/Message/deviceMessage';
+import { DeviceMessage } from '../models/Device/Message/deviceMessage';
+import { MessageDef } from '../models/messageDef';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessagesService {
-
-  getMessagesInDeviceCount(id: number | string): Observable<number> {
-    return this.http.get<number>(
-      `https:/localhost:44313/messages/GetMessagesInDeviceCount/${id}`
-    );
-  }
-
-  getMessagesInDeviceFreshCount(id: number | string): Observable<number> {
-    return this.http.get<number>(
-      `https:/localhost:44313/messages/GetMessagesInDeviceCountFresh/${id}`
-    );
-  }
-
-  getMessagesInDeviceOutdatedCount(id: number | string): Observable<number> {
-    return this.http.get<number>(
-      `https:/localhost:44313/messages/GetMessagesInDeviceCountOutdated/${id}`
-    );
-  }
 
   getMessagesInDeviceOutdatedList(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
@@ -43,6 +26,15 @@ export class MessagesService {
       `https:/localhost:44313/messages/DeviceMessages/${id}`
     );
   }
+
+  getMessagesDeffinitionList(): Observable<MessageDef[]> {
+    return this.http.get<MessageDef[]>('https:/localhost:44313/messages/AllDefinitions');
+  }
+
+  getMessagesDeffinition(id: number | string): Observable<MessageDef> {
+    return this.http.get<MessageDef>(`https:/localhost:44313/messages/DefinitionDetails/${id}`);
+  }
+
 
 
   constructor(private http: HttpClient) {}

@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { SellersService } from '../services/sellers.service';
 import { Seller } from 'src/app/models/seller';
 import { MatSelect } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { Subject, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { SellersService } from 'src/app/services/sellers.service';
 
 @Component({
   selector: 'app-sellers-form',

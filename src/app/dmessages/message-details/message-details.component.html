@@ -1,0 +1,25 @@
+<div class="container-fluid">
+
+  <h4 class="text-center">Wersje językowe</h4>
+
+  <div class="row">
+      <mat-select class="col-md-3" placeholder="dodaj język">
+          <mat-option *ngFor="let item of langs">{{item}}</mat-option>
+      </mat-select>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab *ngFor="let item of message?.translations" label="{{item.language | enumAsString: language}}" class="row">
+      <ng-template matTabContent>
+        <br />
+        <textarea class="col-md-12" rows="3">{{item.headerText}}</textarea><br />
+        <textarea class="col-md-12" rows="10">{{item.bodyText}}</textarea><br />
+        <textarea class="col-md-12" rows="4">{{item.footerText}}</textarea><br />
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+
+
+
+</div>
