@@ -1,3 +1,16 @@
 textarea {
   resize: none
 }
+
+.mat-tab-header-pagination {
+  display: none !important;
+}
+
+::ng-deep  .mat-tab-labels {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+::ng-deep  .mat-tab-label-active{
+  background-color: cadetblue;
+ }

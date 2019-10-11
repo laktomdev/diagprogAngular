@@ -6,11 +6,13 @@ import { SharedModule } from '../shared/shared.module';
 import { MessageDetailsComponent } from './message-details/message-details.component';
 import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
 import { Language } from '../models/language';
+import { MessageTranslationsComponent } from './message-details/message-translations/message-translations.component';
+import { MessageDevicesComponent } from './message-details/message-devices/message-devices.component';
 
 
 
 @NgModule({
-  declarations: [MessagesDefListComponent, MessageDetailsComponent, EnumAsStringPipe],
+  declarations: [MessagesDefListComponent, MessageDetailsComponent, EnumAsStringPipe, MessageTranslationsComponent, MessageDevicesComponent],
   imports: [
     CommonModule,
     DmessagesRoutingModule,
