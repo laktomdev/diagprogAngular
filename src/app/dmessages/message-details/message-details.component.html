@@ -1,15 +1,17 @@
 <div class="container-fluid">
 
-  <h4 class="text-center">Wersje językowe</h4>
+  <h4 class="text-center">Wersje językowe</h4><hr/>
+      <div class="row">
+          <mat-select class="offset-md-1 col-md-3 border border-secondary" placeholder="dodaj język" [(ngModel)]="selectedLanguage">
+              <mat-option *ngFor="let item of languages" [value]="item">{{item.name}}</mat-option>
+          </mat-select>
+          <button  (click)="addLanguage()" class="btn btn-primary btn-nopadding col-md-1">Dodaj</button>
+    </div>
 
-  <div class="row">
-      <mat-select class="col-md-3" placeholder="dodaj język">
-          <mat-option *ngFor="let item of langs">{{item}}</mat-option>
-      </mat-select>
-  </div>
+  <br/><hr/>
 
   <mat-tab-group >
-        <mat-tab *ngFor="let item of message?.translations" label="{{item.language | enumAsString: language}}">
+        <mat-tab *ngFor="let item of message?.translations" label="{{item.language.name}}">
             <ng-template matTabContent class="row">
               <br />
               <textarea class="col-md-12" rows="3">{{item.headerText}}</textarea><br/>
