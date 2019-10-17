@@ -1,0 +1,8 @@
+<div class="container row">
+        <textarea [(ngModel)]="translation.headerText" class="col-md-12" rows="3"></textarea><br/>
+        <textarea [(ngModel)]="translation.bodyText" class="col-md-12" rows="10"></textarea><br/>
+        <textarea [(ngModel)]="translation.footerText" class="col-md-12" rows="4"></textarea><br/>
+        <form  (ngSubmit)="onSubmit()">
+            <button type="submit">Zapisz</button>
+        </form>
+</div>

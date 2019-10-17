@@ -8,11 +8,12 @@ import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
 import { Language } from '../models/language';
 import { MessageTranslationsComponent } from './message-details/message-translations/message-translations.component';
 import { MessageDevicesComponent } from './message-details/message-devices/message-devices.component';
+import { TranslationEditComponent } from './message-details/message-translations/translation-edit/translation-edit.component';
 
 
 
 @NgModule({
-  declarations: [MessagesDefListComponent, MessageDetailsComponent, EnumAsStringPipe, MessageTranslationsComponent, MessageDevicesComponent],
+  declarations: [MessagesDefListComponent, MessageDetailsComponent, EnumAsStringPipe, MessageTranslationsComponent, MessageDevicesComponent, TranslationEditComponent],
   imports: [
     CommonModule,
     DmessagesRoutingModule,

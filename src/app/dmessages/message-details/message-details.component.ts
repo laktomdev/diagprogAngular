@@ -16,8 +16,9 @@ export class MessageDetailsComponent implements OnInit {
 
   @Input() messageId: number;
   message: MessageDef;
-  selected: MessageTranslation;
-  languages: Language[] = [];
+
+  messageTranslation: MessageTranslation;
+  languagesAvaliable: Language[] = [];
   selectedLanguage: Language;
   constructor(private mS: MessagesService, private lS: LanguagesService) { }
 
@@ -25,7 +26,7 @@ export class MessageDetailsComponent implements OnInit {
     this.mS.getMessagesDeffinition(this.messageId).subscribe(
       (data) => {
         this.message = data;
-        this.sliceLangs();
+        this.filterLanguages();
       },
       (error) => {
         console.log(error);
@@ -34,8 +35,8 @@ export class MessageDetailsComponent implements OnInit {
 
     this.lS.getAll().subscribe(
       (data) => {
-        this.languages = data;
-        this.sliceLangs();
+        this.languagesAvaliable = data;
+        this.filterLanguages();
       },
       (error) => {
         console.log(error);
@@ -44,28 +45,33 @@ export class MessageDetailsComponent implements OnInit {
   }
 
   addLanguage() {
-    this.message.translations.push({
-      bodyText: '',
-      headerText: '',
-      footerText: '',
-      isDefault: false,
-      language: this.selectedLanguage,
-      messageId: this.message.id
-    });
-
-    this.selectedLanguage = null;
-    this.sliceLangs();
-
-
+    if (this.selectedLanguage != null) {
+      this.message.translations.push({
+        id: null,
+        bodyText: '',
+        headerText: '',
+        footerText: '',
+        isDefault: false,
+        language: this.selectedLanguage,
+        messageId: this.message.id
+      });
+      this.selectedLanguage = null;
+      this.filterLanguages();
+    }
   }
 
-  sliceLangs() {
+  filterLanguages() {
     const languagesInMessage = this.message.translations.map(x => x.language);
 
-    this.languages = this.languages.filter(({id: id1}) =>
+    this.languagesAvaliable = this.languagesAvaliable.filter(({id: id1}) =>
     !languagesInMessage.some(({id: id2}) => id2 === id1));
 
   }
+  setTranslation() {
+    console.log('iii');
+  }
+
+
 
 
 
