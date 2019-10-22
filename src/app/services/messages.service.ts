@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { DeviceMessage } from '../models/Device/Message/deviceMessage';
 import { MessageDef } from '../models/messageDef';
 import { MessageTranslation } from '../models/messageTranslation';
+import { map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -44,11 +45,12 @@ export class MessagesService {
     return this.http.get<MessageDef>(`https:/localhost:44313/messages/DefinitionDetails/${id}`);
   }
 
-  editTranslation(model: MessageTranslation): Observable<MessageTranslation> {
-    console.log(model);
-    return this.http.post<MessageTranslation>('https:/localhost:44313/messages/EditTranslation', model, httpOptions);
+  editTranslation(model: MessageTranslation) {
+    return this.http.post<number>('https:/localhost:44313/messages/EditTranslation', model, httpOptions);
+    // .pipe(
+    //   map((response: any) => console.log(response))
+    // );
   }
-
 
   constructor(private http: HttpClient) {}
 }

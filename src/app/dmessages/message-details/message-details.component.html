@@ -17,10 +17,10 @@
 
   <mat-tab-group>
     <mat-tab *ngFor="let item of message?.translations" label="{{item.language.name}}">
-      <ng-template matTabContent>
+        <ng-template matTabContent>
         <br />
         <app-translation-edit [translation]="item"></app-translation-edit>
-      </ng-template>
+        </ng-template>
     </mat-tab>
   </mat-tab-group>
 

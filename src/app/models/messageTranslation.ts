@@ -1,4 +1,3 @@
-import { Time } from '@angular/common';
 import { Language } from './language';
 
 export interface MessageTranslation {
@@ -9,4 +8,5 @@ export interface MessageTranslation {
   bodyText: string;
   footerText: string;
   language: Language;
+  isNew: boolean;
 }
