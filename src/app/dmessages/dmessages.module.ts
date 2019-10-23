@@ -9,11 +9,12 @@ import { Language } from '../models/language';
 import { MessageTranslationsComponent } from './message-details/message-translations/message-translations.component';
 import { MessageDevicesComponent } from './message-details/message-devices/message-devices.component';
 import { TranslationEditComponent } from './message-details/message-translations/translation-edit/translation-edit.component';
+import { CreateEditMessageComponent } from './create-edit-message/create-edit-message.component';
 
 
 
 @NgModule({
-  declarations: [MessagesDefListComponent, MessageDetailsComponent, EnumAsStringPipe, MessageTranslationsComponent, MessageDevicesComponent, TranslationEditComponent],
+  declarations: [MessagesDefListComponent, MessageDetailsComponent, EnumAsStringPipe, MessageTranslationsComponent, MessageDevicesComponent, TranslationEditComponent, CreateEditMessageComponent],
   imports: [
     CommonModule,
     DmessagesRoutingModule,

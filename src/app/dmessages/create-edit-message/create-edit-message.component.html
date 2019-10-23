@@ -1,0 +1,31 @@
+<form name="messageDef" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+          <input type="text" [ngModel]="messageDef?.description"
+          [ngModelOptions]="{standalone: true}"
+          (ngModelChange)="messageDef.description = $event" class="col-md-12"/>
+       </div>
+
+       <div class="form-group">
+          <mat-form-field class="col-md-5">
+            <input matInput [matDatepicker]="frompicker" placeholder="Od:"
+              [ngModel]="messageDef?.validFrom"
+              [ngModelOptions]="{standalone: true}"
+              (ngModelChange)="messageDef.validFrom = $event">
+            <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+            <mat-datepicker #frompicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-5 offset-md-1">
+              <input matInput [matDatepicker]="topicker" placeholder="Do:"
+                [ngModel]="messageDef?.validTo"
+                [ngModelOptions]="{standalone: true}"
+                (ngModelChange)="messageDef.validTo = $event">
+              <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+              <mat-datepicker #topicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+         <button type="submit" class="btn btn-success col-md-12">Zapisz</button>
+
+
+</form>

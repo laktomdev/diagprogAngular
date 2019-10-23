@@ -1,27 +1,23 @@
 <div class="container-fluid">
-  <h4 class="text-center">Wersje językowe</h4>
-  <hr />
-  <h6>Dodaj nową wersję językową komunikatu.</h6>
-
-  <div class="container-fluid">
-    <div class="row">
-      <mat-select class="col-md-3 border border-secondary" placeholder="dodaj język" [(ngModel)]="selectedLanguage">
-        <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
-      </mat-select>
-      <button (click)="addLanguage()" class="btn btn-primary btn-nopadding col-md-2 col-lg-1">Dodaj</button>
-    </div>
-  </div>
-  <br />
-  <hr />
-
-
   <mat-tab-group>
-    <mat-tab *ngFor="let item of message?.translations" label="{{item.language.name}}">
+      <mat-tab  label="Edycja">
+          <ng-template matTabContent>
+          <br />
+            <app-create-edit-message [messageDef]="message"></app-create-edit-message>
+          </ng-template>
+      </mat-tab>
+    <mat-tab  label="Tłumaczenia">
         <ng-template matTabContent>
         <br />
-        <app-translation-edit [translation]="item"></app-translation-edit>
+          <app-message-translations [messageDefId]="message.id" [translations]="message?.translations"></app-message-translations>
         </ng-template>
     </mat-tab>
+    <mat-tab  label="Urządzenia">
+      <ng-template matTabContent>
+      <br />
+        <app-message-devices></app-message-devices>
+      </ng-template>
+  </mat-tab>
   </mat-tab-group>
 
 </div>
