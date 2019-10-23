@@ -14,11 +14,15 @@ import { MatButtonModule,
   MatFormFieldModule,
   MatDialogModule,
   MatSidenavModule,
-  MatSelectModule
+  MatSelectModule,
+  MatButtonToggleModule,
+  MatDatepickerModule,
+  MatNativeDateModule
    } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 
 
@@ -42,9 +46,14 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatDialogModule,
     MatSidenavModule,
     MatSelectModule,
+    MatDatepickerModule,
     ReactiveFormsModule,
+    MatButtonToggleModule,
+    MatNativeDateModule,
+    MatMomentDateModule,
     FormsModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+
   ],
   exports: [
     MatButtonModule,
@@ -63,6 +72,10 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatDialogModule,
     MatSidenavModule,
     MatSelectModule,
+    MatButtonToggleModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
     FormsModule
