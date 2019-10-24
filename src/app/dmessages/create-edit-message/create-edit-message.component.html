@@ -1,3 +1,5 @@
+<h4 class="text-center">Dane komunikatu</h4><hr/><br/>
+
 <form name="messageDef" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
@@ -25,7 +27,9 @@
               <mat-datepicker #topicker></mat-datepicker>
           </mat-form-field>
         </div>
-         <button type="submit" class="btn btn-success col-md-12">Zapisz</button>
+         <button type="submit" *ngIf="!newRecord" class="btn btn-success col-md-12">Zapisz zmiany</button>
+         <button type="submit" *ngIf="newRecord" [mat-dialog-close]="" class="btn btn-success col-md-12">Dodaj komunikat</button>
+
 
 
 </form>

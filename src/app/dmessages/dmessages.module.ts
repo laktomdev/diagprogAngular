@@ -14,7 +14,13 @@ import { CreateEditMessageComponent } from './create-edit-message/create-edit-me
 
 
 @NgModule({
-  declarations: [MessagesDefListComponent, MessageDetailsComponent, EnumAsStringPipe, MessageTranslationsComponent, MessageDevicesComponent, TranslationEditComponent, CreateEditMessageComponent],
+  declarations: [MessagesDefListComponent,
+    MessageDetailsComponent,
+     EnumAsStringPipe,
+      MessageTranslationsComponent,
+       MessageDevicesComponent,
+        TranslationEditComponent,
+        CreateEditMessageComponent],
   imports: [
     CommonModule,
     DmessagesRoutingModule,

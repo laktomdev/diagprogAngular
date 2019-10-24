@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { DeviceMessage } from '../models/Device/Message/deviceMessage';
 import { MessageDef } from '../models/messageDef';
 import { MessageTranslation } from '../models/messageTranslation';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,6 +18,10 @@ const httpOptions = {
 
 
 export class MessagesService {
+
+  private readonly refreshToken$ = new BehaviorSubject(undefined);
+  private readonly task$ = this.refreshToken$.pipe(
+    switchMap(() => this.http.get('/api/tasks/foo')));
 
   getMessagesInDeviceOutdatedList(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
@@ -45,11 +49,16 @@ export class MessagesService {
     return this.http.get<MessageDef>(`https:/localhost:44313/messages/DefinitionDetails/${id}`);
   }
 
+  editMessageDefinition(model: MessageDef): Observable<number> {
+    return  this.http.post<number>('https:/localhost:44313/messages/EditMessageDef', model, httpOptions);
+  }
+
+  addMessageDefinition(model: MessageDef): Observable<number> {
+    return this.http.post<number>('https:/localhost:44313/messages/AddMessageDef', model, httpOptions);
+  }
+
   editTranslation(model: MessageTranslation) {
     return this.http.post<number>('https:/localhost:44313/messages/EditTranslation', model, httpOptions);
-    // .pipe(
-    //   map((response: any) => console.log(response))
-    // );
   }
 
   constructor(private http: HttpClient) {}
