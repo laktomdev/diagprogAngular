@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { DeviceMessage } from '../models/Device/Message/deviceMessage';
 import { MessageDef } from '../models/messageDef';
 import { MessageTranslation } from '../models/messageTranslation';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, delay } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -42,7 +42,7 @@ export class MessagesService {
   }
 
   getMessagesDeffinitionList(): Observable<MessageDef[]> {
-    return this.http.get<MessageDef[]>('https:/localhost:44313/messages/AllDefinitions');
+    return this.http.get<MessageDef[]>('https:/localhost:44313/messages/AllDefinitions').pipe();
   }
 
   getMessagesDeffinition(id: number | string): Observable<MessageDef> {

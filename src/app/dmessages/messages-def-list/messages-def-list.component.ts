@@ -34,19 +34,19 @@ export class MessagesDefListComponent implements OnInit {
     this.downloadMessages();
   }
 
-  onElementChange(messageDef: MessageDef) {
-    console.log('zmieniony elemeny ' + messageDef.description); // nowa wartość - przekazywana przez emitery kolejnym komponentom
+  onElementChange() {
     this.downloadMessages();
-    console.log('odpowiedź z serwera ' + this.messages[0].description); // ciągle stara wartość
   }
 
   downloadMessages() {
     this.mS.getMessagesDeffinitionList().subscribe(
       (data) => {
+
         this.messages = data;
         this.dataSource =  new MatTableDataSource<MessageDef>(data);
         // this.expandedElement = this.messages.find(x => x.id === 1);
       },
+
       (error) => {
         console.log(error);
       }
@@ -55,8 +55,7 @@ export class MessagesDefListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateEditMessageComponent, {data: {}});
-
-    dialogRef.afterClosed().subscribe(result => {  this.onElementChange(result); });
+    dialogRef.afterClosed().subscribe(result => {  this.onElementChange(); });
   }
 
   delay(ms: number) {

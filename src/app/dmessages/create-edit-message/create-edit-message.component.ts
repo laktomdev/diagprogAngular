@@ -36,12 +36,11 @@ export class CreateEditMessageComponent implements OnInit {
   @Output() messageDefChange = new EventEmitter<MessageDef>();
 
   newRecord = false;
-  response: number;
 
   constructor(private mS: MessagesService, @Optional() @Inject(MAT_DIALOG_DATA) public data: MessageDef) {
     this.messageDef = data;
     console.log(data);
-    if(data !== null) {
+    if (data !== null) {
       this.newRecord = true;
     }
   }
@@ -49,18 +48,18 @@ export class CreateEditMessageComponent implements OnInit {
   ngOnInit() {
   }
 
-  passMessageDefToListComponent(value: MessageDef) {
+  passMessageDefToListComponent() {
     console.log('deviceMessage changed sent to messages-details component');
-    this.messageDefChange.emit(value);
+    this.messageDefChange.emit();
   }
 
   onSubmit() {
     if (!this.newRecord) {
       console.log(this.messageDef);
       moment().startOf('day').format();
-      this.mS.editMessageDefinition(this.messageDef).subscribe(data => {this.response = data; });
-      console.log('rowAffected=' + this.response );
-      this.passMessageDefToListComponent(this.messageDef);
+      this.mS.editMessageDefinition(this.messageDef).subscribe(() => {
+          this.passMessageDefToListComponent();
+      });
     } else {
       this.mS.addMessageDefinition(this.messageDef).subscribe();
     }
