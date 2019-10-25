@@ -6,6 +6,7 @@ import { MessagesService } from 'src/app/services/messages.service';
 import { MomentUtcDateAdapter } from 'src/app/pipes/momentUtcAdapter';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 
 export const MY_FORMATS = {
@@ -25,9 +26,9 @@ export const MY_FORMATS = {
   templateUrl: './create-edit-message.component.html',
   styleUrls: ['./create-edit-message.component.scss'],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-    { provide: DateAdapter, useClass: MomentUtcDateAdapter }
+    { provide: DateAdapter, useClass: MomentUtcDateAdapter },
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
   ]
 })
 export class CreateEditMessageComponent implements OnInit {
@@ -56,7 +57,13 @@ export class CreateEditMessageComponent implements OnInit {
   onSubmit() {
     if (!this.newRecord) {
       console.log(this.messageDef);
-      moment().startOf('day').format();
+      moment().startOf('day');
+
+      this.messageDef.validTo = moment.parseZone( this.messageDef.validTo).utc().format();
+      this.messageDef.validFrom = moment.parseZone( this.messageDef.validFrom).utc().format();
+
+
+
       this.mS.editMessageDefinition(this.messageDef).subscribe(() => {
           this.passMessageDefToListComponent();
       });
