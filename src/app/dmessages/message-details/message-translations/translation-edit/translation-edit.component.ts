@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { MessageTranslation } from 'src/app/models/messageTranslation';
 import { MessagesService } from 'src/app/services/messages.service';
+import { MessageTranslationSubmit } from 'src/app/models/MessageTranslationSubmit';
 
 @Component({
   selector: 'app-translation-edit',
@@ -11,10 +12,12 @@ import { MessagesService } from 'src/app/services/messages.service';
 export class TranslationEditComponent implements OnInit {
 
   @Input() translation: MessageTranslation;
+
+
   oldTranslation: MessageTranslation;
 
   isChanged = false;
-  isNew = false;
+  isNewRecord = true;
 
   constructor(private mS: MessagesService
     ) {}
@@ -30,12 +33,30 @@ export class TranslationEditComponent implements OnInit {
 
   ngOnInit() {
     this.oldTranslation = Object.assign({}, this.translation);
+    if (this.translation.id !== null) {
+      this.isNewRecord = false;
+    }
   }
 
   onSubmit()  {
-    this.mS.editTranslation(this.translation).subscribe();
+    if (!this.isNewRecord) {
+    this.mS.editTranslation(this.createSubmitTranslation()).subscribe(data => console.log(data));
     this.oldTranslation = Object.assign({}, this.translation);
     this.changed();
+    } else {
+       this.mS.addTranslation(this.createSubmitTranslation()).subscribe(data => console.log(data));
+    }
   }
 
+  createSubmitTranslation(): MessageTranslationSubmit {
+    return {
+      bodyText: this.translation.bodyText,
+      headerText: this.translation.headerText,
+      footerText: this.translation.footerText,
+      isDefault: this.translation.isDefault,
+      languageId: this.translation.language.id,
+      messageId: this.translation.messageId,
+      id: this.translation.id
+    };
+  }
 }

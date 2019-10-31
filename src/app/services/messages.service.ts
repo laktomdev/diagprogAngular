@@ -5,6 +5,7 @@ import { DeviceMessage } from '../models/Device/Message/deviceMessage';
 import { MessageDef } from '../models/messageDef';
 import { MessageTranslation } from '../models/messageTranslation';
 import { map, switchMap, delay } from 'rxjs/operators';
+import { MessageTranslationSubmit } from '../models/MessageTranslationSubmit';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,33 +20,29 @@ const httpOptions = {
 
 export class MessagesService {
 
-  private readonly refreshToken$ = new BehaviorSubject(undefined);
-  private readonly task$ = this.refreshToken$.pipe(
-    switchMap(() => this.http.get('/api/tasks/foo')));
-
-  getMessagesInDeviceOutdatedList(id: number | string): Observable<DeviceMessage[]> {
+  getMessagesInDeviceOutdated(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
       `https:/localhost:44313/messages/DeviceMessagesOutdated/${id}`
     );
   }
 
-  getMessagesInDeviceFreshList(id: number | string): Observable<DeviceMessage[]> {
+  getMessagesInDeviceActive(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
-      `https:/localhost:44313/messages/DeviceMessagesFresh/${id}`
+      `https:/localhost:44313/messages/DeviceMessagesActive/${id}`
     );
   }
 
-  getMessagesInDeviceList(id: number | string): Observable<DeviceMessage[]> {
+  getMessagesInDevice(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
       `https:/localhost:44313/messages/DeviceMessages/${id}`
     );
   }
 
-  getMessagesDeffinitionList(): Observable<MessageDef[]> {
+  getAllMessageDeffinitions(): Observable<MessageDef[]> {
     return this.http.get<MessageDef[]>('https:/localhost:44313/messages/AllDefinitions').pipe();
   }
 
-  getMessagesDeffinition(id: number | string): Observable<MessageDef> {
+  getMessagesDeffinitionDetails(id: number | string): Observable<MessageDef> {
     return this.http.get<MessageDef>(`https:/localhost:44313/messages/DefinitionDetails/${id}`);
   }
 
@@ -57,8 +54,12 @@ export class MessagesService {
     return this.http.post<number>('https:/localhost:44313/messages/AddMessageDef', model, httpOptions);
   }
 
-  editTranslation(model: MessageTranslation) {
+  editTranslation(model: MessageTranslationSubmit): Observable<number> {
     return this.http.post<number>('https:/localhost:44313/messages/EditTranslation', model, httpOptions);
+  }
+
+  addTranslation(model: MessageTranslationSubmit): Observable<number> {
+    return this.http.post<number>('https:/localhost:44313/messages/AddTranslationToMessage', model, httpOptions);
   }
 
   constructor(private http: HttpClient) {}

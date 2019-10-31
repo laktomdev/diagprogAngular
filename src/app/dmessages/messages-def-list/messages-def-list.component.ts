@@ -39,7 +39,7 @@ export class MessagesDefListComponent implements OnInit {
   }
 
   downloadMessages() {
-    this.mS.getMessagesDeffinitionList().subscribe(
+    this.mS.getAllMessageDeffinitions().subscribe(
       (data) => {
 
         this.messages = data;

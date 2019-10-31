@@ -28,7 +28,7 @@ export class MessageDetailsComponent implements OnInit {
   }
 
   downloadMessageDef() {
-    this.mS.getMessagesDeffinition(this.messageId).subscribe(
+    this.mS.getMessagesDeffinitionDetails(this.messageId).subscribe(
       (data) => {
         this.message = data;
       },

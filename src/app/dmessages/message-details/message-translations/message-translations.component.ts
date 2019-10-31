@@ -47,8 +47,7 @@ export class MessageTranslationsComponent implements OnInit {
         footerText: '',
         isDefault: false,
         language: this.selectedLanguage,
-        messageId: this.messageDefId,
-        isNew: true
+        messageId: this.messageDefId
       });
       this.selectedLanguage = null;
       this.filterLanguages();

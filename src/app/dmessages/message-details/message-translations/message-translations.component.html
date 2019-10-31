@@ -15,10 +15,8 @@
 
 
 <mat-tab-group>
-  <mat-tab *ngFor="let item of translations" label="{{item.language.name}}">
-      <ng-template matTabContent>
+  <mat-tab *ngFor="let item of translations" label="{{item.language?.name}}">
       <br />
       <app-translation-edit [translation]="item"></app-translation-edit>
-      </ng-template>
   </mat-tab>
 </mat-tab-group>

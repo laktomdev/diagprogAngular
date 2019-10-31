@@ -10,6 +10,8 @@ import { MessageTranslationsComponent } from './message-details/message-translat
 import { MessageDevicesComponent } from './message-details/message-devices/message-devices.component';
 import { TranslationEditComponent } from './message-details/message-translations/translation-edit/translation-edit.component';
 import { CreateEditMessageComponent } from './create-edit-message/create-edit-message.component';
+import { OutsideListComponent } from './message-details/message-devices/outside-list/outside-list.component';
+import { InsideListComponent } from './message-details/message-devices/inside-list/inside-list.component';
 
 
 
@@ -20,7 +22,9 @@ import { CreateEditMessageComponent } from './create-edit-message/create-edit-me
       MessageTranslationsComponent,
        MessageDevicesComponent,
         TranslationEditComponent,
-        CreateEditMessageComponent],
+        CreateEditMessageComponent,
+        OutsideListComponent,
+        InsideListComponent],
   imports: [
     CommonModule,
     DmessagesRoutingModule,

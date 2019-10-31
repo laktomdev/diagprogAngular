@@ -19,7 +19,7 @@ export class DeviceMessagesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.mS.getMessagesInDeviceFreshList(Number(this.deviceId)).subscribe(
+    this.mS.getMessagesInDeviceActive(Number(this.deviceId)).subscribe(
       (data) => {
         this.messagesFresh = data;
       },
@@ -28,7 +28,7 @@ export class DeviceMessagesComponent implements OnInit {
       }
     );
 
-    this.mS.getMessagesInDeviceOutdatedList(Number(this.deviceId)).subscribe(
+    this.mS.getMessagesInDeviceOutdated(Number(this.deviceId)).subscribe(
       (data) => {
         this.messagesOutdated = data;
       },

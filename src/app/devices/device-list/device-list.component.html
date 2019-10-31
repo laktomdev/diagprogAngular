@@ -35,6 +35,24 @@
       <td mat-cell *matCellDef="let element"> {{element.packageName}} </td>
     </ng-container>
 
+    <!-- timelock Column -->
+    <ng-container matColumnDef="timelock">
+      <th mat-header-cell *matHeaderCellDef> Timelock </th>
+      <td mat-cell *matCellDef="let element"> {{element.timelock}} </td>
+    </ng-container>
+
+    <!-- timelock Column -->
+    <ng-container matColumnDef="lastActivation">
+      <th mat-header-cell *matHeaderCellDef> Ostatnia aktywacja </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastActivation}} </td>
+    </ng-container>
+
+    <!-- timelock Column -->
+    <ng-container matColumnDef="language">
+      <th mat-header-cell *matHeaderCellDef> Ostatnia aktywacja </th>
+      <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+    </ng-container>
+
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
