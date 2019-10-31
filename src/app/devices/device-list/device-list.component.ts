@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatDialog, MatSort } from '@angular/material';
 import { Device } from 'src/app/models/Device/device';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
@@ -21,7 +21,7 @@ export class DeviceListComponent implements OnInit {
 
   dataSource: MatTableDataSource<DeviceShort>;
   devices: DeviceShort[];
-  columnsToDisplay = ['deviceNumber', 'seller.name', 'customer.name', 'packageName', 'timelock', 'lastActivation', 'language'];
+  columnsToDisplay = ['deviceNumber', 'seller.name', 'customer.name', 'packageName', 'timelock', 'language', 'lastActivation'];
   expandedElement: Device | null;
   deviceCount: number;
 
@@ -29,6 +29,8 @@ export class DeviceListComponent implements OnInit {
   constructor(private dS: DevicesService) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -38,6 +40,16 @@ export class DeviceListComponent implements OnInit {
     console.log('new device recieved');
     this.dataSource.data.find(dev => dev.id === newDevice.id).customer = newDevice.deviceInfo.customer;
     this.dataSource.data.find(dev => dev.id === newDevice.id).seller = newDevice.deviceInfo.seller;
+  }
+
+  sortingDataAccessor(item, property) {
+    if (property.includes('.')) {
+      return property.split('.')
+        .reduce((object, key) => object[key] || '', item
+
+        );
+    }
+    return item[property];
   }
 
   ngOnInit() {
@@ -52,8 +64,10 @@ export class DeviceListComponent implements OnInit {
       (data) => {
 
         this.devices = data;
-        console.log(this.devices);
         this.dataSource =  new MatTableDataSource<DeviceShort>(data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
+
         // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
         // tslint:disable-next-line:no-shadowed-variable
         this.dataSource.filterPredicate = (data: any, filter) => {
@@ -62,10 +76,13 @@ export class DeviceListComponent implements OnInit {
         };
 
         this.dataSource.paginator = this.paginator;
+
       },
       (error) => {
         console.log(error);
       }
     );
+
+
   }
 }

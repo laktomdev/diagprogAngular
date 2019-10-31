@@ -8,7 +8,7 @@ export interface DeviceShort {
   packageName: string;
   customer: Customer;
   seller: Seller;
-  timelock: Time;
+  timeLock: Time;
   lastActivation: Time;
   language: string;
 }

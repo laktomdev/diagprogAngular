@@ -38,3 +38,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   height: 100%;
   min-height: 100vh;
 }
+
+th.mat-sort-header-sorted {
+  color: black;
+}

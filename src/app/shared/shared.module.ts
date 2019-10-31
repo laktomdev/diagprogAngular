@@ -17,7 +17,8 @@ import { MatButtonModule,
   MatSelectModule,
   MatButtonToggleModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSortModule
    } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -53,6 +54,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatMomentDateModule,
     FormsModule,
     NgxMatSelectSearchModule,
+    MatSortModule
 
   ],
   exports: [
@@ -78,7 +80,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatMomentDateModule,
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
-    FormsModule
+    FormsModule,
+    MatSortModule
   ]
 })
 export class SharedModule { }

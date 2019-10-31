@@ -15,6 +15,8 @@ export class DeviceInfoComponent implements OnInit {
   customerInEditMode = false;
   sellerInEditMode = false;
 
+
+
   @Input() deviceId: number;
 
   @Output() deviceInfoChange = new EventEmitter<DeviceInfo>();
@@ -49,6 +51,8 @@ export class DeviceInfoComponent implements OnInit {
         console.log(error);
       }
     );
+
+
   }
 
 }
