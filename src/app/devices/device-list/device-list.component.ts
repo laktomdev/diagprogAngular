@@ -45,9 +45,7 @@ export class DeviceListComponent implements OnInit {
   sortingDataAccessor(item, property) {
     if (property.includes('.')) {
       return property.split('.')
-        .reduce((object, key) => object[key] || '', item
-
-        );
+        .reduce((object, key) => object[key] || '', item);
     }
     return item[property];
   }
