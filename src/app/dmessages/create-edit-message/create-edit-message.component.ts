@@ -40,7 +40,6 @@ export class CreateEditMessageComponent implements OnInit {
 
   constructor(private mS: MessagesService, @Optional() @Inject(MAT_DIALOG_DATA) public data: MessageDef) {
     this.messageDef = data;
-    console.log(data);
     if (data !== null) {
       this.newRecord = true;
     }
@@ -56,13 +55,10 @@ export class CreateEditMessageComponent implements OnInit {
 
   onSubmit() {
     if (!this.newRecord) {
-      console.log(this.messageDef);
       moment().startOf('day');
 
       this.messageDef.validTo = moment.parseZone( this.messageDef.validTo).utc().format();
       this.messageDef.validFrom = moment.parseZone( this.messageDef.validFrom).utc().format();
-
-
 
       this.mS.editMessageDefinition(this.messageDef).subscribe(() => {
           this.passMessageDefToListComponent();

@@ -15,7 +15,7 @@
     <mat-tab  label="Urządzenia">
       <ng-template matTabContent>
       <br />
-        <app-message-devices></app-message-devices>
+        <app-message-devices [messageDefId]="message.id"></app-message-devices>
       </ng-template>
   </mat-tab>
   </mat-tab-group>

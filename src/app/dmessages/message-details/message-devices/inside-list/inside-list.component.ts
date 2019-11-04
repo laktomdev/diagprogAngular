@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MessagesService } from 'src/app/services/messages.service';
+import { DeviceShort } from 'src/app/models/Device/deviceShort';
 
 @Component({
   selector: 'app-inside-list',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InsideListComponent implements OnInit {
 
+  @Input() devicesInside: DeviceShort[];
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MessagesService } from 'src/app/services/messages.service';
+import { DeviceShort } from 'src/app/models/Device/deviceShort';
 
 @Component({
   selector: 'app-outside-list',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OutsideListComponent implements OnInit {
 
+  @Input() devicesOutside: DeviceShort[];
+
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
