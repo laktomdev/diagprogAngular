@@ -16,7 +16,7 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   selection = new SelectionModel<DeviceShort>(true, []);
-
+  selectedCount: number;
 
   columnsToDisplay = [
     'select',
@@ -33,8 +33,9 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
     let numSelected = 0;
     this.dataSource.filteredData.forEach(row => this.selection.isSelected(row) ? numSelected++ : null);
 
-
     const numRows = this.dataSource.filteredData.length;
+
+
     return numSelected === numRows;
   }
 
@@ -52,6 +53,11 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
+
+  selectionChange(event: any) {
+   console.log('hejo');
+   console.log(event);
   }
 
   constructor() {}
