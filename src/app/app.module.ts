@@ -26,7 +26,7 @@ import { EnumAsStringPipe } from './pipes/enum-as-string.pipe';
     HomeModule,
     DevicesModule,
     DmessagesModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,17 +18,19 @@ import { MatButtonModule,
   MatButtonToggleModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSortModule
+  MatSortModule,
+  MatCheckboxModule
    } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed/device-list-checkboxed.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DeviceListCheckboxedComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -54,7 +56,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatMomentDateModule,
     FormsModule,
     NgxMatSelectSearchModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
 
   ],
   exports: [
@@ -81,7 +84,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
     FormsModule,
-    MatSortModule
+    MatSortModule,
+    DeviceListCheckboxedComponent,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }

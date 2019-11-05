@@ -5,13 +5,12 @@ import { MessagesDefListComponent } from './messages-def-list/messages-def-list.
 import { SharedModule } from '../shared/shared.module';
 import { MessageDetailsComponent } from './message-details/message-details.component';
 import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
-import { Language } from '../models/language';
 import { MessageTranslationsComponent } from './message-details/message-translations/message-translations.component';
 import { MessageDevicesComponent } from './message-details/message-devices/message-devices.component';
 import { TranslationEditComponent } from './message-details/message-translations/translation-edit/translation-edit.component';
 import { CreateEditMessageComponent } from './create-edit-message/create-edit-message.component';
-import { OutsideListComponent } from './message-details/message-devices/outside-list/outside-list.component';
-import { InsideListComponent } from './message-details/message-devices/inside-list/inside-list.component';
+import { InsideComponent } from './message-details/message-devices/inside/inside.component';
+import { OutsideComponent } from './message-details/message-devices/outside/outside.component';
 
 
 
@@ -23,12 +22,12 @@ import { InsideListComponent } from './message-details/message-devices/inside-li
        MessageDevicesComponent,
         TranslationEditComponent,
         CreateEditMessageComponent,
-        OutsideListComponent,
-        InsideListComponent],
+      InsideComponent,
+      OutsideComponent],
   imports: [
     CommonModule,
     DmessagesRoutingModule,
     SharedModule
-  ]
+  ],
 })
 export class DmessagesModule { }

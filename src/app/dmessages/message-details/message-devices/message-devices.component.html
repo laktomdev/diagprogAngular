@@ -1,2 +1,14 @@
-<app-inside-list [devicesInside]="devicesInside"></app-inside-list>
-<app-outside-list [devicesOutside]="devicesOutside"></app-outside-list>
+<mat-tab-group>
+  <mat-tab  label="Dodaj do urzązeń">
+    <ng-template matTabContent>
+    <br />
+    <app-outside [devicesOutside]="devicesOutside"></app-outside>
+    </ng-template>
+</mat-tab>
+<mat-tab  label="Usuń z urządzeń">
+  <ng-template matTabContent>
+  <br />
+  <app-inside [devicesInside]="devicesInside"></app-inside>
+  </ng-template>
+</mat-tab>
+</mat-tab-group>

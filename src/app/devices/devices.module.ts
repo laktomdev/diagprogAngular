@@ -10,7 +10,6 @@ import { DeviceIdentificationComponent } from './device-details/device-identific
 import { DeviceStatusComponent } from './device-details/device-status/device-status.component';
 import { DeviceInfoComponent } from './device-details/device-info/device-info.component';
 import { DeviceMessagesComponent } from './device-details/device-messages/device-messages.component';
-import { DeviceListCheckboxedComponent } from './device-list-checkboxed/device-list-checkboxed.component';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import { DeviceListCheckboxedComponent } from './device-list-checkboxed/device-l
     DeviceMessagesComponent,
     DeviceIdentificationComponent,
     DeviceStatusComponent,
-    DeviceInfoComponent,
-    DeviceListCheckboxedComponent
+    DeviceInfoComponent
   ],
   imports: [CommonModule, SharedModule, DevicesRoutingModule]
 })
