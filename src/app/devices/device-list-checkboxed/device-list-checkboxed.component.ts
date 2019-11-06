@@ -26,7 +26,7 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
     'seller.name',
     'customer.name',
     'packageName',
-    'timelock',
+    'timeLock',
     'language',
     'lastActivation'
   ];
