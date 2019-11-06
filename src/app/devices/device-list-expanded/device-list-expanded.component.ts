@@ -28,6 +28,7 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
   constructor(private dS: DevicesService) { }
 
   @Input() devices: DeviceShort[];
+
   @Input() expandId: number;
   @Output() refreshListEmitter = new EventEmitter<number>();
 
@@ -52,25 +53,26 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (!this.dataSource) {
 
-    console.log(this.expandId);
+      this.dataSource =  new MatTableDataSource<DeviceShort>(this.devices);
+      this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
 
 
-    this.dataSource =  new MatTableDataSource<DeviceShort>(this.devices);
-    this.dataSource.sort = this.sort;
-    this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
-
-    // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
-    // tslint:disable-next-line:no-shadowed-variable
-    this.dataSource.filterPredicate = (data: any, filter) => {
-      const dataStr = JSON.stringify(data).toLowerCase();
-      return dataStr.indexOf(filter) !== -1;
-    };
+      // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
+      // tslint:disable-next-line:no-shadowed-variable
+      this.dataSource.filterPredicate = (data: any, filter) => {
+        const dataStr = JSON.stringify(data).toLowerCase();
+        return dataStr.indexOf(filter) !== -1;
+      };
+    } else {
+      this.dataSource.data = this.devices;
+    }
 
     if (this.expandId) {
       this.expandedElement = this.dataSource.data.find(x => x.id === this.expandedElement.id);
     }
-
     this.dataSource.paginator = this.paginator;
   }
 
