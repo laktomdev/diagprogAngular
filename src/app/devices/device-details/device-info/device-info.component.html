@@ -11,7 +11,7 @@
         </button>
       </div>
       <app-sellers-form *ngIf="sellerInEditMode" (customerChange)="onSellerChange($event)"
-        [selectedSellerUserId]='deviceInfo.seller?.userId'></app-sellers-form>
+        [selectedSellerUserId]='deviceInfo.seller?.userId' [deviceId]="deviceId"></app-sellers-form>
     </dd>
     <dt>Klient:</dt>
     <dd>
@@ -20,7 +20,7 @@
         </button>
       </div>
       <app-customers-form *ngIf="customerInEditMode" (customerChange)="onCustomerChange($event)"
-        [selectedCustomerId]='deviceInfo.customer?.id'></app-customers-form>
+        [selectedCustomerId]='deviceInfo.customer?.id' [deviceId]="deviceId"></app-customers-form>
     </dd>
   </dl>
 

@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Subject, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SellersService } from 'src/app/services/sellers.service';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-sellers-form',
@@ -14,9 +15,10 @@ import { SellersService } from 'src/app/services/sellers.service';
 export class SellersFormComponent  implements OnInit, OnDestroy {
 
   @Input() selectedSellerUserId: number;
+  @Input() deviceId: number;
   @Output() customerChange = new EventEmitter<Seller>();
 
-  constructor(private sS: SellersService) {}
+  constructor(private sS: SellersService, private dS: DevicesService) {}
 
   sellers: Seller[] = [];
   @ViewChild('singleSelect',  {static: false}) singleSelect: MatSelect;
@@ -72,7 +74,8 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
 
   onSubmit()  {
     if (this.submitted) {
-      this.passSellerToDeviceInfo(this.sellerCtrl.value);
+      this.dS.changeDeviceSeller(this.deviceId, this.sellerCtrl.value.userId).subscribe();
+      //this.passSellerToDeviceInfo(this.sellerCtrl.value);
     }
   }
 

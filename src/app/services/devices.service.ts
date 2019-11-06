@@ -50,6 +50,14 @@ export class DevicesService {
     );
   }
 
+  changeDeviceCustomer(deviceId: number,  customerId: number) {
+    return this.http.post('https:/localhost:44313/devices/changeCustomer', {deviceId, customerId});
+  }
+
+  changeDeviceSeller(deviceId: number,  sellerId: number) {
+    return this.http.post('https:/localhost:44313/devices/changeSeller', {deviceId, sellerId});
+  }
+
   getCount(): Observable<number> {
     return this.http.get<number>('https:/localhost:44313/devices/count');
   }

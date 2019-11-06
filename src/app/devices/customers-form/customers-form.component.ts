@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject, ReplaySubject } from 'rxjs';
 import { MatSelect } from '@angular/material';
 import { CustomersService } from 'src/app/services/customers.service';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-customers-form',
@@ -15,9 +16,11 @@ export class CustomersFormComponent
   implements OnInit, OnDestroy {
 
   @Input() selectedCustomerId: number;
+  @Input() deviceId: number;
+
   @Output() customerChange = new EventEmitter<Customer>();
 
-  constructor(private cS: CustomersService) {}
+  constructor(private cS: CustomersService, private dS: DevicesService) {}
 
   customers: Customer[] = [];
   @ViewChild('singleSelect',  {static: false}) singleSelect: MatSelect;
@@ -74,7 +77,9 @@ export class CustomersFormComponent
 
   onSubmit()  {
     if (this.submitted) {
-      this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);
+      console.log(this.deviceId);
+      this.dS.changeDeviceCustomer(this.deviceId, this.customerCtrl.value.id).subscribe();
+      //this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);
     }
   }
 
