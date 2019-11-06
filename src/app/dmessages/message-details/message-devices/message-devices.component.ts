@@ -14,25 +14,36 @@ export class MessageDevicesComponent implements OnInit {
   devicesInside: DeviceShort[];
   devicesOutside: DeviceShort[];
 
+  devicesAffected: number;
+
   constructor(private mS: MessagesService) {}
 
   ngOnInit() {
+    this.dowloadDevices();
+  }
+
+  onRefreshTrigger(count: number) {
+    this.devicesAffected = count;
+    console.log(count);
+    this.dowloadDevices();
+  }
+
+
+  dowloadDevices() {
     this.mS.getMessageDevices(this.messageDefId).subscribe(
       (inside) => {
           this.devicesInside = inside;
           const ids = this.devicesInside.map(x => x.id);
 
           this.mS.getNotMessageDevices(ids).subscribe(
-            (outside) =>{
+            (outside) => {
               this.devicesOutside = outside;
             }
           );
-
       },
       (error) => {
         console.log(error);
       }
     );
   }
-
 }

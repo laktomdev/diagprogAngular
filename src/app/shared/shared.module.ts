@@ -19,7 +19,8 @@ import { MatButtonModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatSortModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatProgressSpinnerModule
    } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,7 +58,8 @@ import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed
     FormsModule,
     NgxMatSelectSearchModule,
     MatSortModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
 
   ],
   exports: [
@@ -86,7 +88,8 @@ import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed
     FormsModule,
     MatSortModule,
     DeviceListCheckboxedComponent,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule { }

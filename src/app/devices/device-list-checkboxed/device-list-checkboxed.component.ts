@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -10,7 +10,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
   dataSource: MatTableDataSource<DeviceShort>;
+
   @Input() devices: DeviceShort[];
+  @Output() selectedDevicesEmitter = new  EventEmitter<DeviceShort[]>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -29,14 +31,24 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
     'lastActivation'
   ];
 
+  passSelected() {
+    if (this.selection.changed) {
+
+      this.selectedDevicesEmitter.emit(this.selection.selected);
+    }
+
+  }
+
   isAllSelected() {
     let numSelected = 0;
     this.dataSource.filteredData.forEach(row => this.selection.isSelected(row) ? numSelected++ : null);
 
     const numRows = this.dataSource.filteredData.length;
-
+    this.passSelected();
 
     return numSelected === numRows;
+
+
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */

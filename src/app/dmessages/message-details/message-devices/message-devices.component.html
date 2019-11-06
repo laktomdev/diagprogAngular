@@ -2,13 +2,13 @@
   <mat-tab  label="Dodaj do urzązeń">
     <ng-template matTabContent>
     <br />
-    <app-outside [devicesOutside]="devicesOutside"></app-outside>
+    <app-outside (itemsAddedEmitter)="dowloadDevices()" [devicesOutside]="devicesOutside" [messageId]="messageDefId"></app-outside>
     </ng-template>
 </mat-tab>
 <mat-tab  label="Usuń z urządzeń">
   <ng-template matTabContent>
   <br />
-  <app-inside [devicesInside]="devicesInside"></app-inside>
+  <app-inside (itemsRemovedEmitter)="dowloadDevices()" [devicesInside]="devicesInside" [messageId]="messageDefId"></app-inside>
   </ng-template>
 </mat-tab>
 </mat-tab-group>

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
+import { MessagesService } from 'src/app/services/messages.service';
 
 @Component({
   selector: 'app-outside',
@@ -8,9 +9,27 @@ import { DeviceShort } from 'src/app/models/Device/deviceShort';
 })
 export class OutsideComponent implements OnInit {
 
-  @Input() devicesOutside: DeviceShort;
+  @Input() devicesOutside: DeviceShort[];
+  @Input() messageId: number;
 
-  constructor() { }
+  @Output() itemsAddedEmitter = new  EventEmitter<number>();
+
+  selected: DeviceShort[];
+  loading = false;
+
+  constructor(private mS: MessagesService) { }
+
+  onSelectionChanged(selected: DeviceShort[]) {
+    this.selected = selected;
+  }
+
+  addToSelected() {
+    this.loading = true;
+    this.mS.addMessageToMultipleDevices(this.selected.map(x => x.id), this.messageId).subscribe((data => {
+      this.itemsAddedEmitter.emit(data);
+      this.loading = false;
+    }));
+  }
 
   ngOnInit() {
   }

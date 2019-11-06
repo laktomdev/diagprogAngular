@@ -1,1 +1,3 @@
-<app-device-list-checkboxed [devices]="devicesOutside"></app-device-list-checkboxed>
+<button [disabled]="loading" mat-raised-button color="primary" (click)="addToSelected()">Dodaj do zaznaczonych urządzeń</button>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<app-device-list-checkboxed *ngIf="!loading" [devices]="devicesOutside" (selectedDevicesEmitter)="onSelectionChanged($event)"></app-device-list-checkboxed>

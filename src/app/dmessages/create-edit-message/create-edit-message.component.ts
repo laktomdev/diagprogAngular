@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Inject, Optional, EventEmitter, Output } from '@angular/core';
 import { MessageDef } from 'src/app/models/messageDef';
-import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DATA } from '@angular/material';
+import {  DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DATA } from '@angular/material';
 import moment from 'moment/src/moment';
 import { MessagesService } from 'src/app/services/messages.service';
 import { MomentUtcDateAdapter } from 'src/app/pipes/momentUtcAdapter';
-import { BehaviorSubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 

@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { DeviceMessage } from '../models/Device/Message/deviceMessage';
 import { MessageDef } from '../models/messageDef';
-import { MessageTranslation } from '../models/messageTranslation';
-import { map, switchMap, delay } from 'rxjs/operators';
 import { MessageTranslationSubmit } from '../models/MessageTranslationSubmit';
 import { DeviceShort } from '../models/Device/deviceShort';
 
@@ -69,6 +67,14 @@ export class MessagesService {
 
   getNotMessageDevices(ignoreIds: number[]): Observable<DeviceShort[]> {
     return this.http.post<DeviceShort[]>('https:/localhost:44313/messages/NotMessageDevices/', ignoreIds);
+  }
+
+  addMessageToMultipleDevices(ids: number[], messageId: number): Observable<number> {
+    return this.http.post<number>('https:/localhost:44313/messages/AddMessageToDevices/', {ids, messageId});
+  }
+
+  removeMessageFromMultipleDevices(ids: number[], messageId: number): Observable<number> {
+    return this.http.post<number>('https:/localhost:44313/messages/RemoveMessageFromDevices/', {ids, messageId});
   }
 
   constructor(private http: HttpClient) {}

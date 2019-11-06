@@ -1,1 +1,3 @@
-<app-device-list-checkboxed [devices]="devicesInside"></app-device-list-checkboxed>
+<button mat-raised-button color="primary" [disabled]="loading" (click)="removeFromSelected()">Usuń z zaznaczonych urządzeń</button>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<app-device-list-checkboxed *ngIf="!loading" (selectedDevicesEmitter)="onSelectionChanged($event)" [devices]="devicesInside"></app-device-list-checkboxed>
