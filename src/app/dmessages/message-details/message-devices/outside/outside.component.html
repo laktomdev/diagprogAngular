@@ -1,3 +1,6 @@
-<button [disabled]="loading" mat-raised-button color="primary" (click)="addToSelected()">Dodaj do zaznaczonych urządzeń</button>
-<mat-spinner *ngIf="loading"></mat-spinner>
-<app-device-list-checkboxed *ngIf="!loading" [devices]="devicesOutside" (selectedDevicesEmitter)="onSelectionChanged($event)"></app-device-list-checkboxed>
+<div class="container">
+    <button [disabled]="loading || selected?.length == 0" mat-raised-button color="primary" (click)="addToSelected()">Dodaj do zaznaczonych {{selected.length}} urządzeń</button>
+    <hr/>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <app-device-list-checkboxed *ngIf="!loading" [devices]="devicesOutside" (selectedDevicesEmitter)="onSelectionChanged($event)"></app-device-list-checkboxed>
+</div>

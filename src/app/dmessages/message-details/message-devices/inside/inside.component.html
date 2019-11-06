@@ -1,3 +1,12 @@
-<button mat-raised-button color="primary" [disabled]="loading" (click)="removeFromSelected()">Usuń z zaznaczonych urządzeń</button>
-<mat-spinner *ngIf="loading"></mat-spinner>
-<app-device-list-checkboxed *ngIf="!loading" (selectedDevicesEmitter)="onSelectionChanged($event)" [devices]="devicesInside"></app-device-list-checkboxed>
+<div class="container">
+
+
+      <button mat-raised-button color="primary"
+       [disabled]="loading || selected?.length == 0"
+        (click)="removeFromSelected()">Usuń z zaznaczonych {{selected.length}} urządzeń</button>
+        <hr/>
+
+
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <app-device-list-checkboxed *ngIf="!loading" (selectedDevicesEmitter)="onSelectionChanged($event)" [devices]="devicesInside"></app-device-list-checkboxed>
+</div>

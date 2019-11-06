@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { DeviceListComponent } from './device-list/device-list.component';
+import { DeviceListExpandedComponent } from './device-list-expanded/device-list-expanded.component';
 import { DeviceDetailsComponent } from './device-details/device-details.component';
 import { DevicesRoutingModule } from './devices-routing.module';
 import { CustomersFormComponent } from './customers-form/customers-form.component';
@@ -10,18 +10,20 @@ import { DeviceIdentificationComponent } from './device-details/device-identific
 import { DeviceStatusComponent } from './device-details/device-status/device-status.component';
 import { DeviceInfoComponent } from './device-details/device-info/device-info.component';
 import { DeviceMessagesComponent } from './device-details/device-messages/device-messages.component';
+import { AlldevicesComponent } from './alldevices/alldevices.component';
 
 
 @NgModule({
   declarations: [
-    DeviceListComponent,
+    DeviceListExpandedComponent,
     DeviceDetailsComponent,
     CustomersFormComponent,
     SellersFormComponent,
     DeviceMessagesComponent,
     DeviceIdentificationComponent,
     DeviceStatusComponent,
-    DeviceInfoComponent
+    DeviceInfoComponent,
+    AlldevicesComponent
   ],
   imports: [CommonModule, SharedModule, DevicesRoutingModule]
 })

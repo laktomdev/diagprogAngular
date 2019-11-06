@@ -1,14 +1,13 @@
 <div class="lockhigh div-change container">
   <div class="container">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj">
+    <mat-form-field class="col-md-12">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj" >
     </mat-form-field>
     <mat-paginator [length]="devices?.length" [pageSizeOptions]="[25, 10, 52, 100, 500, 1000]" showFirstLastButtons>
     </mat-paginator>
   </div>
 
   <br/>
-  <h6 class="text-center">Zaznaczono {{selection.selected.length}} urządzeń</h6>
 
   <table mat-table [dataSource]="dataSource" class="col-md-12" matSort multiTemplateDataRows>
 
