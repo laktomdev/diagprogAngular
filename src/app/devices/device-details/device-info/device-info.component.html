@@ -10,7 +10,7 @@
         <button class="btn btn-link btn-change" (click)='sellerInEditMode = !sellerInEditMode'>zmień
         </button>
       </div>
-      <app-sellers-form *ngIf="sellerInEditMode" (customerChange)="onSellerChange($event)"
+      <app-sellers-form *ngIf="sellerInEditMode" (refreshListEmitter)="refreshListTriggered($event)"
         [selectedSellerUserId]='deviceInfo.seller?.userId' [deviceId]="deviceId"></app-sellers-form>
     </dd>
     <dt>Klient:</dt>
@@ -19,7 +19,7 @@
         <button class="btn btn-link btn-change" (click)='customerInEditMode = !customerInEditMode'>zmień
         </button>
       </div>
-      <app-customers-form *ngIf="customerInEditMode" (customerChange)="onCustomerChange($event)"
+      <app-customers-form *ngIf="customerInEditMode" (refreshListEmitter)="refreshListTriggered($event)"
         [selectedCustomerId]='deviceInfo.customer?.id' [deviceId]="deviceId"></app-customers-form>
     </dd>
   </dl>

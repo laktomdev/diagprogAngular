@@ -1,7 +1,7 @@
 <mat-tab-group>
   <mat-tab label="Informacje">
     <ng-template matTabContent>
-      <app-device-info [deviceId]="deviceId" (deviceInfoChange)="onDeviceInfoChange($event)"></app-device-info>
+      <app-device-info [deviceId]="deviceId" (refreshListEmitter)="refresListTriggered($event)"></app-device-info>
     </ng-template>
   </mat-tab>
   <mat-tab label="Identyfikacja">

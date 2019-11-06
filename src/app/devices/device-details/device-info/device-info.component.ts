@@ -15,29 +15,11 @@ export class DeviceInfoComponent implements OnInit {
   customerInEditMode = false;
   sellerInEditMode = false;
 
-
-
   @Input() deviceId: number;
+  @Output() refreshListEmitter = new EventEmitter<number>();
 
-  @Output() deviceInfoChange = new EventEmitter<DeviceInfo>();
-
-  passDeviceInfoToDetailsComponent() {
-    console.log('deviceInfo changed sent to device-details-component');
-    this.deviceInfoChange.emit(this.deviceInfo);
-  }
-
-  onCustomerChange(newCustomer: Customer) {
-    console.log('new customer received');
-    this.deviceInfo.customer = newCustomer;
-    this.customerInEditMode = false;
-    this.passDeviceInfoToDetailsComponent();
-  }
-
-  onSellerChange(newSeller: Seller) {
-    console.log('new seller received');
-    this.deviceInfo.seller = newSeller;
-    this.sellerInEditMode = false;
-    this.passDeviceInfoToDetailsComponent();
+  refreshListTriggered(deviceIdent: number) {
+    this.refreshListEmitter.emit(deviceIdent);
   }
 
   constructor(private dS: DevicesService) { }
@@ -51,8 +33,5 @@ export class DeviceInfoComponent implements OnInit {
         console.log(error);
       }
     );
-
-
   }
-
 }

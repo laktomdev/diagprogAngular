@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialog, MatSort } from '@angular/material';
 import { Device } from 'src/app/models/Device/device';
 import {animate, state, style, transition, trigger} from '@angular/animations';
@@ -23,11 +23,14 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
   dataSource: MatTableDataSource<DeviceShort>;
 
   columnsToDisplay = ['deviceNumber', 'seller.name', 'customer.name', 'packageName', 'timeLock', 'language', 'lastActivation'];
-  expandedElement: Device | null;
+  expandedElement: DeviceShort | null;
 
   constructor(private dS: DevicesService) { }
 
   @Input() devices: DeviceShort[];
+  @Input() expandId: number;
+  @Output() refreshListEmitter = new EventEmitter<number>();
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -36,10 +39,8 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onDeviceChanged(newDevice: Device) {
-    console.log('new device recieved');
-    this.dataSource.data.find(dev => dev.id === newDevice.id).customer = newDevice.deviceInfo.customer;
-    this.dataSource.data.find(dev => dev.id === newDevice.id).seller = newDevice.deviceInfo.seller;
+  refreshListTriggered(deviceIdent: number) {
+    this.refreshListEmitter.emit(deviceIdent);
   }
 
   sortingDataAccessor(item, property) {
@@ -52,6 +53,9 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
 
+    console.log(this.expandId);
+
+
     this.dataSource =  new MatTableDataSource<DeviceShort>(this.devices);
     this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
@@ -62,6 +66,10 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
       const dataStr = JSON.stringify(data).toLowerCase();
       return dataStr.indexOf(filter) !== -1;
     };
+
+    if (this.expandId) {
+      this.expandedElement = this.dataSource.data.find(x => x.id === this.expandedElement.id);
+    }
 
     this.dataSource.paginator = this.paginator;
   }

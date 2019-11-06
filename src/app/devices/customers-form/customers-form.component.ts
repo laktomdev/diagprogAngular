@@ -18,7 +18,7 @@ export class CustomersFormComponent
   @Input() selectedCustomerId: number;
   @Input() deviceId: number;
 
-  @Output() customerChange = new EventEmitter<Customer>();
+  @Output() refreshListEmitter = new EventEmitter<number>();
 
   constructor(private cS: CustomersService, private dS: DevicesService) {}
 
@@ -35,11 +35,6 @@ export class CustomersFormComponent
 
   submitted = false;
   changed = false;
-
-  passCustomerToDeviceInfoComponent(value: Customer) {
-    console.log('customer changed sent to device-info-component');
-    this.customerChange.emit(value);
-  }
 
   ngOnInit() {
     this.cS.getAll().subscribe(
@@ -78,15 +73,17 @@ export class CustomersFormComponent
   onSubmit()  {
     if (this.submitted) {
       console.log(this.deviceId);
-      this.dS.changeDeviceCustomer(this.deviceId, this.customerCtrl.value.id).subscribe();
-      //this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);
+      this.dS.changeDeviceCustomer(this.deviceId, this.customerCtrl.value.id).subscribe(
+        () => this.refreshListEmitter.emit(this.deviceId)
+      );
+
+      // this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);
     }
   }
 
   cancelEdit() {
     this.customerCtrl.setValue(this.customers.find(i => i.id === this.selectedCustomerId));
     this.changed = false;
-    this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);
   }
 
   private filterCustomers() {

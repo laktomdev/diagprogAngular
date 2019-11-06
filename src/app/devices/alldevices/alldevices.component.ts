@@ -12,13 +12,18 @@ export class AlldevicesComponent implements OnInit {
   constructor(private dS: DevicesService) { }
 
   devices: DeviceShort[];
+  expandId: number;
 
   ngOnInit() {
     this.downloadDevices();
   }
 
+  refreshListTriggered(deviceIdent: number) {
+    this.expandId = deviceIdent;
+    this.downloadDevices();
+  }
 
-  downloadDevices(){
+  downloadDevices() {
     this.dS.getAll().subscribe(
       (data) => {
         this.devices = data;

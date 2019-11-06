@@ -13,27 +13,15 @@ export class DeviceDetailsComponent implements OnInit {
   device: Device;
 
 
-  @Input()
-  deviceId: number;
+  @Input()deviceId: number;
+  @Output()refreshListEmitter = new EventEmitter<number>();
 
 
-  @Output() deviceChange = new EventEmitter<Device>();
-
-  passDeviceToListComponent() {
-    console.log('device changed sent to device-list-component');
-    this.deviceChange.emit(this.device);
+  refresListTriggered(deviceIdent: number) {
+    this.refreshListEmitter.emit(deviceIdent);
   }
-
-  onDeviceInfoChange(newInfo: DeviceInfo) {
-    console.log('new deviceInfo received');
-    this.device.deviceInfo = newInfo;
-    this.passDeviceToListComponent();
-  }
-
 
   constructor(private dS: DevicesService) { }
-
-
 
   ngOnInit() {
     this.dS.getById(Number(this.deviceId)).subscribe(

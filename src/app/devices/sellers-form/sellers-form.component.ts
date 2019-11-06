@@ -16,7 +16,7 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
 
   @Input() selectedSellerUserId: number;
   @Input() deviceId: number;
-  @Output() customerChange = new EventEmitter<Seller>();
+  @Output() refreshListEmitter = new EventEmitter<number>();
 
   constructor(private sS: SellersService, private dS: DevicesService) {}
 
@@ -34,10 +34,7 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
   submitted = false;
   changed = false;
 
-  passSellerToDeviceInfo(value: Seller) {
-    console.log('seller changed sent to device-info-component');
-    this.customerChange.emit(value);
-  }
+
 
   ngOnInit() {
     this.sS.getAll().subscribe(
@@ -74,15 +71,15 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
 
   onSubmit()  {
     if (this.submitted) {
-      this.dS.changeDeviceSeller(this.deviceId, this.sellerCtrl.value.userId).subscribe();
-      //this.passSellerToDeviceInfo(this.sellerCtrl.value);
+      this.dS.changeDeviceSeller(this.deviceId, this.sellerCtrl.value.userId).subscribe(
+        () => this.refreshListEmitter.emit(this.deviceId)
+      );
     }
   }
 
   cancelEdit() {
     this.sellerCtrl.setValue(this.sellers.find(i => i.userId === this.selectedSellerUserId));
     this.changed = false;
-    this.passSellerToDeviceInfo(this.sellerCtrl.value);
   }
 
   private filterSellers() {
