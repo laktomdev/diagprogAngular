@@ -30,15 +30,18 @@
       </div>
 
       <div class="col-md-12" *ngIf="editDefault">
-          <mat-form-field class="col-md-8">
-              <mat-select  placeholder="Wybierz język" [(ngModel)]="selectedLanguage">
-                <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          <button  mat-button color="primary" class="col-md-2">Zmień</button>
-          <button  mat-button color="primary" (click)="editDefault = false" class="col-md-2">Anuluj</button>
+        <mat-form-field class="col-md-8">
+          <mat-select placeholder="Wybierz język" [(ngModel)]="selectedLanguage">
+            <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-button color="primary" class="col-md-2">Zmień</button>
+        <button mat-button color="primary" (click)="editDefault = false" class="col-md-2">Anuluj</button>
+
+
       </div>
-    </div>
+      </div>
 
   </div>
 
@@ -47,7 +50,9 @@
   <mat-tab-group [selectedIndex]="openTab">
     <mat-tab *ngFor="let item of translations" label="{{item.language?.name}}">
       <br />
-      <app-translation-edit [translation]="item" (refreshListEmitter)="listRefreshTriggered($event)">
+      <app-translation-edit [translation]="item"
+       (refreshListEmitter)="listRefreshTriggered($event)"
+       (changeEmitter)="itemChangeTriggered($event)">
       </app-translation-edit>
     </mat-tab>
   </mat-tab-group>

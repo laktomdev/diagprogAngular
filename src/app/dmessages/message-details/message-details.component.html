@@ -6,7 +6,7 @@
             <app-create-edit-message (messageDefChange)="onMessageDefChange($event)" [messageDef]="message"></app-create-edit-message>
           </ng-template>
       </mat-tab>
-    <mat-tab  label="Tłumaczenia">
+    <mat-tab class="edited" label="Tłumaczenia">
         <ng-template matTabContent>
         <br />
           <app-message-translations (refreshListEmitter)="listRefreshTriggered($event)" [messageDefId]="message.id" [translations]="message?.translations"></app-message-translations>

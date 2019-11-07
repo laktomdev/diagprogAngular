@@ -13,7 +13,8 @@ export class TranslationEditComponent implements OnInit {
 
   @Input() translation: MessageTranslation;
   @Output() refreshListEmitter = new EventEmitter<number>();
-  @Output()
+  @Output() changeEmitter = new EventEmitter<number>();
+
   oldTranslation: MessageTranslation;
 
   isChanged = false;
@@ -27,6 +28,7 @@ export class TranslationEditComponent implements OnInit {
 
     if (JSON.stringify(this.translation) !== JSON.stringify(this.oldTranslation) ) {
       this.isChanged = true;
+      this.changeEmitter.emit(this.translation.id);
     } else {
       this.isChanged = false;
     }

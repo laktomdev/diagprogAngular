@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <button [disabled]="loading || selected?.length == 0" mat-raised-button color="primary" (click)="addToSelected()">Dodaj do zaznaczonych {{selected.length}} urządzeń</button>
     <hr/>
     <mat-spinner *ngIf="loading"></mat-spinner>
