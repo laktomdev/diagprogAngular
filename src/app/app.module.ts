@@ -10,14 +10,14 @@ import { DevicesModule } from './devices/devices.module';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { DmessagesModule } from './dmessages/dmessages.module';
 import { EnumAsStringPipe } from './pipes/enum-as-string.pipe';
-import { TestingMainPageComponent } from './testing-main-page/testing-main-page.component';
+
 
 
 @NgModule({
    declarations: [
       AppComponent,
       AuthorizationComponent,
-      TestingMainPageComponent
+
    ],
    imports: [
       BrowserModule,
