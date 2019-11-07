@@ -13,7 +13,7 @@
       <div class="col-md-12" *ngIf="addNewTranslation">
           <mat-form-field class="col-md-8">
               <mat-select placeholder="Wybierz język" [(ngModel)]="selectedLanguage">
-                <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
+                <mat-option *ngFor="let item of languagesToAdd" [value]="item">{{item.name}}</mat-option>
               </mat-select>
             </mat-form-field>
             <button (click)="addLanguage()" mat-button color="primary" class="class col-md-2">Dodaj</button>
@@ -32,7 +32,7 @@
       <div class="col-md-12" *ngIf="editDefault">
         <mat-form-field class="col-md-8">
           <mat-select placeholder="Wybierz język" [(ngModel)]="selectedLanguage">
-            <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
+            <mat-option *ngFor="let item of languagesToAdd" [value]="item">{{item.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 

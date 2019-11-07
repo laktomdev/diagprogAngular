@@ -14,7 +14,7 @@ export class MessageTranslationsComponent implements OnInit {
   @Input() messageDefId: number;
   @Output() refreshListEmitter = new EventEmitter<number>();
 
-  languagesAvaliable: Language[];
+  languagesToAdd: Language[];
   selectedLanguage: Language;
   openTab = 0;
   editDefault = false;
@@ -36,21 +36,25 @@ export class MessageTranslationsComponent implements OnInit {
   ngOnInit() {
     this.lS.getAll().subscribe(
       (data) => {
-        this.languagesAvaliable = data;
-        this.filterLanguages();
+        this.languagesToAdd = data;
+        this.filterLanguagesToAdd();
       },
       (error) => {
         console.log(error);
       }
     );
 
-    this.filterLanguages();
+    this.filterLanguagesToAdd();
   }
 
-  filterLanguages() {
+  filterLanguagesToAdd() {
     const languagesInMessage = this.translations.map(x => x.language);
-    this.languagesAvaliable = this.languagesAvaliable.filter(({id: id1}) =>
-    !languagesInMessage.some(({id: id2}) => id2 === id1));
+
+    if (this.languagesToAdd) {
+      this.languagesToAdd = this.languagesToAdd.filter(({id: id1}) =>
+      !languagesInMessage.some(({id: id2}) => id2 === id1));
+    }
+
   }
 
   addLanguage() {
@@ -67,7 +71,7 @@ export class MessageTranslationsComponent implements OnInit {
       this.selectedLanguage = null;
       this.openTab = this.translations.length - 1;
       this.addNewTranslation = false;
-      this.filterLanguages();
+      this.filterLanguagesToAdd();
     }
   }
 
