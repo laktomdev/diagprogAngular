@@ -7,7 +7,7 @@
     <dt>Sprzedawca:</dt>
     <dd>
       <div *ngIf="!sellerInEditMode">{{deviceInfo?.seller?.name}}
-        <button class="btn btn-link btn-change" (click)='sellerInEditMode = !sellerInEditMode'>zmień
+        <button mat-button color="primary" (click)='sellerInEditMode = !sellerInEditMode'>zmień
         </button>
       </div>
       <app-sellers-form *ngIf="sellerInEditMode" (refreshListEmitter)="refreshListTriggered($event)"
@@ -16,7 +16,7 @@
     <dt>Klient:</dt>
     <dd>
       <div *ngIf="!customerInEditMode">{{deviceInfo?.customer?.name}}
-        <button class="btn btn-link btn-change" (click)='customerInEditMode = !customerInEditMode'>zmień
+        <button mat-button color="primary" (click)='customerInEditMode = !customerInEditMode'>zmień
         </button>
       </div>
       <app-customers-form *ngIf="customerInEditMode" (refreshListEmitter)="refreshListTriggered($event)"

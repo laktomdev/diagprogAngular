@@ -9,15 +9,10 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- <div class="btn-group"> -->
       <div *ngIf="changed">
-          <button type="submit" (click)="submitted=true" class="btn btn-link">zapisz</button>
-          <button (click)="cancelEdit()"  class="btn btn-link">anuluj</button>
+          <button mat-button color="primary" type="submit" (click)="submitted=true">zapisz</button>
+          <button mat-button color="primary" (click)="cancelEdit()" >anuluj</button>
       </div>
-
-    <!-- </div> -->
-
-
 
 
   </form>

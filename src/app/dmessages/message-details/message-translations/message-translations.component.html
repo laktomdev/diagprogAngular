@@ -1,22 +1,54 @@
-<h4 class="text-center">Wersje językowe</h4>
-<hr />
-<h6>Dodaj nową wersję językową komunikatu.</h6>
-
 <div class="container-fluid">
+
+  <h4 class="text-center">Wersje językowe</h4>
+  <hr />
+
   <div class="row">
-    <mat-select class="col-md-3 border border-secondary" placeholder="dodaj język" [(ngModel)]="selectedLanguage">
-      <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
-    </mat-select>
-    <button (click)="addLanguage()" class="btn btn-primary btn-nopadding col-md-2 col-lg-1">Dodaj</button>
+    <div class="col-md-5 row">
+      <h6 class="col-md-12">
+        Dodaj nową wersję językową
+        <button mat-button color="primary" *ngIf="!addNewTranslation" (click)="addNewTranslation = !addNewTranslation">Dodaj</button>
+      </h6>
+
+      <div class="col-md-12" *ngIf="addNewTranslation">
+          <mat-form-field class="col-md-8">
+              <mat-select placeholder="Wybierz język" [(ngModel)]="selectedLanguage">
+                <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button (click)="addLanguage()" mat-button color="primary" class="class col-md-2">Dodaj</button>
+            <button (click)="addNewTranslation = false" mat-button color="primary" class="class col-md-2">Anuluj</button>
+      </div>
+
+    </div>
+
+    <div class="offset-md-2 col-md-5 row">
+      <div class="col-md-12">
+          <h6>Domyślny język komunikatu:
+            <button mat-button color="primary" *ngIf="!editDefault" (click)="editDefault = !editDefault">Angielski</button>
+          </h6>
+      </div>
+
+      <div class="col-md-12" *ngIf="editDefault">
+          <mat-form-field class="col-md-8">
+              <mat-select  placeholder="Wybierz język" [(ngModel)]="selectedLanguage">
+                <mat-option *ngFor="let item of languagesAvaliable" [value]="item">{{item.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          <button  mat-button color="primary" class="col-md-2">Zmień</button>
+          <button  mat-button color="primary" (click)="editDefault = false" class="col-md-2">Anuluj</button>
+      </div>
+    </div>
+
   </div>
-</div>
-<br />
-<hr />
 
+  <hr />
 
-<mat-tab-group [selectedIndex]="openTab">
-  <mat-tab *ngFor="let item of translations" label="{{item.language?.name}}">
+  <mat-tab-group [selectedIndex]="openTab">
+    <mat-tab *ngFor="let item of translations" label="{{item.language?.name}}">
       <br />
-      <app-translation-edit [translation]="item" (refreshListEmitter)="listRefreshTriggered($event)"></app-translation-edit>
-  </mat-tab>
-</mat-tab-group>
+      <app-translation-edit [translation]="item" (refreshListEmitter)="listRefreshTriggered($event)">
+      </app-translation-edit>
+    </mat-tab>
+  </mat-tab-group>
+</div>

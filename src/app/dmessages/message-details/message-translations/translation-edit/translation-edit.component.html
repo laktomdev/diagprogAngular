@@ -1,8 +1,8 @@
-<div class="container row">
+<div class="container-fluid row">
         <textarea [(ngModel)]="translation.headerText" (input)="changed()"  class="col-md-12" rows="3"></textarea><br/>
         <textarea [(ngModel)]="translation.bodyText" (input)="changed()" class="col-md-12" rows="10"></textarea><br/>
         <textarea [(ngModel)]="translation.footerText" (input)="changed()"  class="col-md-12" rows="4"></textarea><br/><br/>
-        <div class="col-md-12 btn-nopadding">
+        <div class="col-md-12 ">
           <form  (ngSubmit)="onSubmit()">
             <button mat-raised-button color="primary" [disabled]="!isChanged" type="submit" style="width: 100%">Zapisz</button>
           </form>

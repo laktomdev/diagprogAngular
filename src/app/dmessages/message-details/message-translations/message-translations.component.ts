@@ -17,6 +17,8 @@ export class MessageTranslationsComponent implements OnInit {
   languagesAvaliable: Language[];
   selectedLanguage: Language;
   openTab = 0;
+  editDefault = false;
+  addNewTranslation = false;
 
   listRefreshTriggered(value: number) {
     this.refreshListEmitter.emit(value);
@@ -57,6 +59,7 @@ export class MessageTranslationsComponent implements OnInit {
       });
       this.selectedLanguage = null;
       this.openTab = this.translations.length - 1;
+      this.addNewTranslation = false;
       this.filterLanguages();
     }
   }
