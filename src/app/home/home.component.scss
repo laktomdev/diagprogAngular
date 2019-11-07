@@ -1,0 +1,17 @@
+.container-fluid{
+    padding-right: 0;
+    padding-left: 0;
+}
+.main-container-wrapper{
+    position: relative;
+    margin: 0 auto;
+
+    
+}
+
+.main-container {
+    display: block;
+    position: relative;
+    background: #f2f7fb;
+    min-height: calc(100vh - 70px);
+}

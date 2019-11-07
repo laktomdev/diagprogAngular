@@ -17,3 +17,123 @@ header {
   font-size: 12px;
   }
 }
+
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(43,43,43,0.1);
+  min-height: 70px;
+  padding: 0;
+}
+
+.navbar .navbar-wrapper .navbar-logo {
+  position: relative;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  text-align: center;
+  width: 250px;
+  padding: 20px 10px;
+  -webkit-box-shadow: 0 4px 4px -4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 4px -4px rgba(0,0,0,0.1);
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-logo {
+  background: #263544;
+}
+
+.user-profile {
+  float: left;
+  line-height: 4.4;
+  padding: 0 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-profile img {
+  margin-right: 10px;
+  width: 40px;
+}
+
+.img-radius {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  -webkit-box-shadow: 0 5px 10px 0 rgba(43,43,43,0.2);
+  box-shadow: 0 5px 10px 0 rgba(43,43,43,0.2);
+}
+
+.chevron-down {
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.profile-notification {
+  width: 17em;
+  background: #fff;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+  border-radius: 5px;
+  border: none;
+  opacity: 1;
+  position: absolute;
+  left: auto;
+  right: -15px;
+  visibility: visible;
+  overflow: visible;
+  width: 24rem;
+  padding: 15px 0;
+  -webkit-transform: translateY(20px);
+  transform: translateY(20px);
+}
+
+.show.profile-notification:before {
+  content: "";
+  border: 10px solid transparent;
+  border-left-color: #fff;
+  border-top-color: #fff;
+  position: absolute;
+  border-radius: 3px;
+  top: -8px;
+  right: 15px;
+  -webkit-box-shadow: -5px -5px 12px -2px rgba(0,0,0,0.3);
+  box-shadow: -5px -5px 12px -2px rgba(0,0,0,0.3);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 1002;
+
+}
+
+.profile-notification li:first-child {
+  padding: 0.7em 20px;
+}
+
+.profile-notification li {
+  border-top: none;
+}
+
+.profile-notification li {
+  line-height: initial;
+  padding: 1em 20px;
+  width: 100%;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-notification a {
+  font-size: 15px;
+  padding-left: 0;
+  color: #333;
+  padding: 0 0.6rem;
+}
+
+.profile-notification a> i{
+  padding-right: 0.3rem;
+} 
+

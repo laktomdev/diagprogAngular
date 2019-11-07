@@ -2,6 +2,15 @@
     border: solid 1px black;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    font-family: "Quicksand",sans-serif;
+}
+
+body {
+    font-family: "Quicksand",sans-serif;
+}
+
 .navbar {
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(43,43,43,0.1);
@@ -226,7 +235,7 @@
 .page-header.card {
     background-size: cover;
     position: relative;
-    margin: 30px 35px 15px;
+    margin: 15px 35px;
     background-color: transparent;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -264,4 +273,62 @@
     -webkit-box-align: end!important;
     -ms-flex-align: end!important;
     align-items: flex-end!important;
+}
+
+// .main-inner-content {
+//         border-radius: 5px;
+//         -webkit-box-shadow: 0 0 5px 0 rgba(43,43,43,0.1), 0 11px 6px -7px rgba(43,43,43,0.1);
+//         box-shadow: 0 0 5px 0 rgba(43,43,43,0.1), 0 11px 6px -7px rgba(43,43,43,0.1);
+//         border: none;
+//         margin-bottom: 30px;
+//         -webkit-transition: all 0.3s ease-in-out;
+//         transition: all 0.3s ease-in-out;
+//         position: relative;
+//         display: -webkit-box;
+//         display: -ms-flexbox;
+//         display: flex;
+//         -webkit-box-orient: vertical;
+//         -webkit-box-direction: normal;
+//         -ms-flex-direction: column;
+//         flex-direction: column;
+//         min-width: 0;
+//         word-wrap: break-word;
+//         background-color: #fff;
+//         background-clip: border-box;
+//         border: 1px solid rgba(0,0,0,.125);
+//         border-radius: .25rem;
+// }
+
+.page-header.card .breadcrumb {
+    background: transparent;
+    margin-bottom: 0;
+    float: right;
+}
+
+.page-header.card .breadcrumb a {
+    font-size: 13px;
+}
+
+a {
+    font-size: 13px;
+    color: #37474f;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.page-header.card h5 {
+    font-family: "Quicksand",sans-serif;
+    margin-bottom: 0;
+}
+
+.breadcrumb {
+    padding: .5rem 1rem !important;
+}
+
+.main-inner-content{
+    padding: 10px;
+}
+
+.main-body .page-wrapper {
+    padding: 0.6rem 1.5rem;
 }
