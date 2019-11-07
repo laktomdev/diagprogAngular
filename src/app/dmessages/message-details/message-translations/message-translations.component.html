@@ -14,7 +14,7 @@
 <hr />
 
 
-<mat-tab-group>
+<mat-tab-group [selectedIndex]="openTab">
   <mat-tab *ngFor="let item of translations" label="{{item.language?.name}}">
       <br />
       <app-translation-edit [translation]="item" (refreshListEmitter)="listRefreshTriggered($event)"></app-translation-edit>

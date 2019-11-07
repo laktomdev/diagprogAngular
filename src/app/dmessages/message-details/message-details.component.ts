@@ -9,6 +9,7 @@ import { MessagesService } from 'src/app/services/messages.service';
 export class MessageDetailsComponent implements OnInit {
 
   @Input() messageId: number;
+  @Input() openTabId = 0;
   @Output() messageDefChange = new EventEmitter<MessageDef>();
   @Output() refreshListEmitter = new EventEmitter<number>();
 
@@ -22,6 +23,7 @@ export class MessageDetailsComponent implements OnInit {
   }
 
   listRefreshTriggered(value: number) {
+    console.log('message-details dostało value');
     this.refreshListEmitter.emit(value);
   }
 

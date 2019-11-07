@@ -24,6 +24,7 @@ export class MessagesDefListComponent implements OnInit {
   messages: MessageDef[] = [];
   dataSource: MatTableDataSource<MessageDef>;
   expandedElement: MessageDef | null;
+  expandedElementOpenTabId = 0;
 
 
   columnsToDisplay = ['createDate', 'description', 'validFrom', 'validTo', 'translationsCount'];
@@ -35,17 +36,24 @@ export class MessagesDefListComponent implements OnInit {
   }
 
   onElementChange(value: number) {
-    console.log(value);
-    this.downloadMessages();
+    console.log('messages-def-list dostało value');
+    this.downloadMessages(value);
+
+    console.log(this.expandedElement);
   }
 
-  downloadMessages() {
+  downloadMessages(expand?: number) {
     this.mS.getAllMessageDeffinitions().subscribe(
       (data) => {
 
         this.messages = data;
         this.dataSource =  new MatTableDataSource<MessageDef>(data);
-        // this.expandedElement = this.messages.find(x => x.id === 1);
+        if (expand) {
+          this.expandedElementOpenTabId = 1;
+          this.expandedElement = this.messages.find(x => x.id === expand);
+
+        }
+
       },
 
       (error) => {
