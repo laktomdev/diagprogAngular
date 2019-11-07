@@ -19,9 +19,16 @@ export class MessageTranslationsComponent implements OnInit {
   openTab = 0;
   editDefault = false;
   addNewTranslation = false;
+  itemChangedId: number;
 
   listRefreshTriggered(value: number) {
     this.refreshListEmitter.emit(value);
+  }
+
+  // dostaje informacje o zmienionym tłumaczeniu
+  itemChangeTriggered(value: number) {
+    console.log('zmieniłem item ' + value);
+    this.itemChangedId = value;
   }
 
   constructor(private lS: LanguagesService) { }
