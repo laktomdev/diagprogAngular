@@ -48,13 +48,15 @@ export class MessageTranslationsComponent implements OnInit {
   }
 
   filterLanguagesToAdd() {
-    const languagesInMessage = this.translations.map(x => x.language);
 
-    if (this.languagesToAdd) {
-      this.languagesToAdd = this.languagesToAdd.filter(({id: id1}) =>
-      !languagesInMessage.some(({id: id2}) => id2 === id1));
+    if (this.translations) {
+      const languagesInMessage = this.translations.map(x => x.language);
+
+      if (this.languagesToAdd) {
+        this.languagesToAdd = this.languagesToAdd.filter(({id: id1}) =>
+        !languagesInMessage.some(({id: id2}) => id2 === id1));
+      }
     }
-
   }
 
   addLanguage() {
