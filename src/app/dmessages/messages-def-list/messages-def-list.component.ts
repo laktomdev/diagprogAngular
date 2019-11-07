@@ -34,7 +34,8 @@ export class MessagesDefListComponent implements OnInit {
     this.downloadMessages();
   }
 
-  onElementChange() {
+  onElementChange(value: number) {
+    console.log(value);
     this.downloadMessages();
   }
 
@@ -55,12 +56,10 @@ export class MessagesDefListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateEditMessageComponent, {data: {}});
-    dialogRef.afterClosed().subscribe(result => {  this.onElementChange(); });
+   // dialogRef.afterClosed().subscribe(result => {  this.onElementChange(); });
+    dialogRef.afterClosed().subscribe();
   }
 
-  delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-  }
 }
 
 

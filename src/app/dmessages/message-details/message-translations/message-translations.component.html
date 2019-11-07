@@ -17,6 +17,6 @@
 <mat-tab-group>
   <mat-tab *ngFor="let item of translations" label="{{item.language?.name}}">
       <br />
-      <app-translation-edit [translation]="item"></app-translation-edit>
+      <app-translation-edit [translation]="item" (refreshListEmitter)="listRefreshTriggered($event)"></app-translation-edit>
   </mat-tab>
 </mat-tab-group>

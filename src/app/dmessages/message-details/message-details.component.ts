@@ -10,6 +10,7 @@ export class MessageDetailsComponent implements OnInit {
 
   @Input() messageId: number;
   @Output() messageDefChange = new EventEmitter<MessageDef>();
+  @Output() refreshListEmitter = new EventEmitter<number>();
 
   message: MessageDef;
 
@@ -18,7 +19,10 @@ export class MessageDetailsComponent implements OnInit {
 
   onMessageDefChange(messageDef: MessageDef) {
     this.messageDefChange.emit(messageDef);
+  }
 
+  listRefreshTriggered(value: number) {
+    this.refreshListEmitter.emit(value);
   }
 
 

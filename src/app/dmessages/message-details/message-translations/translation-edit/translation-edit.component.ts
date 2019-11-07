@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MessageTranslation } from 'src/app/models/messageTranslation';
 import { MessagesService } from 'src/app/services/messages.service';
 import { MessageTranslationSubmit } from 'src/app/models/MessageTranslationSubmit';
@@ -12,7 +12,7 @@ import { MessageTranslationSubmit } from 'src/app/models/MessageTranslationSubmi
 export class TranslationEditComponent implements OnInit {
 
   @Input() translation: MessageTranslation;
-
+  @Output() refreshListEmitter = new EventEmitter<number>();
 
   oldTranslation: MessageTranslation;
 
@@ -44,7 +44,10 @@ export class TranslationEditComponent implements OnInit {
     this.oldTranslation = Object.assign({}, this.translation);
     this.changed();
     } else {
-       this.mS.addTranslation(this.createSubmitTranslation()).subscribe(data => console.log(data));
+       this.mS.addTranslation(this.createSubmitTranslation()).subscribe(data => {
+          this.refreshListEmitter.emit(this.translation.messageId);
+        });
+
     }
   }
 

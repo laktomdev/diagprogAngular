@@ -58,7 +58,7 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
       this.dataSource =  new MatTableDataSource<DeviceShort>(this.devices);
       this.dataSource.sort = this.sort;
       this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
-
+      this.dataSource.paginator = this.paginator;
 
       // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
       // tslint:disable-next-line:no-shadowed-variable
@@ -73,7 +73,6 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
     if (this.expandId) {
       this.expandedElement = this.dataSource.data.find(x => x.id === this.expandedElement.id);
     }
-    this.dataSource.paginator = this.paginator;
   }
 
 

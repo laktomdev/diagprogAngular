@@ -44,7 +44,7 @@
     <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
           <div class="example-element-detail"  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-               <app-message-details (messageDefChange)="onElementChange($event)" *ngIf="expandedElement === element" [messageId]="element.id" class="messages-details border border-primary"></app-message-details>
+               <app-message-details (messageDefChange)="onElementChange($event)" (refreshListEmitter)="onElementChange($event)" *ngIf="expandedElement === element" [messageId]="element.id" class="messages-details border border-primary"></app-message-details>
           </div>
         </td>
      </ng-container>

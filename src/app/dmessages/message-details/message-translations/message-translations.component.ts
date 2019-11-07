@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MessageTranslation } from 'src/app/models/messageTranslation';
 import { LanguagesService } from 'src/app/services/languages.service';
 import { Language } from 'src/app/models/language';
@@ -12,9 +12,15 @@ export class MessageTranslationsComponent implements OnInit {
 
   @Input() translations: MessageTranslation[];
   @Input() messageDefId: number;
+  @Output() refreshListEmitter = new EventEmitter<number>();
 
   languagesAvaliable: Language[];
   selectedLanguage: Language;
+
+  listRefreshTriggered(value: number) {
+    console.log(value);
+    this.refreshListEmitter.emit(value);
+  }
 
   constructor(private lS: LanguagesService) { }
 
