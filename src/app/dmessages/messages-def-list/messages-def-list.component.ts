@@ -64,7 +64,7 @@ export class MessagesDefListComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateEditMessageComponent, {data: {}});
    // dialogRef.afterClosed().subscribe(result => {  this.onElementChange(); });
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(() => this.downloadMessages());
   }
 
 }
