@@ -9,6 +9,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./device-list-checkboxed.component.scss']
 })
 export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
+
   dataSource: MatTableDataSource<DeviceShort>;
 
   @Input() devices: DeviceShort[];
@@ -33,7 +34,7 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
 
   passSelected() {
     if (this.selection.changed) {
-
+      console.log('przekazuje zaznaczone');
       this.selectedDevicesEmitter.emit(this.selection.selected);
     }
 
@@ -41,10 +42,10 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
 
   isAllSelected() {
     let numSelected = 0;
-    this.dataSource.filteredData.forEach(row => this.selection.isSelected(row) ? numSelected++ : null);
 
+    this.dataSource.filteredData.forEach(row => this.selection.isSelected(row) ? numSelected++ : null);
     const numRows = this.dataSource.filteredData.length;
-    this.passSelected();
+
 
     return numSelected === numRows;
 
@@ -67,14 +68,11 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-  selectionChange(event: any) {
-   console.log('hejo');
-   console.log(event);
-  }
-
   constructor() {}
 
   ngOnInit() {}
+
+
 
   sortingDataAccessor(item, property) {
     if (property.includes('.')) {
@@ -85,6 +83,10 @@ export class DeviceListCheckboxedComponent implements OnInit, OnChanges {
     return item[property];
   }
 
+  selectionChanged() {
+    console.log('click');
+    this.passSelected();
+  }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource<DeviceShort>(this.devices);
 
