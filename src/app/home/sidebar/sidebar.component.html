@@ -1,28 +1,47 @@
-<section class="sidebar bg-light mat-elevation-z9" fxFlex="220px">
-  <div class="main-menu">
-    <mat-list>
-      <h3 mat-subheader>Urządzenia</h3>
-      <mat-list-item>
-        <mat-icon mat-list-icon>tablet</mat-icon>
-        <h4 mat-line>
-          <a routerLink="devices" routerLinkActive="router-link-active">Lista urządzeń</a>
-        </h4>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon mat-list-icon>message</mat-icon>
-        <h4 mat-line>
-          <a routerLink="messages" routerLinkActive="router-link-active">Komunikaty</a>
-        </h4>
-      </mat-list-item>
+<nav class="left-navbar">
+  <div class="nav-list">
+    <div
+      class="slimScrollDiv"
+      style="position: relative; overflow: hidden; width: 100%; height: 100%;"
+    >
+      <div
+        class="left-inner-navbar main-menu"
+        style="overflow: hidden; width: 100%; height: 100%;"
+      >
+        <div class="left-navbar-navigation-label">
+          Urządzenia
+        </div>
+        <ul class="left-navbar-item">
+          <li class="active">
+            <span><img src="../../../assets/tablet.png"/></span>
+            <span class="navbar-text">
+              <a routerLink="devices" routerLinkActive="router-link-active"
+                >Lista urządzeń</a
+              >
+            </span>
+          </li>
+          <li>
+            <span><img src="../../../assets/message.png"/></span>
+            <span class="navbar-text">
+              <a routerLink="messages" routerLinkActive="router-link-active"
+                >Komunikaty</a
+              >
+            </span>
+          </li>
+        </ul>
+        <div class="left-navbar-navigation-label">
+          Programy
+        </div>
 
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Programy</h3>
-      <mat-list-item>
-        <mat-icon mat-list-icon>build</mat-icon>
-        <h4 mat-line>
-          <a routerLink="programs">Lista programów</a>
-        </h4>
-      </mat-list-item>
-    </mat-list>
+        <ul class="left-navbar-item">
+          <li>
+            <span><img src="../../../assets/programs.png"/></span>
+            <span class="navbar-text">
+              <a routerLink="programs">Lista programów</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-</section>
+</nav>

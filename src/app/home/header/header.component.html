@@ -1,27 +1,30 @@
-<header fxLayout='row'>
-  <mat-toolbar color="primary">
-    <div class="app-logo">
-      <h1>DiagprogWeb</h1>
+<nav class="navbar sticky-top flex-md-nowrap p-0">
+    <div class="navbar-wrapper">
+      <div class="navbar-logo">
+        <a href="">
+          <img class="" src="assets/logo.png" alt="Logo" />
+        </a>
+      </div>
     </div>
-    <div fxFlex></div>
-    <div>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>person</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>fingerprint</mat-icon>
-          <span>Login</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>close</mat-icon>
-          <span>Logout</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>content_paste</mat-icon>
-          <span>Registration</span>
-        </button>
-      </mat-menu>
+    <div class="user-profile header-notification">
+      <div class="dropdown-primary dropdown">
+        <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <img
+            src="assets/user.png"
+            class="img-radius"
+            alt="User-Profile-Image"
+          />
+          <span>Tomasz Łakomy</span>
+          <i class="fa fa-chevron-down chevron-down"></i>
+        </div>
+        <ul class="show-notification profile-notification dropdown-menu">
+          <li>
+            <a href="#!"> <i class="fa fa-user"></i> Edytuj profil </a>
+          </li>
+          <li>
+            <a href="#"> <i class="fa fa-sign-out"></i> Wyloguj </a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </mat-toolbar>
-</header>
+  </nav>
