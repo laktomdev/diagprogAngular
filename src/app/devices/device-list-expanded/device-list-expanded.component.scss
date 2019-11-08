@@ -13,7 +13,12 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: cadetblue;
+  background:  #263544;
+  font-weight: bold;
+
+}
+tr.example-element-row:not(.example-expanded-row):hover td{
+color: white;
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
@@ -41,4 +46,9 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 th.mat-sort-header-sorted {
   color: black;
+}
+
+td {
+  margin: 10px !important;
+  padding-left: 10px !important;
 }

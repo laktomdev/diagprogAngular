@@ -1,8 +1,9 @@
 <div class="mat-elevation-z8 container-fluid">
-<div class="container">
     <br />
+
     <h2 class="text-center">Urządzenia Diagprog4</h2>
-</div>
-<app-device-list-expanded [devices]="devices" [expandId]="expandId" (refreshListEmitter)="refreshListTriggered($event)"></app-device-list-expanded>
+
+    <app-device-list-expanded [devices]="devices" [expandId]="expandId"
+    (refreshListEmitter)="refreshListTriggered($event)"></app-device-list-expanded>
 
 </div>

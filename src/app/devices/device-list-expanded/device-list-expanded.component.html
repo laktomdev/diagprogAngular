@@ -1,12 +1,10 @@
-<div class="lockhigh div-change">
-
-    <div class="container">
+    <div class="container-fluid div-change lockhigh">
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj">
         </mat-form-field>
         <mat-paginator [length]="devices?.length" [pageSizeOptions]="[50, 10, 25, 100, 500, 1000]" showFirstLastButtons>
         </mat-paginator>
-      </div>
+
 
 
       <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
@@ -70,7 +68,4 @@
         </tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
       </table>
-
-
-
-</div>
+    </div>
