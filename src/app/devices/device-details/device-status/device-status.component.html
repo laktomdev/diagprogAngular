@@ -16,6 +16,8 @@
       <dd> {{deviceStatus?.createDate | date: 'dd.MM.yyyy'}}</dd>
       <dt>Rezerwacja:</dt>
       <dd> {{deviceStatus?.reservationDate | date: 'dd.MM.yyyy'}}</dd>
+      <dt>Status:</dt>
+      <dd> {{deviceStatus?.status}} <button mat-button color="primary">zwolnij rezerwację</button></dd>
     </dl>
   </div>
 </div>

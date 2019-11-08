@@ -5,6 +5,7 @@ import { DeviceMessage } from '../models/Device/Message/deviceMessage';
 import { MessageDef } from '../models/messageDef';
 import { MessageTranslationSubmit } from '../models/MessageTranslationSubmit';
 import { DeviceShort } from '../models/Device/deviceShort';
+import { MessageTranslation } from '../models/messageTranslation';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -75,6 +76,15 @@ export class MessagesService {
 
   removeMessageFromMultipleDevices(ids: number[], messageId: number): Observable<number> {
     return this.http.post<number>('https:/localhost:44313/messages/RemoveMessageFromDevices/', {ids, messageId});
+  }
+
+  changeDefaultLanguage(messageDefId: number, defaultLanguageId: number): Observable<DeviceShort[]> {
+    return this.http.post<DeviceShort[]>('https:/localhost:44313/messages/ChangeDefaultTranslation/', {messageDefId, defaultLanguageId});
+  }
+
+  getTranslations(messageId: number | string): Observable<MessageTranslation[]> {
+    console.log('ostatni ' + messageId);
+    return this.http.get<MessageTranslation[]>(`https:/localhost:44313/messages/MessageTranslations/${messageId}`);
   }
 
   constructor(private http: HttpClient) {}

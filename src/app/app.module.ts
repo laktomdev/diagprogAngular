@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { DevicesModule } from './devices/devices.module';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { DmessagesModule } from './dmessages/dmessages.module';
-import { EnumAsStringPipe } from './pipes/enum-as-string.pipe';
 
 
 
