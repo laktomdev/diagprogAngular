@@ -26,6 +26,7 @@ export class InsideComponent implements OnInit {
     this.mS.removeMessageFromMultipleDevices(this.selected.map(x => x.id), this.messageId).subscribe((data) => {
       this.itemsRemovedEmitter.emit(data);
       this.loading = false;
+      this.selected = undefined;
     });
   }
 

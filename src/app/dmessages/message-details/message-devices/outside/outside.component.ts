@@ -28,6 +28,7 @@ export class OutsideComponent implements OnInit {
     this.mS.addMessageToMultipleDevices(this.selected.map(x => x.id), this.messageId).subscribe((data => {
       this.itemsAddedEmitter.emit(data);
       this.loading = false;
+      this.selected = undefined;
 
     }));
   }
