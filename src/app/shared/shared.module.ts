@@ -27,11 +27,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed/device-list-checkboxed.component';
+import { UserRoleDirective } from '../directives/user-role.directive';
 
 
 
 @NgModule({
-  declarations: [DeviceListCheckboxedComponent],
+  declarations: [DeviceListCheckboxedComponent, UserRoleDirective],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -88,7 +89,8 @@ import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed
     MatSortModule,
     DeviceListCheckboxedComponent,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    UserRoleDirective
   ]
 })
 export class SharedModule { }
