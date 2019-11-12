@@ -1,19 +1,20 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DeviceInfo } from 'src/app/models/Device/deviceInfo';
-import { Customer } from 'src/app/models/customer';
-import { Seller } from 'src/app/models/seller';
 import { DevicesService } from 'src/app/services/devices.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserRoleDirective } from 'src/app/directives/user-role.directive';
 
 @Component({
   selector: 'app-device-info',
   templateUrl: './device-info.component.html',
-  styleUrls: ['./device-info.component.scss']
+  styleUrls: ['./device-info.component.scss'],
 })
 export class DeviceInfoComponent implements OnInit {
 
   deviceInfo: DeviceInfo;
   customerInEditMode = false;
   sellerInEditMode = false;
+
 
   @Input() deviceId: number;
   @Output() refreshListEmitter = new EventEmitter<number>();
