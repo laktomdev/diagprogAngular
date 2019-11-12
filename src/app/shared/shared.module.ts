@@ -59,8 +59,7 @@ import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed
     NgxMatSelectSearchModule,
     MatSortModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule,
-
+    MatProgressSpinnerModule
   ],
   exports: [
     MatButtonModule,

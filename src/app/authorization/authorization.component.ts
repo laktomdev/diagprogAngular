@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-authorization',
