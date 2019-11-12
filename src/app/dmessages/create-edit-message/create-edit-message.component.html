@@ -27,9 +27,11 @@
               <mat-datepicker #topicker></mat-datepicker>
           </mat-form-field>
         </div>
-         <button type="submit" *ngIf="!newRecord" class="btn btn-success col-md-12">Zapisz zmiany</button>
-         <button type="submit" *ngIf="newRecord" [mat-dialog-close]="" class="btn btn-success col-md-12">Dodaj komunikat</button>
 
-
-
+        <div  class="text-center">
+          <button type="submit" *ngIf="!newRecord" class="btn btn-success col-md-3">Zapisz zmiany</button>
+          <button type="submit" *ngIf="newRecord" [mat-dialog-close]="" class="btn btn-success  col-md-5">Dodaj komunikat</button>
+          <button type="button" (click)="cancelChanges()" *ngIf="!newRecord" class="btn btn-success col-md-3"  style="justify-content: center; margin-left: 10px;">Odrzuc zmiany</button>
+          <button type="button" [mat-dialog-close]="" *ngIf="newRecord" class="btn btn-success col-md-5"  style="justify-content: center; margin-left: 10px;">Anuluj</button>
+        </div>
 </form>

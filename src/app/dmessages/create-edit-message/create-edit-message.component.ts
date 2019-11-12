@@ -66,4 +66,8 @@ export class CreateEditMessageComponent implements OnInit {
     }
   }
 
+  cancelChanges() {
+    this.mS.getMessagesDeffinitionDetails(this.messageDef.id).subscribe((data) => {this.messageDef = data;});
+  }
+
 }
