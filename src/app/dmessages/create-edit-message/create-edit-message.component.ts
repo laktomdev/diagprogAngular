@@ -62,8 +62,7 @@ export class CreateEditMessageComponent implements OnInit {
           this.passMessageDefToListComponent();
       });
     } else {
-      this.mS.addMessageDefinition(this.messageDef).subscribe(()=>
-      this.passMessageDefToListComponent());
+      this.mS.addMessageDefinition(this.messageDef).subscribe();
     }
   }
 
