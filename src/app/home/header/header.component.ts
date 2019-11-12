@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/authorization/auth.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
 
   model: any = {};
 
-  constructor(public authService: AuthService, private router: Router, private alertyfy: AlertifyService) { }
+  constructor(public authService: AuthService, private router: Router, private alertyfy: AlertifyService,
+              private location: Location) { }
 
   ngOnInit() {
   }
@@ -23,8 +25,7 @@ export class HeaderComponent implements OnInit {
     }, error => {
       this.alertyfy.error('Login failed');
     }, () => {
-      const current = this.router.getCurrentNavigation();
-      this.router.navigateByUrl(current.finalUrl.toString());
+      location.reload();
     });
   }
 
@@ -36,6 +37,6 @@ export class HeaderComponent implements OnInit {
     console.log('logout');
     this.authService.logOut();
     this.alertyfy.message('Logged out');
-    // this.router.navigate(['/home']);
+    location.reload();
   }
 }
