@@ -17,7 +17,6 @@ import { OutsideComponent } from './message-details/message-devices/outside/outs
 @NgModule({
   declarations: [MessagesDefListComponent,
     MessageDetailsComponent,
-     EnumAsStringPipe,
       MessageTranslationsComponent,
        MessageDevicesComponent,
         TranslationEditComponent,

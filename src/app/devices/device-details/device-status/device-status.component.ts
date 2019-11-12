@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeviceStatusInfo } from 'src/app/models/Device/deviceStatusInfo';
 import { DevicesService } from 'src/app/services/devices.service';
+import { DeviceStatus } from 'src/app/models/Device/deviceStatus';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { DevicesService } from 'src/app/services/devices.service';
 export class DeviceStatusComponent implements OnInit {
 
   deviceStatus: DeviceStatusInfo;
-
+  statusEnum = DeviceStatus;
   @Input() deviceId: number;
 
   constructor(private dS: DevicesService) { }
@@ -20,6 +21,7 @@ export class DeviceStatusComponent implements OnInit {
     this.dS.getDeviceStatusById(Number(this.deviceId)).subscribe(
       (data) => {
         this.deviceStatus = data;
+        console.log(this.deviceStatus);
 
       },
       (error) => {

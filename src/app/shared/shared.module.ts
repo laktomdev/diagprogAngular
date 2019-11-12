@@ -28,11 +28,12 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed/device-list-checkboxed.component';
 import { UserRoleDirective } from '../directives/user-role.directive';
+import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
 
 
 
 @NgModule({
-  declarations: [DeviceListCheckboxedComponent, UserRoleDirective],
+  declarations: [DeviceListCheckboxedComponent, UserRoleDirective, EnumAsStringPipe],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -90,7 +91,8 @@ import { UserRoleDirective } from '../directives/user-role.directive';
     DeviceListCheckboxedComponent,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    UserRoleDirective
+    UserRoleDirective,
+    EnumAsStringPipe
   ]
 })
 export class SharedModule { }

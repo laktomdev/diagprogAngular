@@ -6,5 +6,5 @@ export interface DeviceStatusInfo {
   firstActivation: Time;
   lastActivation: Time;
   reservationDate: Time;
-  status: number;
+  status: DeviceStatus;
 }
