@@ -52,3 +52,9 @@ td {
   margin: 10px !important;
   padding-left: 10px !important;
 }
+
+.my-table {
+  word-wrap: break-word;
+  table-layout:fixed;
+  width: 100%;
+}

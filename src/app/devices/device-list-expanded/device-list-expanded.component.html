@@ -1,4 +1,4 @@
-    <div class="container-fluid div-change lockhigh">
+    <div class="container-fluid">
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj">
         </mat-form-field>
@@ -7,7 +7,7 @@
 
 
 
-      <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource"  matSort multiTemplateDataRows class="mat-elevation-z8 my-table">
 
         <!-- deviceNumber Column -->
         <ng-container matColumnDef="deviceNumber">
