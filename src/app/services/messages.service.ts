@@ -9,7 +9,7 @@ import { MessageTranslation } from '../models/messageTranslation';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    Authorization: 'Bearer ' + localStorage.getItem('token')
   })
 };
 
@@ -22,28 +22,28 @@ export class MessagesService {
 
   getMessagesInDeviceOutdated(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
-      `https:/localhost:44313/messages/DeviceMessagesOutdated/${id}`
+      `https:/localhost:44313/messages/DeviceMessagesOutdated/${id}`, httpOptions
     );
   }
 
   getMessagesInDeviceActive(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
-      `https:/localhost:44313/messages/DeviceMessagesActive/${id}`
+      `https:/localhost:44313/messages/DeviceMessagesActive/${id}`, httpOptions
     );
   }
 
   getMessagesInDevice(id: number | string): Observable<DeviceMessage[]> {
     return this.http.get<DeviceMessage[]>(
-      `https:/localhost:44313/messages/DeviceMessages/${id}`
+      `https:/localhost:44313/messages/DeviceMessages/${id}`, httpOptions
     );
   }
 
   getAllMessageDeffinitions(): Observable<MessageDef[]> {
-    return this.http.get<MessageDef[]>('https:/localhost:44313/messages/AllDefinitions').pipe();
+    return this.http.get<MessageDef[]>('https:/localhost:44313/messages/AllDefinitions', httpOptions);
   }
 
   getMessagesDeffinitionDetails(id: number | string): Observable<MessageDef> {
-    return this.http.get<MessageDef>(`https:/localhost:44313/messages/DefinitionDetails/${id}`);
+    return this.http.get<MessageDef>(`https:/localhost:44313/messages/DefinitionDetails/${id}`, httpOptions);
   }
 
   editMessageDefinition(model: MessageDef): Observable<number> {
@@ -63,28 +63,29 @@ export class MessagesService {
   }
 
   getMessageDevices(msgId: number): Observable<DeviceShort[]> {
-    return this.http.get<DeviceShort[]>(`https:/localhost:44313/messages/MessageDevices/${msgId}`);
+    return this.http.get<DeviceShort[]>(`https:/localhost:44313/messages/MessageDevices/${msgId}`, httpOptions);
   }
 
   getNotMessageDevices(ignoreIds: number[]): Observable<DeviceShort[]> {
-    return this.http.post<DeviceShort[]>('https:/localhost:44313/messages/NotMessageDevices/', ignoreIds);
+    return this.http.post<DeviceShort[]>('https:/localhost:44313/messages/NotMessageDevices/', ignoreIds, httpOptions);
   }
 
   addMessageToMultipleDevices(ids: number[], messageId: number): Observable<number> {
-    return this.http.post<number>('https:/localhost:44313/messages/AddMessageToDevices/', {ids, messageId});
+    return this.http.post<number>('https:/localhost:44313/messages/AddMessageToDevices/', {ids, messageId}, httpOptions);
   }
 
   removeMessageFromMultipleDevices(ids: number[], messageId: number): Observable<number> {
-    return this.http.post<number>('https:/localhost:44313/messages/RemoveMessageFromDevices/', {ids, messageId});
+    return this.http.post<number>('https:/localhost:44313/messages/RemoveMessageFromDevices/', {ids, messageId}, httpOptions);
   }
 
   changeDefaultLanguage(messageDefId: number, defaultLanguageId: number): Observable<DeviceShort[]> {
-    return this.http.post<DeviceShort[]>('https:/localhost:44313/messages/ChangeDefaultTranslation/', {messageDefId, defaultLanguageId});
+    return this.http.post<DeviceShort[]>('https:/localhost:44313/messages/ChangeDefaultTranslation/', {messageDefId, defaultLanguageId},
+     httpOptions);
   }
 
   getTranslations(messageId: number | string): Observable<MessageTranslation[]> {
     console.log('ostatni ' + messageId);
-    return this.http.get<MessageTranslation[]>(`https:/localhost:44313/messages/MessageTranslations/${messageId}`);
+    return this.http.get<MessageTranslation[]>(`https:/localhost:44313/messages/MessageTranslations/${messageId}`, httpOptions);
   }
 
   constructor(private http: HttpClient) {}

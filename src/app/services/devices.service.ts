@@ -21,6 +21,7 @@ export class DevicesService {
   private devices: DeviceShort[] = [];
 
   getAll(): Observable<DeviceShort[]> {
+
     return this.http.get<DeviceShort[]>(
       'https://localhost:44313/devices',
       httpOptions
@@ -29,37 +30,33 @@ export class DevicesService {
 
   getById(id: number | string): Observable<Device> {
     return this.http.get<Device>(
-      `https:/localhost:44313/devices/details/${id}`
+      `https:/localhost:44313/devices/details/${id}`, httpOptions
     );
   }
 
   getDeviceIdentById(id: number | string): Observable<DeviceIdentification> {
     return this.http.get<DeviceIdentification>(
-      `https:/localhost:44313/devicepart/deviceidentification/${id}`
+      `https:/localhost:44313/devicepart/deviceidentification/${id}`, httpOptions
     );
   }
 
   getDeviceInfoById(id: number | string): Observable<DeviceInfo> {
     return this.http.get<DeviceInfo>(
-      `https:/localhost:44313/devicepart/deviceinfo/${id}`
+      `https:/localhost:44313/devicepart/deviceinfo/${id}`, httpOptions
     );
   }
   getDeviceStatusById(id: number | string): Observable<DeviceStatusInfo> {
     return this.http.get<DeviceStatusInfo>(
-      `https:/localhost:44313/devicepart/devicestatusinfo/${id}`
+      `https:/localhost:44313/devicepart/devicestatusinfo/${id}`, httpOptions
     );
   }
 
   changeDeviceCustomer(deviceId: number,  customerId: number) {
-    return this.http.post('https:/localhost:44313/devices/changeCustomer', {deviceId, customerId});
+    return this.http.post('https:/localhost:44313/devices/changeCustomer', {deviceId, customerId}, httpOptions);
   }
 
   changeDeviceSeller(deviceId: number,  sellerId: number) {
-    return this.http.post('https:/localhost:44313/devices/changeSeller', {deviceId, sellerId});
-  }
-
-  getCount(): Observable<number> {
-    return this.http.get<number>('https:/localhost:44313/devices/count');
+    return this.http.post('https:/localhost:44313/devices/changeSeller', {deviceId, sellerId}, httpOptions);
   }
 
   constructor(private http: HttpClient) {}
