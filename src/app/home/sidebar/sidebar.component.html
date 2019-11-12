@@ -12,18 +12,18 @@
           Urządzenia
         </div>
         <ul class="left-navbar-item">
-          <li class="active">
+          <li [ngClass]="deviceList.isActive ? 'active' : ''">
             <span><img src="../../../assets/tablet.png"/></span>
             <span class="navbar-text">
-              <a routerLink="devices" routerLinkActive="router-link-active"
+              <a routerLink="devices" routerLinkActive="router-link-active" #deviceList="routerLinkActive"
                 >Lista urządzeń</a
               >
             </span>
           </li>
-          <li>
+          <li [ngClass]="messages.isActive ? 'active' : ''">
             <span><img src="../../../assets/message.png"/></span>
             <span class="navbar-text">
-              <a routerLink="messages" routerLinkActive="router-link-active"
+              <a routerLink="messages" routerLinkActive="router-link-active" #messages="routerLinkActive"
                 >Komunikaty</a
               >
             </span>
@@ -34,10 +34,10 @@
         </div>
 
         <ul class="left-navbar-item">
-          <li>
+          <li [ngClass]="programs.isActive ? 'active' : ''">
             <span><img src="../../../assets/programs.png"/></span>
             <span class="navbar-text">
-              <a routerLink="programs">Lista programów</a>
+              <a routerLink="programs" routerLinkActive="router-link-active" #programs="routerLinkActive">Lista programów</a>
             </span>
           </li>
         </ul>
