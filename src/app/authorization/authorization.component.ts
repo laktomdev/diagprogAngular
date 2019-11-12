@@ -29,4 +29,14 @@ export class AuthorizationComponent implements OnInit {
 
     this.login();
   }
+
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/home']);
+  }
+
 }

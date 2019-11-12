@@ -28,4 +28,19 @@ export class AuthService {
       );
   }
 
+  loggedIn() {
+    const token = localStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+  }
+
+  getUserName() {
+    const token = localStorage.getItem('token');
+    this.decodedToken = this.jwtHelper.decodeToken(token);
+    return this.decodedToken.uniqueName;
+  }
+
 }
