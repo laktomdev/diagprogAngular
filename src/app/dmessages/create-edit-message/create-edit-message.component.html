@@ -1,19 +1,23 @@
 <h4 class="text-center">Dane komunikatu</h4><hr/><br/>
 
-<form name="messageDef" (ngSubmit)="onSubmit()">
+<form #messageForm="ngForm"  (ngSubmit)="onSubmit()">
 
       <div class="form-group">
           <input type="text" [ngModel]="messageDef?.description"
           [ngModelOptions]="{standalone: true}"
-          (ngModelChange)="messageDef.description = $event" class="col-md-12"/>
+          (ngModelChange)="messageDef.description = $event" class="col-md-12"
+          placeholder="opis komunikatu" required
+          />
        </div>
 
        <div class="form-group">
           <mat-form-field class="col-md-5">
-            <input matInput [matDatepicker]="frompicker" placeholder="Od:"
+            <input  matInput [matDatepicker]="frompicker" placeholder="Od:"
               [ngModel]="messageDef?.validFrom"
               [ngModelOptions]="{standalone: true}"
-              (ngModelChange)="messageDef.validFrom = $event">
+              (ngModelChange)="messageDef.validFrom = $event"
+              [max]="messageDef?.validTo"
+              required>
             <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
             <mat-datepicker #frompicker></mat-datepicker>
           </mat-form-field>
@@ -22,15 +26,18 @@
               <input matInput [matDatepicker]="topicker" placeholder="Do:"
                 [ngModel]="messageDef?.validTo"
                 [ngModelOptions]="{standalone: true}"
-                (ngModelChange)="messageDef.validTo = $event">
+                (ngModelChange)="messageDef.validTo = $event"
+                [min]="messageDef?.validFrom"
+                required>
               <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
               <mat-datepicker #topicker></mat-datepicker>
           </mat-form-field>
         </div>
 
         <div  class="text-center">
-          <button type="submit" *ngIf="!newRecord" class="btn btn-success col-md-3">Zapisz zmiany</button>
-          <button type="submit" *ngIf="newRecord" [mat-dialog-close]="" class="btn btn-success  col-md-5">Dodaj komunikat</button>
+          <button type="submit"  [disabled]="!messageForm.valid" *ngIf="!newRecord" class="btn btn-success col-md-3">Zapisz zmiany</button>
+          <button type="submit"  [disabled]="!messageForm.valid" *ngIf="newRecord" [mat-dialog-close]="" class="btn btn-success  col-md-5" >Dodaj komunikat</button>
+
           <button type="button" (click)="cancelChanges()" *ngIf="!newRecord" class="btn btn-success col-md-3"  style="justify-content: center; margin-left: 10px;">Odrzuc zmiany</button>
           <button type="button" [mat-dialog-close]="" *ngIf="newRecord" class="btn btn-success col-md-5"  style="justify-content: center; margin-left: 10px;">Anuluj</button>
         </div>

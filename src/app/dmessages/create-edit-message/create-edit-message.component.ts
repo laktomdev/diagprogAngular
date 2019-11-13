@@ -5,6 +5,7 @@ import moment from 'moment/src/moment';
 import { MessagesService } from 'src/app/services/messages.service';
 import { MomentUtcDateAdapter } from 'src/app/pipes/momentUtcAdapter';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 
 export const MY_FORMATS = {
@@ -36,7 +37,8 @@ export class CreateEditMessageComponent implements OnInit {
 
   newRecord = false;
 
-  constructor(private mS: MessagesService, @Optional() @Inject(MAT_DIALOG_DATA) public data: MessageDef) {
+  constructor(private mS: MessagesService, @Optional() @Inject(MAT_DIALOG_DATA) public data: MessageDef,
+              private alertify: AlertifyService) {
     this.messageDef = data;
     if (data !== null) {
       this.newRecord = true;
@@ -62,12 +64,20 @@ export class CreateEditMessageComponent implements OnInit {
           this.passMessageDefToListComponent();
       });
     } else {
-      this.mS.addMessageDefinition(this.messageDef).subscribe();
+      this.mS.addMessageDefinition(this.messageDef).subscribe(
+        (data) => {
+          if (data === 200) {
+            this.alertify.success('Dodano nowy komunikat');
+          } else {
+            this.alertify.error('Nie udało się dodać komunikatu');
+          }
+        }
+      );
     }
   }
 
   cancelChanges() {
-    this.mS.getMessagesDeffinitionDetails(this.messageDef.id).subscribe((data) => {this.messageDef = data;});
+    this.mS.getMessagesDeffinitionDetails(this.messageDef.id).subscribe((data) => {this.messageDef = data; });
   }
 
 }

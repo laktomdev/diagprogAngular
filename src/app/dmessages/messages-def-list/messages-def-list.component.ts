@@ -50,9 +50,7 @@ export class MessagesDefListComponent implements OnInit {
         this.dataSource =  new MatTableDataSource<MessageDef>(data);
         if (expand) {
           this.expandedElement = this.messages.find(x => x.id === expand);
-
         }
-
       },
 
       (error) => {
