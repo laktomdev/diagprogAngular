@@ -30,7 +30,11 @@ export class HeaderComponent implements OnInit {
   }
 
   loggedIn() {
-    return this.authService.loggedIn();
+    const isLoggedIn = this.authService.loggedIn();
+    if (!isLoggedIn) {
+      this.authService.logOut();
+    }
+    return isLoggedIn;
   }
 
   logout() {

@@ -78,8 +78,8 @@ export class MessagesService {
     return this.http.post<number>('https:/localhost:44313/messages/RemoveMessageFromDevices/', {ids, messageId}, httpOptions);
   }
 
-  changeDefaultLanguage(messageDefId: number, defaultLanguageId: number): Observable<DeviceShort[]> {
-    return this.http.post<DeviceShort[]>('https:/localhost:44313/messages/ChangeDefaultTranslation/', {messageDefId, defaultLanguageId},
+  changeDefaultLanguage(messageDefId: number, defaultLanguageId: number): Observable<number> {
+    return this.http.post<number>('https:/localhost:44313/messages/ChangeDefaultTranslation/', {messageDefId, defaultLanguageId},
      httpOptions);
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleCha
 import { MessageTranslation } from 'src/app/models/messageTranslation';
 import { MessagesService } from 'src/app/services/messages.service';
 import { MessageTranslationSubmit } from 'src/app/models/MessageTranslationSubmit';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-translation-edit',
@@ -20,7 +21,7 @@ export class TranslationEditComponent implements OnInit {
   isChanged = false;
   isNewRecord = true;
 
-  constructor(private mS: MessagesService
+  constructor(private mS: MessagesService, private alertify: AlertifyService
     ) {}
 
 
@@ -43,12 +44,26 @@ export class TranslationEditComponent implements OnInit {
 
   onSubmit()  {
     if (!this.isNewRecord) {
-    this.mS.editTranslation(this.createSubmitTranslation()).subscribe(data => console.log(data));
+    this.mS.editTranslation(this.createSubmitTranslation()).subscribe(data => {
+      if (data === 200) {
+        this.alertify.success(`Edytowano tłumaczenie w języku ${this.translation.language.name}`);
+        this.refreshListEmitter.emit(this.translation.messageId);
+      } else {
+        this.alertify.error(`Nie udało się edytować tłumaczenia w języku ${this.translation.language.name}`);
+      }
+    });
     this.oldTranslation = Object.assign({}, this.translation);
     this.changed();
     } else {
        this.mS.addTranslation(this.createSubmitTranslation()).subscribe(data => {
-          this.refreshListEmitter.emit(this.translation.messageId);
+
+          if (data === 200) {
+            this.alertify.success(`Dodano tłumaczenie w języku ${this.translation.language.name}`);
+            this.refreshListEmitter.emit(this.translation.messageId);
+          } else {
+            this.alertify.error(`Nie udało się dodać tłumaczenia w języku ${this.translation.language.name}`);
+          }
+
         });
 
     }

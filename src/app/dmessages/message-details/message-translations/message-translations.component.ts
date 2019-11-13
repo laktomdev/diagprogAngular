@@ -3,6 +3,7 @@ import { MessageTranslation } from 'src/app/models/messageTranslation';
 import { LanguagesService } from 'src/app/services/languages.service';
 import { Language } from 'src/app/models/language';
 import { MessagesService } from 'src/app/services/messages.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-message-translations',
@@ -32,11 +33,10 @@ export class MessageTranslationsComponent implements OnInit, OnChanges {
 
   // dostaje informacje o zmienionym tłumaczeniu
   itemChangeTriggered(value: number) {
-    console.log('zmieniłem item ' + value);
     this.itemChangedId = value;
   }
 
-  constructor(private lS: LanguagesService, private mS: MessagesService) {}
+  constructor(private lS: LanguagesService, private mS: MessagesService, private alertify: AlertifyService) {}
 
   ngOnInit() {
     this.lS.getAll().subscribe(
@@ -94,24 +94,24 @@ export class MessageTranslationsComponent implements OnInit, OnChanges {
       this.openTab = this.translationsUncofirmed.length - 1;
       this.addNewTranslation = false;
       this.setLanguages();
+      this.alertify.warning('Nowa wersja komunikatu dodana lokalnie.\nPamiętaj o zapisaniu po uzupełnieniu treści!');
     }
   }
 
   changeDefault() {
-    console.log('zmianiam język na ' + this.defaultLanguage.name);
     this.mS
       .changeDefaultLanguage(this.messageDefId, this.defaultLanguage.id)
-      .subscribe(() => {
-        console.log(this.messageDefId);
-        this.mS.getTranslations(this.messageDefId).subscribe(data => {
-          console.log(data);
-          this.translations = data;
-          // this.translationsUncofirmed = Object.assign([], this.translations);
-          console.log(this.translationsUncofirmed);
-          console.log(this.translations);
-          this.setLanguages();
-          this.editDefault = false;
-        });
+      .subscribe((result) => {
+        if (result === 200) {
+            this.mS.getTranslations(this.messageDefId).subscribe(data => {
+            this.translations = data;
+            this.setLanguages();
+            this.editDefault = false;
+            this.alertify.success(`Zmieniono domyślny język komunikatu na ${this.defaultLanguage.name}`);
+          });
+        } else {
+          this.alertify.error('Nie udało się zmienić domyślnego języka komunikatu');
+        }
       });
   }
 
