@@ -54,20 +54,26 @@ export class CreateEditMessageComponent implements OnInit {
   }
 
   onSubmit() {
+
+    this.messageDef.validTo = moment.parseZone( this.messageDef.validTo).utc().format();
+    this.messageDef.validFrom = moment.parseZone( this.messageDef.validFrom).utc().format();
+
     if (!this.newRecord) {
       moment().startOf('day');
 
-      this.messageDef.validTo = moment.parseZone( this.messageDef.validTo).utc().format();
-      this.messageDef.validFrom = moment.parseZone( this.messageDef.validFrom).utc().format();
-
-      this.mS.editMessageDefinition(this.messageDef).subscribe(() => {
-          this.passMessageDefToListComponent();
+      this.mS.editMessageDefinition(this.messageDef).subscribe((result) => {
+          if (result === 200) {
+            this.alertify.success(`Edytowano komunikat ${this.messageDef.description}`);
+            this.passMessageDefToListComponent();
+          } else {
+            this.alertify.error(`Nie udało się edytować komunikatu ${this.messageDef.description}.\nSprawdź wprowadzone dane`);
+          }
       });
     } else {
       this.mS.addMessageDefinition(this.messageDef).subscribe(
-        (data) => {
-          if (data === 200) {
-            this.alertify.success('Dodano nowy komunikat');
+        (result) => {
+          if (result === 200) {
+            this.alertify.success(`Dodano nowy komunikat - ${this.messageDef.description}`);
           } else {
             this.alertify.error('Nie udało się dodać komunikatu');
           }
