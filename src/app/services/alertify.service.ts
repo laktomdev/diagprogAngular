@@ -9,13 +9,13 @@ export class AlertifyService {
 
   constructor() { }
 
-  confirm(message: string, okCallback: () => any) {
+  confirm(tittle: string, message: string, okCallback: () => any) {
     // tslint:disable-next-line:only-arrow-functions
-    alertify.confirm(message, function(clickEvent) {
+    alertify.confirm(tittle, message, function(clickEvent) {
       if (clickEvent) {
         okCallback();
-      } else {}
-    });
+      } else { }
+    }, null);
   }
 
   success(message: string) {
