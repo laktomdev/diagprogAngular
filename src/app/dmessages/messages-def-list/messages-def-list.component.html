@@ -3,7 +3,7 @@
     <br />
     <h2 class="text-center">Komunikaty</h2>
     <!-- <a routerLink="create" routerLinkActive="router-link-active" class="btn btn-primary">Dodaj</a> -->
-    <button mat-raised-button color="primary" (click)="openDialog()">Dodaj nowy</button>
+    <button appUserRole roleNames="Admin, Manager" mat-raised-button color="primary" (click)="openDialog()">Dodaj nowy</button>
   </div>
   <br/>
 

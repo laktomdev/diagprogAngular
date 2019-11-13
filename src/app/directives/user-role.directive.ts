@@ -19,7 +19,7 @@ export class UserRoleDirective implements OnInit {
       this.render.setStyle(
         this.elementRef.nativeElement,
         'visibility',
-        'hidden'
+        'collapse'
       );
     }
   }
