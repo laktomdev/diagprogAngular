@@ -6,6 +6,7 @@ import { Subject, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SellersService } from 'src/app/services/sellers.service';
 import { DevicesService } from 'src/app/services/devices.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-sellers-form',
@@ -18,7 +19,7 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
   @Input() deviceId: number;
   @Output() refreshListEmitter = new EventEmitter<number>();
 
-  constructor(private sS: SellersService, private dS: DevicesService) {}
+  constructor(private sS: SellersService, private dS: DevicesService, private alertify: AlertifyService) {}
 
   sellers: Seller[] = [];
   @ViewChild('singleSelect',  {static: false}) singleSelect: MatSelect;
@@ -72,7 +73,14 @@ export class SellersFormComponent  implements OnInit, OnDestroy {
   onSubmit()  {
     if (this.submitted) {
       this.dS.changeDeviceSeller(this.deviceId, this.sellerCtrl.value.userId).subscribe(
-        () => this.refreshListEmitter.emit(this.deviceId)
+        (response) => {
+          if (response === 200) {
+            this.refreshListEmitter.emit(this.deviceId);
+            this.alertify.success(`Zmieniono sprzedawce urządzenia ${this.deviceId} na ${this.sellerCtrl.value.name}`);
+          } else {
+            this.alertify.error(`Nie udało się zmienić sprzedawce urządzenia ${this.deviceId}`);
+          }
+        }
       );
     }
   }

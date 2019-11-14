@@ -6,6 +6,7 @@ import { Subject, ReplaySubject } from 'rxjs';
 import { MatSelect } from '@angular/material';
 import { CustomersService } from 'src/app/services/customers.service';
 import { DevicesService } from 'src/app/services/devices.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-customers-form',
@@ -20,7 +21,7 @@ export class CustomersFormComponent
 
   @Output() refreshListEmitter = new EventEmitter<number>();
 
-  constructor(private cS: CustomersService, private dS: DevicesService) {}
+  constructor(private cS: CustomersService, private dS: DevicesService, private alertify: AlertifyService) {}
 
   customers: Customer[] = [];
   @ViewChild('singleSelect',  {static: false}) singleSelect: MatSelect;
@@ -74,7 +75,14 @@ export class CustomersFormComponent
     if (this.submitted) {
       console.log(this.deviceId);
       this.dS.changeDeviceCustomer(this.deviceId, this.customerCtrl.value.id).subscribe(
-        () => this.refreshListEmitter.emit(this.deviceId)
+        (response) => {
+          if (response === 200) {
+            this.refreshListEmitter.emit(this.deviceId);
+            this.alertify.success(`Zmieniono klienta urządzenia ${this.deviceId} na ${this.customerCtrl.value.name}`);
+          } else {
+            this.alertify.error(`Nie udało się zmienić klienta urządzenia ${this.deviceId}`);
+          }
+        }
       );
 
       // this.passCustomerToDeviceInfoComponent(this.customerCtrl.value);

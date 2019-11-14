@@ -51,12 +51,12 @@ export class DevicesService {
     );
   }
 
-  changeDeviceCustomer(deviceId: number,  customerId: number) {
-    return this.http.post('https:/localhost:44313/devices/changeCustomer', {deviceId, customerId}, httpOptions);
+  changeDeviceCustomer(deviceId: number,  customerId: number) : Observable<number> {
+    return this.http.post<number>('https:/localhost:44313/devices/changeCustomer', {deviceId, customerId}, httpOptions);
   }
 
-  changeDeviceSeller(deviceId: number,  sellerId: number) {
-    return this.http.post('https:/localhost:44313/devices/changeSeller', {deviceId, sellerId}, httpOptions);
+  changeDeviceSeller(deviceId: number,  sellerId: number) : Observable<number> {
+    return this.http.post<number>('https:/localhost:44313/devices/changeSeller', {deviceId, sellerId}, httpOptions);
   }
 
   releaseReservation(deviceId: number | string): Observable<number> {
