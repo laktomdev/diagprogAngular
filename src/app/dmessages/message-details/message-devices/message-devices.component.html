@@ -7,7 +7,7 @@
     </ng-template>
   </mat-tab>
 
-  <mat-tab appUserRole roleNames="Admin, Manager"  label="Pozostałe urządzenia">
+  <mat-tab *appIfRoles="'Admin, Manager'" label="Pozostałe urządzenia">
     <ng-template matTabContent>
       <br />
       <app-outside (itemsAddedEmitter)="dowloadDevices()" [devicesOutside]="devicesOutside" [messageId]="messageDefId">

@@ -15,7 +15,7 @@ import { DmessagesModule } from './dmessages/dmessages.module';
 @NgModule({
    declarations: [
       AppComponent,
-      AuthorizationComponent
+      AuthorizationComponent,
    ],
    imports: [
       BrowserModule,

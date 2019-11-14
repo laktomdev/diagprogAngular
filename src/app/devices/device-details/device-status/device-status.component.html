@@ -17,7 +17,7 @@
       <dt>Rezerwacja:</dt>
       <dd> {{deviceStatus?.reservationDate | date: 'dd.MM.yyyy'}}</dd>
       <dt>Status:</dt>
-      <dd> {{deviceStatus?.status | enumAsString: statusEnum}} <button mat-button color="primary">zwolnij rezerwację</button></dd>
+      <dd> {{deviceStatus?.status | enumAsString: statusEnum}} <button *appIfRoles="'Admin, Manager'" (click)="askIfReleaseReservation()" mat-button color="primary">zwolnij rezerwację</button></dd>
     </dl>
   </div>
 </div>

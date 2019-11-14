@@ -1,5 +1,5 @@
 <div class="container-fluid">
-      <button appUserRole roleNames="Admin, Manager" mat-raised-button color="primary"
+      <button *appIfRoles="'Admin, Manager'" mat-raised-button color="primary"
        [disabled]="loading || selected?.length == 0|| !selected"
         (click)="askIfRemove()">Usuń z zaznaczonych {{selected?.length}} urządzeń</button>
         <hr/>

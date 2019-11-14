@@ -1,21 +1,21 @@
 <div class="container-fluid">
   <mat-tab-group [selectedIndex]="openTabId">
-      <mat-tab  label="Edycja">
+      <mat-tab  label="Edycja" *appIfRoles="'Admin, Manager'">
           <ng-template matTabContent>
           <br />
             <app-create-edit-message (messageDefChange)="onMessageDefChange($event)" [messageDef]="message"></app-create-edit-message>
           </ng-template>
       </mat-tab>
-    <mat-tab class="edited" label="Tłumaczenia">
+    <mat-tab label="Tłumaczenia" *appIfRoles="'Admin, Manager'">
         <ng-template matTabContent>
         <br />
-          <app-message-translations (refreshListEmitter)="listRefreshTriggered($event)" [messageDefId]="message?.id" [translations]="message?.translations"></app-message-translations>
+          <app-message-translations (refreshListEmitter)="listRefreshTriggered($event)" [messageDefId]="messageId" [translations]="message?.translations"></app-message-translations>
         </ng-template>
     </mat-tab>
     <mat-tab  label="Urządzenia">
       <ng-template matTabContent>
       <br />
-        <app-message-devices [messageDefId]="message.id"></app-message-devices>
+        <app-message-devices [messageDefId]="messageId"></app-message-devices>
       </ng-template>
   </mat-tab>
   </mat-tab-group>

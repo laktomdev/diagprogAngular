@@ -1,44 +1,46 @@
-<h4 class="text-center">Dane komunikatu {{this.messageDef?.description}}</h4><hr/><br/>
+<h4 class="text-center">Dane komunikatu {{this._messageDef?.description}}</h4><hr/><br/>
 
 <form #messageForm="ngForm"  (ngSubmit)="onSubmit()">
 
       <div class="form-group">
-          <input type="text" [ngModel]="messageDef?.description"
+          <input type="text" [ngModel]="_messageDef?.description"
           [ngModelOptions]="{standalone: true}"
-          (ngModelChange)="messageDef.description = $event" class="col-md-12"
-          placeholder="opis komunikatu" required
+          (ngModelChange)="_messageDef.description = $event" class="col-md-12"
+          placeholder="opis komunikatu" (input)="changed()" required
           />
        </div>
 
        <div class="form-group">
           <mat-form-field class="col-md-5">
             <input  matInput [matDatepicker]="frompicker" placeholder="Od:"
-              [ngModel]="messageDef?.validFrom"
+              [ngModel]="_messageDef?.validFrom"
               [ngModelOptions]="{standalone: true}"
-              (ngModelChange)="messageDef.validFrom = $event"
-              [max]="messageDef?.validTo"
+              (ngModelChange)="_messageDef.validFrom = $event"
+              [max]="_messageDef?.validTo"
+              (input)="changed()"
               required>
             <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
-            <mat-datepicker #frompicker></mat-datepicker>
+            <mat-datepicker #frompicker (closed)="changed()"></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="col-md-5 offset-md-1">
               <input matInput [matDatepicker]="topicker" placeholder="Do:"
-                [ngModel]="messageDef?.validTo"
+                [ngModel]="_messageDef?.validTo"
                 [ngModelOptions]="{standalone: true}"
-                (ngModelChange)="messageDef.validTo = $event"
-                [min]="messageDef?.validFrom"
+                (ngModelChange)="_messageDef.validTo = $event"
+                [min]="_messageDef?.validFrom"
+                (input)="changed()"
                 required>
               <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
-              <mat-datepicker #topicker></mat-datepicker>
+              <mat-datepicker #topicker (closed)="changed()"></mat-datepicker>
           </mat-form-field>
         </div>
 
         <div  class="text-center">
-          <button type="submit"  [disabled]="!messageForm.valid" *ngIf="!newRecord" class="btn btn-success col-md-3">Zapisz zmiany</button>
-          <button type="submit"  [disabled]="!messageForm.valid" *ngIf="newRecord" [mat-dialog-close]="" class="btn btn-success  col-md-5" >Dodaj komunikat</button>
+          <button mat-raised-button color="primary" type="submit"  [disabled]="!isChanged" *ngIf="!newRecord" class="col-md-3">Zapisz zmiany</button>
+          <button mat-raised-button color="primary" type="submit"  [disabled]="!messageForm.valid" *ngIf="newRecord" [mat-dialog-close]="" class=" col-md-5" >Dodaj komunikat</button>
 
-          <button type="button" (click)="cancelChanges()" *ngIf="!newRecord" class="btn btn-success col-md-3"  style="justify-content: center; margin-left: 10px;">Odrzuc zmiany</button>
-          <button type="button" [mat-dialog-close]="" *ngIf="newRecord" class="btn btn-success col-md-5"  style="justify-content: center; margin-left: 10px;">Anuluj</button>
+          <button mat-raised-button color="primary" type="button" (click)="cancelChanges()" *ngIf="!newRecord" class="col-md-3"  style="justify-content: center; margin-left: 10px;">Odrzuc zmiany</button>
+          <button mat-raised-button color="primary" type="button" [mat-dialog-close]="" *ngIf="newRecord" class="col-md-5"  style="justify-content: center; margin-left: 10px;">Anuluj</button>
         </div>
 </form>

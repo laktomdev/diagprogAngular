@@ -32,20 +32,40 @@ export const MY_FORMATS = {
 })
 export class CreateEditMessageComponent implements OnInit {
 
-  @Input() messageDef: MessageDef | null;
+  @Input('messageDef') set messageDef(value: MessageDef) {
+    this._messageDef = value;
+    this.oldMessageDef = Object.assign({}, this._messageDef);
+  }
+
+
   @Output() messageDefChange = new EventEmitter<MessageDef>();
 
+
+  oldMessageDef: MessageDef;
+  // tslint:disable-next-line:variable-name
+  _messageDef: MessageDef;
+
   newRecord = false;
+  isChanged = false;
 
   constructor(private mS: MessagesService, @Optional() @Inject(MAT_DIALOG_DATA) public data: MessageDef,
               private alertify: AlertifyService) {
-    this.messageDef = data;
+    this._messageDef = data;
     if (data !== null) {
       this.newRecord = true;
     }
   }
 
   ngOnInit() {
+
+  }
+
+  changed() {
+    if (JSON.stringify(this._messageDef) !== JSON.stringify(this.oldMessageDef) ) {
+      this.isChanged = true;
+    } else {
+      this.isChanged = false;
+    }
   }
 
   passMessageDefToListComponent() {
@@ -55,25 +75,35 @@ export class CreateEditMessageComponent implements OnInit {
 
   onSubmit() {
 
-    this.messageDef.validTo = moment.parseZone( this.messageDef.validTo).utc().format();
-    this.messageDef.validFrom = moment.parseZone( this.messageDef.validFrom).utc().format();
+    if (this._messageDef.validTo) {
+      this._messageDef.validTo = moment
+        .parseZone(this._messageDef.validTo)
+        .utc()
+        .format();
+    }
+    if (this._messageDef.validFrom) {
+      this._messageDef.validFrom = moment
+        .parseZone(this._messageDef.validFrom)
+        .utc()
+        .format();
+    }
 
     if (!this.newRecord) {
       moment().startOf('day');
 
-      this.mS.editMessageDefinition(this.messageDef).subscribe((result) => {
+      this.mS.editMessageDefinition(this._messageDef).subscribe((result) => {
           if (result === 200) {
-            this.alertify.success(`Edytowano komunikat ${this.messageDef.description}`);
+            this.alertify.success(`Edytowano komunikat ${this._messageDef.description}`);
             this.passMessageDefToListComponent();
           } else {
-            this.alertify.error(`Nie udało się edytować komunikatu ${this.messageDef.description}.\nSprawdź wprowadzone dane`);
+            this.alertify.error(`Nie udało się edytować komunikatu ${this._messageDef.description}.\nSprawdź wprowadzone dane`);
           }
       });
     } else {
-      this.mS.addMessageDefinition(this.messageDef).subscribe(
+      this.mS.addMessageDefinition(this._messageDef).subscribe(
         (result) => {
           if (result === 200) {
-            this.alertify.success(`Dodano nowy komunikat - ${this.messageDef.description}`);
+            this.alertify.success(`Dodano nowy komunikat - ${this._messageDef.description}`);
           } else {
             this.alertify.error('Nie udało się dodać komunikatu');
           }
@@ -83,7 +113,8 @@ export class CreateEditMessageComponent implements OnInit {
   }
 
   cancelChanges() {
-    this.mS.getMessagesDeffinitionDetails(this.messageDef.id).subscribe((data) => {this.messageDef = data; });
+    this.messageDef = Object.assign({}, this.oldMessageDef);
+    this.changed();
   }
 
 }

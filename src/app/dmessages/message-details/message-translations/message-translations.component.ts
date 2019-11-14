@@ -51,7 +51,6 @@ export class MessageTranslationsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.messageDefId);
     this.translationsUncofirmed = Object.assign([], this.translations);
     this.setLanguages();
   }

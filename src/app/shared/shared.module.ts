@@ -27,13 +27,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed/device-list-checkboxed.component';
-import { UserRoleDirective } from '../directives/user-role.directive';
 import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
-
+import { RolesAllowedDirective } from '../directives/roles-allowed.directive';
 
 
 @NgModule({
-  declarations: [DeviceListCheckboxedComponent, UserRoleDirective, EnumAsStringPipe],
+  declarations: [DeviceListCheckboxedComponent, EnumAsStringPipe, RolesAllowedDirective],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -61,7 +60,7 @@ import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
     NgxMatSelectSearchModule,
     MatSortModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatButtonModule,
@@ -91,8 +90,8 @@ import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
     DeviceListCheckboxedComponent,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    UserRoleDirective,
-    EnumAsStringPipe
+    EnumAsStringPipe,
+    RolesAllowedDirective
   ]
 })
 export class SharedModule { }

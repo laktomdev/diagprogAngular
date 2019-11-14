@@ -59,5 +59,9 @@ export class DevicesService {
     return this.http.post('https:/localhost:44313/devices/changeSeller', {deviceId, sellerId}, httpOptions);
   }
 
+  releaseReservation(deviceId: number | string): Observable<number> {
+    return this.http.get<number>(`https:/localhost:44313/devicepart/RelaseReservation/${deviceId}`, httpOptions);
+  }
+
   constructor(private http: HttpClient) {}
 }

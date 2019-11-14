@@ -11,7 +11,7 @@
   </mat-tab>
   <mat-tab label="Status">
     <ng-template matTabContent>
-      <app-device-status [deviceId]="deviceId"></app-device-status>
+      <app-device-status [deviceId]="deviceId" (refreshListEmitter)="refresListTriggered($event)"></app-device-status>
     </ng-template>
   </mat-tab>
   <mat-tab label="Komunikaty">

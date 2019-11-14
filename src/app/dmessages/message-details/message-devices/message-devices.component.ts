@@ -16,6 +16,7 @@ export class MessageDevicesComponent implements OnInit {
 
   devicesAffected: number;
 
+
   constructor(private mS: MessagesService) {}
 
   ngOnInit() {
@@ -26,6 +27,7 @@ export class MessageDevicesComponent implements OnInit {
     this.devicesAffected = count;
     console.log(count);
     this.dowloadDevices();
+
   }
 
 
@@ -33,6 +35,7 @@ export class MessageDevicesComponent implements OnInit {
     this.mS.getMessageDevices(this.messageDefId).subscribe(
       (inside) => {
           this.devicesInside = inside;
+          console.log(this.devicesInside);
           const ids = this.devicesInside.map(x => x.id);
 
           this.mS.getNotMessageDevices(ids).subscribe(
@@ -45,5 +48,6 @@ export class MessageDevicesComponent implements OnInit {
         console.log(error);
       }
     );
+
   }
 }

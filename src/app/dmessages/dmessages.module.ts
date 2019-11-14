@@ -4,7 +4,6 @@ import { DmessagesRoutingModule } from './dmessages-routing.module';
 import { MessagesDefListComponent } from './messages-def-list/messages-def-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { MessageDetailsComponent } from './message-details/message-details.component';
-import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
 import { MessageTranslationsComponent } from './message-details/message-translations/message-translations.component';
 import { MessageDevicesComponent } from './message-details/message-devices/message-devices.component';
 import { TranslationEditComponent } from './message-details/message-translations/translation-edit/translation-edit.component';

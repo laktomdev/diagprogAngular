@@ -38,8 +38,6 @@ export class MessagesDefListComponent implements OnInit {
   onElementChange(value: number) {
     console.log('messages-def-list dostało value');
     this.downloadMessages(value);
-
-    console.log(this.expandedElement);
   }
 
   downloadMessages(expand?: number) {

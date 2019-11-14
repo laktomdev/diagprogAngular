@@ -1,10 +1,20 @@
-<div class="container-fluid row">
-        <textarea [(ngModel)]="translation.headerText" (input)="changed()"  class="col-md-12" rows="3"></textarea><br/>
-        <textarea [(ngModel)]="translation.bodyText" (input)="changed()" class="col-md-12" rows="10"></textarea><br/>
-        <textarea [(ngModel)]="translation.footerText" (input)="changed()"  class="col-md-12" rows="4"></textarea><br/><br/>
+<div class="container-fluid translation-container ">
 
-          <form  (ngSubmit)="onSubmit()">
-                <button  mat-raised-button color="primary" [disabled]="!isChanged" type="submit">Zapisz</button>
-          </form>
+
+    <h6>Nagłówek:</h6>
+    <textarea [(ngModel)]="translation.headerText" (input)="changed()" rows="3"></textarea><br />
+
+    <h6>Treść:</h6>
+    <textarea [(ngModel)]="translation.bodyText" (input)="changed()" rows="10"></textarea><br />
+
+    <h6>Stopka:</h6>
+    <textarea [(ngModel)]="translation.footerText" (input)="changed()" rows="4"></textarea><br />
+
+
+  <form (ngSubmit)="onSubmit()"  class="justified">
+    <button mat-raised-button color="primary" [disabled]="!isChanged" type="submit" class="col-md-3">Zapisz</button>
+
+    <button *ngIf="!isNewRecord" mat-raised-button color="primary" type="reset" style="margin-left: 20px" class="col-md-3"  (click)="cancelChanges()">Anuluj zmiany</button>
+  </form>
 
 </div>

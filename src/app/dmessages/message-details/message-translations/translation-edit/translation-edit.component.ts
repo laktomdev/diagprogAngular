@@ -69,6 +69,11 @@ export class TranslationEditComponent implements OnInit {
     }
   }
 
+  cancelChanges() {
+    this.translation = Object.assign({}, this.oldTranslation);
+    this.isChanged = false;
+  }
+
   createSubmitTranslation(): MessageTranslationSubmit {
     return {
       bodyText: this.translation.bodyText,
