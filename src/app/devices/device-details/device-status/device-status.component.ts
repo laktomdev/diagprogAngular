@@ -25,8 +25,9 @@ export class DeviceStatusComponent implements OnInit {
   }
 
   releaseReservation() {
-    console.log('zwalniam rezerwację!');
+
     this.dS.releaseReservation(this.deviceId).subscribe((response) => {
+
       if (response === 200) {
         this.alertify.success(`Zwolniono rezerwacje urządzenia ${this.deviceId}`);
         this.refreshListEmitter.emit();
@@ -40,8 +41,6 @@ export class DeviceStatusComponent implements OnInit {
     this.dS.getDeviceStatusById(Number(this.deviceId)).subscribe(
       (data) => {
         this.deviceStatus = data;
-        console.log(this.deviceStatus);
-
       },
       (error) => {
         console.log(error);
