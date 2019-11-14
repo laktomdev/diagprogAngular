@@ -6,6 +6,7 @@ import { MessageDef } from '../models/messageDef';
 import { MessageTranslationSubmit } from '../models/MessageTranslationSubmit';
 import { DeviceShort } from '../models/Device/deviceShort';
 import { MessageTranslation } from '../models/messageTranslation';
+import { MessageDevice } from '../models/messageDevice';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -62,8 +63,8 @@ export class MessagesService {
     return this.http.post<number>('https:/localhost:44313/messages/AddTranslationToMessage', model, httpOptions);
   }
 
-  getMessageDevices(msgId: number): Observable<DeviceShort[]> {
-    return this.http.get<DeviceShort[]>(`https:/localhost:44313/messages/MessageDevices/${msgId}`, httpOptions);
+  getMessageDevices(msgId: number): Observable<MessageDevice[]> {
+    return this.http.get<MessageDevice[]>(`https:/localhost:44313/messages/MessageDevices/${msgId}`, httpOptions);
   }
 
   getNotMessageDevices(ignoreIds: number[]): Observable<DeviceShort[]> {

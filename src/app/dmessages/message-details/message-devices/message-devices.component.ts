@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MessagesService } from 'src/app/services/messages.service';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
+import { MessageDevice } from 'src/app/models/messageDevice';
 
 @Component({
   selector: 'app-message-devices',
@@ -11,7 +12,7 @@ export class MessageDevicesComponent implements OnInit {
 
   @Input() messageDefId: number;
 
-  devicesInside: DeviceShort[];
+  devicesInside: MessageDevice[];
   devicesOutside: DeviceShort[];
 
   devicesAffected: number;
@@ -34,7 +35,7 @@ export class MessageDevicesComponent implements OnInit {
     this.mS.getMessageDevices(this.messageDefId).subscribe(
       (inside) => {
           this.devicesInside = inside;
-          const ids = this.devicesInside.map(x => x.id);
+          const ids = this.devicesInside.map(x => x.diagprog.id);
 
           this.mS.getNotMessageDevices(ids).subscribe(
             (outside) => {

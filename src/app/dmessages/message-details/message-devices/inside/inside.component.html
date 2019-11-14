@@ -4,5 +4,5 @@
         (click)="askIfRemove()">Usuń z zaznaczonych {{selected?.length}} urządzeń</button>
         <hr/>
     <mat-spinner *ngIf="loading"></mat-spinner>
-    <app-device-list-checkboxed *ngIf="!loading" (selectedDevicesEmitter)="onSelectionChanged($event)" [devices]="devicesInside"></app-device-list-checkboxed>
+    <app-message-device-list *ngIf="!loading" (selectedDevicesEmitter)="onSelectionChanged($event)" [devices]="devicesInside"></app-message-device-list>
 </div>

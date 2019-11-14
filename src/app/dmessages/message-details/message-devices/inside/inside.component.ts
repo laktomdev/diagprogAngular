@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
 import { MessagesService } from 'src/app/services/messages.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { MessageDevice } from 'src/app/models/messageDevice';
 
 @Component({
   selector: 'app-inside',
@@ -10,7 +11,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 })
 export class InsideComponent implements OnInit {
 
-  @Input() devicesInside: DeviceShort[];
+  @Input() devicesInside: MessageDevice[];
   @Input() messageId: number;
 
   @Output() itemsRemovedEmitter = new  EventEmitter<number>();
