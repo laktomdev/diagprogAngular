@@ -25,7 +25,6 @@ export class MessageDevicesComponent implements OnInit {
 
   onRefreshTrigger(count: number) {
     this.devicesAffected = count;
-    console.log(count);
     this.dowloadDevices();
 
   }
@@ -35,7 +34,6 @@ export class MessageDevicesComponent implements OnInit {
     this.mS.getMessageDevices(this.messageDefId).subscribe(
       (inside) => {
           this.devicesInside = inside;
-          console.log(this.devicesInside);
           const ids = this.devicesInside.map(x => x.id);
 
           this.mS.getNotMessageDevices(ids).subscribe(

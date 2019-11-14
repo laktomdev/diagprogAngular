@@ -60,7 +60,7 @@ export class DevicesService {
   }
 
   releaseReservation(deviceId: number | string): Observable<number> {
-    return this.http.get<number>(`https:/localhost:44313/devicepart/RelaseReservation/${deviceId}`, httpOptions);
+    return this.http.get<number>(`https:/localhost:44313/devicepart/ReleaseReservation/${deviceId}`, httpOptions);
   }
 
   constructor(private http: HttpClient) {}
