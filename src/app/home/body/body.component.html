@@ -2,28 +2,6 @@
     <router-outlet #outlet="outlet"></router-outlet>
 </div> -->
 
-<!-- <div class="main-content">
-    <div class="main-inner-content">
-      <div class="main-body ">
-        <div class="page-wrapper ">
-          <div class="page-body navbar-page">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                    <div *ngIf="aS.loggedIn()" [@routeAnimations]="prepareRoute(outlet)">
-                        <router-outlet #outlet="outlet"></router-outlet>
-                    </div>
-                    <div *ngIf="!aS.loggedIn()" [@routeAnimations]="prepareRoute(outlet)">
-                        Zaloguj się
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
   <div class="main-content">
     <div class="main-inner-content">
@@ -32,7 +10,13 @@
           <div class="page-body navbar-page">
             <div class="row">
               <div class="col-md-12">
-                    <div *ngIf="aS.loggedIn()" [@routeAnimations]="prepareRoute(outlet)">
+                    <div *ngIf="aS.loggedIn()" 
+                    [@routeAnimations]="prepareRoute(outlet)">
+                        <div class="card">
+                        <router-outlet #outlet="outlet"></router-outlet>
+                        </div>
+                    </div>
+                    <div>
                         <div class="card">
                         <router-outlet #outlet="outlet"></router-outlet>
                         </div>
@@ -43,8 +27,7 @@
                           Zaloguj się aby korzystać z DiagProg Tools
                         </div>
                       </div>
-                    </div>
-
+                    </div> 
               </div>
             </div>
           </div>
