@@ -19,6 +19,7 @@ header {
 }
 
 .navbar {
+  z-index: 100;
   background-color: #ffffff;
   box-shadow: 0 2px 4px 0 rgba(43,43,43,0.1);
   min-height: 70px;
@@ -45,6 +46,8 @@ header {
 
 .navbar-logo {
   background: #263544;
+  -webkit-box-shadow: 0 4px 4px -4px rgba(0,0,0,.1);
+  box-shadow: 0 4px 4px -4px rgba(0,0,0,.1);
 }
 
 .user-profile {
