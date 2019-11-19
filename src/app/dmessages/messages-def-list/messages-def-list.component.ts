@@ -4,7 +4,6 @@ import { MessageDef } from 'src/app/models/messageDef';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CreateEditMessageComponent } from '../create-edit-message/create-edit-message.component';
-import { delay } from 'q';
 
 
 @Component({
@@ -59,6 +58,8 @@ export class MessagesDefListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateEditMessageComponent, {data: {}});
+
+    dialogRef.updateSize('50%');
     dialogRef.afterClosed().subscribe(() => {
       this.downloadMessages();
     });

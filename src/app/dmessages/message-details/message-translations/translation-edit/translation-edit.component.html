@@ -2,13 +2,13 @@
 
 
     <h6>Nagłówek:</h6>
-    <textarea [(ngModel)]="translation.headerText" (input)="changed()" rows="3"></textarea><br />
+    <textarea [(ngModel)]="translation.headerText" (input)="changed()" rows="3" maxlength="100"></textarea><br />
 
     <h6>Treść:</h6>
-    <textarea [(ngModel)]="translation.bodyText" (input)="changed()" rows="10"></textarea><br />
+    <textarea [(ngModel)]="translation.bodyText" (input)="changed()" rows="10" maxlength="500"></textarea><br />
 
     <h6>Stopka:</h6>
-    <textarea [(ngModel)]="translation.footerText" (input)="changed()" rows="4"></textarea><br />
+    <textarea [(ngModel)]="translation.footerText" (input)="changed()" rows="4" maxlength="200"></textarea><br />
 
 
   <form (ngSubmit)="onSubmit()"  class="justified">

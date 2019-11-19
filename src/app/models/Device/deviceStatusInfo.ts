@@ -1,5 +1,6 @@
 import { Time } from '@angular/common';
 import { DeviceStatus } from './deviceStatus';
+import { ServerLock } from '../serverLock';
 
 export interface DeviceStatusInfo {
   createDate: Time;
@@ -7,4 +8,5 @@ export interface DeviceStatusInfo {
   lastActivation: Time;
   reservationDate: Time;
   status: DeviceStatus;
+  serverLocks: ServerLock[];
 }

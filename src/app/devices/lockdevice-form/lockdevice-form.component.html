@@ -1,0 +1,39 @@
+<div class="container-fluid" style="width: 50vw">
+
+    <div style="display: flex; justify-content: center">
+        <h5 *ngIf="lock.lockStatus==lockStatusEnum.Zablokowano">Zablokuj</h5>
+        <h5 *ngIf="lock.lockStatus==lockStatusEnum.Odblokowano">Odblokuj</h5>
+    </div>
+    <hr/>
+
+
+    <form #lockForm="ngForm">
+      <div  style="display: flex; flex-direction: column;">
+          <div>
+              <input maxlength="255" [(ngModel)]="lock.statusInformation.infoDescription" [ngModelOptions]="{standalone: true}" placeholder="Powód" required style="width: 100%"><br/>
+          </div>
+
+          <div>
+              <mat-form-field>
+                  <input  matInput [matDatepicker]="lockpicker" placeholder="Od:"
+                  [(ngModel)]="lock.blockDate"
+                    [ngModelOptions]="{standalone: true}"
+                    (ngModelChange)="lock.blockDate = $event"
+                    required>
+                  <mat-datepicker-toggle matSuffix [for]="lockpicker"></mat-datepicker-toggle>
+                  <mat-datepicker #lockpicker></mat-datepicker>
+                </mat-form-field>
+          </div>
+
+      </div>
+
+    <div  class="text-center">
+        <button mat-raised-button color="primary" type="submit" (click)="lockDevice()" [mat-dialog-close]=""  *ngIf="lock.lockStatus==lockStatusEnum.Zablokowano" [disabled]="!lockForm.valid">Zablokuj</button>
+        <button mat-raised-button color="primary" type="submit" (click)="unlockDevice()" [mat-dialog-close]=""  *ngIf="lock.lockStatus==lockStatusEnum.Odblokowano" [disabled]="!lockForm.valid">Odblokuj</button>
+        <button mat-raised-button color="primary" type="button" [mat-dialog-close]=""  style="justify-content: center; margin-left: 10px;">Anuluj</button>
+    </div>
+    </form>
+
+
+
+</div>

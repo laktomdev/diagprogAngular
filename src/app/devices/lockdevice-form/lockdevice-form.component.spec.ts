@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthorizationComponent } from './authorization.component';
+import { LockdeviceFormComponent } from './lockdevice-form.component';
 
-describe('AuthorizationComponent', () => {
-  let component: AuthorizationComponent;
-  let fixture: ComponentFixture<AuthorizationComponent>;
+describe('LockdeviceFormComponent', () => {
+  let component: LockdeviceFormComponent;
+  let fixture: ComponentFixture<LockdeviceFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthorizationComponent ]
+      declarations: [ LockdeviceFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthorizationComponent);
+    fixture = TestBed.createComponent(LockdeviceFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

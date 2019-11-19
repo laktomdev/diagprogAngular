@@ -7,7 +7,6 @@ import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DevicesModule } from './devices/devices.module';
-import { AuthorizationComponent } from './authorization/authorization.component';
 import { DmessagesModule } from './dmessages/dmessages.module';
 
 
@@ -15,7 +14,6 @@ import { DmessagesModule } from './dmessages/dmessages.module';
 @NgModule({
    declarations: [
       AppComponent,
-      AuthorizationComponent,
    ],
    imports: [
       BrowserModule,

@@ -11,6 +11,7 @@ import { DeviceStatusComponent } from './device-details/device-status/device-sta
 import { DeviceInfoComponent } from './device-details/device-info/device-info.component';
 import { DeviceMessagesComponent } from './device-details/device-messages/device-messages.component';
 import { AlldevicesComponent } from './alldevices/alldevices.component';
+import { LockdeviceFormComponent } from './lockdevice-form/lockdevice-form.component';
 
 
 @NgModule({
@@ -23,8 +24,11 @@ import { AlldevicesComponent } from './alldevices/alldevices.component';
     DeviceIdentificationComponent,
     DeviceStatusComponent,
     DeviceInfoComponent,
-    AlldevicesComponent
+    AlldevicesComponent,
+    LockdeviceFormComponent
   ],
-  imports: [CommonModule, SharedModule, DevicesRoutingModule]
+  imports: [CommonModule, SharedModule, DevicesRoutingModule],
+  exports: [LockdeviceFormComponent],
+  entryComponents: [LockdeviceFormComponent],
 })
 export class DevicesModule {}
