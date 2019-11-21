@@ -13,9 +13,9 @@ export class BodyComponent implements OnInit {
 
   constructor(public aS: AuthService) { }
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
+  // prepareRoute(outlet: RouterOutlet) {
+  //   return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  // }
   ngOnInit() {
   }
 

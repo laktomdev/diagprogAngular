@@ -10,18 +10,12 @@
           <div class="page-body navbar-page">
             <div class="row">
               <div class="col-md-12">
-                    <div *ngIf="aS.loggedIn()"
-                    [@routeAnimations]="prepareRoute(outlet)">
+                    <div *ngIf="aS.loggedIn()">
                         <div class="card">
-                        <router-outlet #outlet="outlet"></router-outlet>
+                        <router-outlet></router-outlet>
                         </div>
                     </div>
-                    <div *ngIf="aS.loggedIn()" >
-                        <div class="card">
-                        <router-outlet #outlet="outlet"></router-outlet>
-                        </div>
-                    </div>
-                    <div *ngIf="!aS.loggedIn()" [@routeAnimations]="prepareRoute(outlet)">
+                    <div *ngIf="!aS.loggedIn()">
                       <div class="d-flex justify-content-center align-items-center h-100">
                         <div class="col-md-10 card no-padding login">
                           Zaloguj się aby korzystać z DiagProg Tools
