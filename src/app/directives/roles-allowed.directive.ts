@@ -13,7 +13,7 @@ export class RolesAllowedDirective {
     private viewContainer: ViewContainerRef) { }
 
   @Input() set appIfRoles(roleNames: string) {
-   const roles = roleNames.split(',');
+   const roles = roleNames.split(',').map((item) => item.trim());
    const roleInToken = this.jwtHelper.decodeToken(
      localStorage.getItem('token')
    ).role;
