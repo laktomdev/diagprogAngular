@@ -3,7 +3,7 @@
     <mat-form-field class="col-md-12">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj">
     </mat-form-field>
-    <mat-paginator [length]="devices?.length" [pageSizeOptions]="[25, 10, 52, 100, 500, 1000]" showFirstLastButtons>
+    <mat-paginator [length]="devices?.length" [pageSizeOptions]="[25, 10, 50, 100, 500, 1000]" showFirstLastButtons>
     </mat-paginator>
   </div>
 
