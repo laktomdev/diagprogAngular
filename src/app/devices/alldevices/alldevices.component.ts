@@ -13,6 +13,7 @@ export class AlldevicesComponent implements OnInit {
 
   devices: DeviceShort[];
   expandId: number;
+  loading = true;
 
   ngOnInit() {
     this.downloadDevices();
@@ -27,6 +28,7 @@ export class AlldevicesComponent implements OnInit {
     this.dS.getAll().subscribe(
       (data) => {
         this.devices = data;
+        this.loading = false;
       },
       (error) => {
         console.log(error);

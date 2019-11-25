@@ -3,7 +3,11 @@
 
     <h2 class="text-center">Urządzenia Diagprog4</h2>
 
-    <app-device-list-expanded [devices]="devices" [expandId]="expandId"
+    <div *ngIf="loading" style="display: flex; justify-content: center;">
+      <mat-spinner ></mat-spinner>
+    </div>
+
+    <app-device-list-expanded *ngIf="!loading" [devices]="devices" [expandId]="expandId"
     (refreshListEmitter)="refreshListTriggered($event)" ></app-device-list-expanded>
 
 </div>
