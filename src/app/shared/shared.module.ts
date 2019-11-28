@@ -20,7 +20,8 @@ import { MatButtonModule,
   MatNativeDateModule,
   MatSortModule,
   MatCheckboxModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatAutocompleteModule
    } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,9 +31,10 @@ import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed
 import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
 import { RolesAllowedDirective } from '../directives/roles-allowed.directive';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { DeviceTableColumnFilterComponent } from '../tableTools/device-table-column-filter/device-table-column-filter.component';
 
 @NgModule({
-  declarations: [DeviceListCheckboxedComponent, EnumAsStringPipe, RolesAllowedDirective],
+  declarations: [DeviceListCheckboxedComponent, EnumAsStringPipe, RolesAllowedDirective, DeviceTableColumnFilterComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -61,7 +63,8 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     MatSortModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatButtonModule,
@@ -93,7 +96,9 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     MatProgressSpinnerModule,
     EnumAsStringPipe,
     RolesAllowedDirective,
-    MatTableExporterModule
+    MatTableExporterModule,
+    DeviceTableColumnFilterComponent,
+    MatAutocompleteModule
   ]
 })
 export class SharedModule { }

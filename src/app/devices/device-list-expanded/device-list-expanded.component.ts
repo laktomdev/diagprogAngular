@@ -57,10 +57,13 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
   @Input() devices: DeviceShort[];
 
   @Input() expandId: number;
+
   @Output() refreshListEmitter = new EventEmitter<number>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  advancedSearch = false;
 
   applyFilter(filterValue: string) {
           // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
@@ -75,6 +78,10 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
 
   refreshListTriggered(deviceIdent: number) {
     this.refreshListEmitter.emit(deviceIdent);
+  }
+
+  refreshFilterTriggered(newDataSource: MatTableDataSource<DeviceShort>) {
+    this.dataSource.filter = newDataSource.filter;
   }
 
   sortingDataAccessor(item, property) {

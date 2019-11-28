@@ -1,0 +1,21 @@
+<form>
+    <mat-form-field>
+      <input type="text" placeholder="Sprzedawca" matInput [formControl]="sellerControl" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredSellerOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br/>
+  </form>
+<form>
+    <mat-form-field>
+        <input type="text" placeholder="Klient"  matInput [formControl]="customerControl" [matAutocomplete]="auto2">
+        <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+          <mat-option *ngFor="let option of filteredCustomerOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+</form>
