@@ -32,6 +32,8 @@ export class DeviceTableColumnFilterComponent implements OnInit {
   ngOnInit() {
     this.sellerOptions = Array.from(new Set(this.dataSource.data.map(x => x.sellerName.trim())));
     this.customerOptions = Array.from(new Set(this.dataSource.data.map(x => x.customerName.trim())));
+    this.sellerOptions.unshift('');
+    this.customerOptions.unshift('');
 
     this.filteredSellerOptions = this.sellerControl.valueChanges.pipe(
       startWith(''),
@@ -46,12 +48,12 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
     this.filteredSellerOptions.subscribe(
       () => {
-
         if (this.sellerControl.value) {
-
           this.tableFilters.find(x => x.id === 'sellerName').value = this.sellerControl.value;
-          this.applyFilter( JSON.stringify(this.tableFilters));
+        } else {
+          this.tableFilters.find(x => x.id === 'sellerName').value = '';
         }
+        this.applyFilter( JSON.stringify(this.tableFilters));
       }
     );
 
@@ -60,8 +62,10 @@ export class DeviceTableColumnFilterComponent implements OnInit {
         if (this.customerControl.value) {
 
           this.tableFilters.find(x => x.id === 'customerName').value = this.customerControl.value;
-          this.applyFilter( JSON.stringify(this.tableFilters));
+        } else {
+          this.tableFilters.find(x => x.id === 'customerName').value = '';
         }
+        this.applyFilter( JSON.stringify(this.tableFilters));
       }
     );
   }
@@ -92,8 +96,6 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
 
     this.dataSource.filter = filterValue;
-    console.log(this.dataSource.filter);
-    console.log(this.dataSource.filteredData);
 }
 
 }
