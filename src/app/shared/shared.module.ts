@@ -29,7 +29,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DeviceListCheckboxedComponent } from '../devices/device-list-checkboxed/device-list-checkboxed.component';
 import { EnumAsStringPipe } from '../pipes/enum-as-string.pipe';
 import { RolesAllowedDirective } from '../directives/roles-allowed.directive';
-
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
   declarations: [DeviceListCheckboxedComponent, EnumAsStringPipe, RolesAllowedDirective],
@@ -61,6 +61,7 @@ import { RolesAllowedDirective } from '../directives/roles-allowed.directive';
     MatSortModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatTableExporterModule
   ],
   exports: [
     MatButtonModule,
@@ -91,7 +92,8 @@ import { RolesAllowedDirective } from '../directives/roles-allowed.directive';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     EnumAsStringPipe,
-    RolesAllowedDirective
+    RolesAllowedDirective,
+    MatTableExporterModule
   ]
 })
 export class SharedModule { }

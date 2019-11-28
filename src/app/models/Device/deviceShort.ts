@@ -6,8 +6,8 @@ export interface DeviceShort {
   id: number;
   deviceNumber: string;
   packageName: string;
-  customer: Customer;
-  seller: Seller;
+  customerName: string;
+  sellerName: string;
   timeLock: Time;
   lastActivation: Time;
   language: string;
