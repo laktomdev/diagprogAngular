@@ -28,21 +28,28 @@ export class DeviceTableColumnFilterComponent implements OnInit {
   languageOptions: string[];
   filteredLanguageOptions: Observable<string[]>;
 
+  packageControl = new FormControl();
+  packageOptions: string[];
+  filteredPackageOptions: Observable<string[]>;
+
 
   tableFilters = [
     {id: 'sellerName', value: ''},
     {id: 'customerName', value: ''},
-    {id: 'language', value: ''}
+    {id: 'language', value: ''},
+    {id: 'packageName', value: ''},
   ];
 
   ngOnInit() {
     this.sellerOptions = Array.from(new Set(this.dataSource.data.filter(x => x.sellerName).map(x => x.sellerName.trim()))).sort();
     this.customerOptions = Array.from(new Set(this.dataSource.data.filter(x => x.customerName).map(x => x.customerName.trim()))).sort();
     this.languageOptions = Array.from(new Set(this.dataSource.data.filter(x => x.language).map(x => x.language.trim()))).sort();
+    this.packageOptions = Array.from(new Set(this.dataSource.data.filter(x => x.packageName).map(x => x.packageName.trim()))).sort();
 
     this.sellerOptions.unshift('');
     this.customerOptions.unshift('');
     this.languageOptions.unshift('');
+    this.packageOptions.unshift('');
 
     this.filteredSellerOptions = this.sellerControl.valueChanges.pipe(
       startWith(''),
@@ -57,6 +64,11 @@ export class DeviceTableColumnFilterComponent implements OnInit {
     this.filteredLanguageOptions = this.languageControl.valueChanges.pipe(
       startWith(''),
       map(value => this._languageFilter(value))
+    );
+
+    this.filteredPackageOptions = this.packageControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._packageFilter(value))
     );
 
 
@@ -94,6 +106,18 @@ export class DeviceTableColumnFilterComponent implements OnInit {
         this.applyFilter(JSON.stringify(this.tableFilters));
       }
     );
+
+    this.filteredPackageOptions.subscribe(
+      () => {
+        if (this.packageControl.value) {
+
+          this.tableFilters.find(x => x.id === 'packageName').value = this.packageControl.value;
+        } else {
+          this.tableFilters.find(x => x.id === 'packageName').value = '';
+        }
+        this.applyFilter(JSON.stringify(this.tableFilters));
+      }
+    );
   }
 
   private _sellerFilter(value: string): string[] {
@@ -112,6 +136,13 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
     return this.languageOptions.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  private _packageFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.packageOptions.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
+
 
   applyFilter(filterValue: string) {
     this.dataSource.filterPredicate =
