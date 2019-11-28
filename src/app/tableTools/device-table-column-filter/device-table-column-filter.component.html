@@ -19,3 +19,14 @@
         </mat-autocomplete>
       </mat-form-field>
 </form>
+<form>
+    <mat-form-field>
+        <input type="text" placeholder="Język"  matInput [formControl]="languageControl" [matAutocomplete]="auto3">
+        <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete">
+          <mat-option *ngFor="let option of filteredLanguageOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+</form>
+
