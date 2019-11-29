@@ -36,10 +36,6 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
 
   tableFilters = [
-    {id: 'sellerName', value: ''},
-    {id: 'customerName', value: ''},
-    {id: 'language', value: ''},
-    {id: 'packageName', value: ''}
   ];
 
   ngOnInit() {
@@ -76,52 +72,47 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
     this.filteredSellerOptions.subscribe(
       () => {
-        if (this.sellerControl.value) {
-          this.tableFilters.find(x => x.id === 'sellerName').value = this.sellerControl.value;
-        } else {
-          this.tableFilters.find(x => x.id === 'sellerName').value = '';
-        }
-        this.applyFilter( JSON.stringify(this.tableFilters));
+        this.filterHandle('sellerName', this.sellerControl);
       }
     );
 
     this.filteredCustomerOptions.subscribe(
       () => {
-        if (this.customerControl.value) {
-
-          this.tableFilters.find(x => x.id === 'customerName').value = this.customerControl.value;
-        } else {
-          this.tableFilters.find(x => x.id === 'customerName').value = '';
-        }
-        this.applyFilter( JSON.stringify(this.tableFilters));
+        this.filterHandle('customerName', this.customerControl);
       }
     );
 
     this.filteredLanguageOptions.subscribe(
       () => {
-        if (this.languageControl.value) {
-
-          this.tableFilters.find(x => x.id === 'language').value = this.languageControl.value;
-        } else {
-          this.tableFilters.find(x => x.id === 'language').value = '';
-        }
-        this.applyFilter(JSON.stringify(this.tableFilters));
+        this.filterHandle('language', this.languageControl);
       }
     );
 
     this.filteredPackageOptions.subscribe(
       () => {
-        if (this.packageControl.value) {
-
-          this.tableFilters.find(x => x.id === 'packageName').value = this.packageControl.value;
-        } else {
-          this.tableFilters.find(x => x.id === 'packageName').value = '';
-        }
-        this.applyFilter(JSON.stringify(this.tableFilters));
+        this.filterHandle('packageName', this.packageControl);
       }
     );
   }
 
+  private filterHandle(key: string, control: FormControl) {
+    const foundFilter = this.tableFilters.find(x => x.id === key);
+    if (control.value) {
+      if (!foundFilter) {
+        this.tableFilters.push({id: key, value: control.value});
+      } else {
+        foundFilter.value = control.value;
+      }
+    } else {
+      if (foundFilter) {
+        const index = this.tableFilters.indexOf(foundFilter, 0);
+        if (index > -1) {
+          this.tableFilters.splice(index, 1);
+        }
+      }
+    }
+    this.applyFilter(JSON.stringify(this.tableFilters));
+  }
   private _sellerFilter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.sellerOptions.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
@@ -154,7 +145,7 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
         filters.forEach(filter => {
           const val = data[filter.id] === null ? '' : data[filter.id];
-          matchFilter.push(val.toLowerCase().includes(filter.value.trim().toLowerCase()));
+          matchFilter.push(val.toLowerCase() === filter.value.trim().toLowerCase());
         });
         return matchFilter.every(Boolean);
       };
