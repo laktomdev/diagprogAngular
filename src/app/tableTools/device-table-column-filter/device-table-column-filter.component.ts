@@ -32,12 +32,14 @@ export class DeviceTableColumnFilterComponent implements OnInit {
   packageOptions: string[];
   filteredPackageOptions: Observable<string[]>;
 
+  isTimeLoked: boolean;
+
 
   tableFilters = [
     {id: 'sellerName', value: ''},
     {id: 'customerName', value: ''},
     {id: 'language', value: ''},
-    {id: 'packageName', value: ''},
+    {id: 'packageName', value: ''}
   ];
 
   ngOnInit() {
