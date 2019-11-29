@@ -1,4 +1,4 @@
-<form>
+ <form style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 10px">
     <mat-form-field>
       <input type="text" placeholder="Sprzedawca" matInput [formControl]="sellerControl" [matAutocomplete]="auto">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -7,9 +7,7 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <br/>
-  </form>
-<form>
+
     <mat-form-field>
         <input type="text" placeholder="Klient"  matInput [formControl]="customerControl" [matAutocomplete]="auto2">
         <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
@@ -18,8 +16,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-</form>
-<form>
+
     <mat-form-field>
         <input type="text" placeholder="Język"  matInput [formControl]="languageControl" [matAutocomplete]="auto3">
         <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete">
@@ -28,8 +25,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-</form>
-<form>
+
     <mat-form-field>
         <input type="text" placeholder="Pakiet"  matInput [formControl]="packageControl" [matAutocomplete]="auto4">
         <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete">
@@ -38,5 +34,5 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-</form>
 
+    </form>
