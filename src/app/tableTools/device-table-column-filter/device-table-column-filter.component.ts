@@ -145,12 +145,10 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
         filters.forEach(filter => {
           const val = data[filter.id] === null ? '' : data[filter.id];
-          matchFilter.push(val.toLowerCase() === filter.value.trim().toLowerCase());
+          matchFilter.push(val.trim().toLowerCase() === filter.value.trim().toLowerCase());
         });
         return matchFilter.every(Boolean);
       };
-
-
     this.dataSource.filter = filterValue;
 }
 

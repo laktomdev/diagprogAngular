@@ -4,11 +4,11 @@
         <mat-form-field *ngIf="!advancedSearch">
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj">
          </mat-form-field>
-         <button mat-button color="primary" *ngIf="!advancedSearch" (click)="advancedSearch = !advancedSearch" >Zaawansowane wyszukiwanie</button>
+         <button mat-button color="primary" *ngIf="!advancedSearch" (click)="searchMode()" >Zaawansowane wyszukiwanie</button>
     </div>
     <div style="display: flex; flex-flow: wrap row;">
          <app-device-table-column-filter [dataSource]="dataSource" *ngIf="advancedSearch"></app-device-table-column-filter>
-         <button mat-button color="primary" *ngIf="advancedSearch" (click)="advancedSearch = !advancedSearch" >Szybkie wyszukiwanie</button>
+         <button mat-button color="primary" *ngIf="advancedSearch" (click)="searchMode()" >Szybkie wyszukiwanie</button>
     </div>
 
 
@@ -16,7 +16,7 @@
         </mat-paginator>
 
 
-      <button mat-raised-button (click)="exporter.exportTable('XLSX ', {fileName: 'listaUrzadzen', sheet: 'lista'})">Eksportuj (Excel)</button>
+      <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName: 'listaUrzadzen'})">Eksportuj (Excel)</button>
       <hr/>
 
       <table matTableExporter mat-table [dataSource]="dataSource" #exporter="matTableExporter" matSort multiTemplateDataRows class="mat-elevation-z8 my-table">

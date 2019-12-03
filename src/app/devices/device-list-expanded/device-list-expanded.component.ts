@@ -65,6 +65,11 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
 
   advancedSearch = false;
 
+  searchMode() {
+    this.advancedSearch = !this.advancedSearch;
+    this.dataSource.filter = null;
+
+  }
   applyFilter(filterValue: string) {
           // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
       // tslint:disable-next-line:no-shadowed-variable
