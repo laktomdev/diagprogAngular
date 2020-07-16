@@ -20,6 +20,7 @@ const httpOptions = {
 })
 export class DevicesService {
   private devices: DeviceShort[] = [];
+
   getAll(): Observable<DeviceShort[]> {
 
     return this.http.get<DeviceShort[]>(

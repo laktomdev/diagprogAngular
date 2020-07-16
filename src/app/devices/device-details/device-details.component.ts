@@ -24,14 +24,14 @@ export class DeviceDetailsComponent implements OnInit {
   constructor(private dS: DevicesService) { }
 
   ngOnInit() {
-    this.dS.getById(Number(this.deviceId)).subscribe(
-      (data) => {
-        this.device = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    // this.dS.getById(Number(this.deviceId)).subscribe(
+    //   (data) => {
+    //     this.device = data;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
 
 
   }
