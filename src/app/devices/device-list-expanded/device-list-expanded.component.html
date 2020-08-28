@@ -16,7 +16,11 @@
         </mat-paginator>
 
 
-      <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName: 'listaUrzadzen'})">Eksportuj (Excel)</button>
+        <div style="display: flex; flex-direction: row">
+          <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName: 'listaUrzadzen'})">Eksportuj (Excel)</button>
+          <button mat-raised-button (click)="manualRefresh()" title="Jeśli dane poniżej wydają się być nieaktualne spróbuj odświeżyć listę tym przyciskiem" >Aktualizacja listy urządzeń</button>
+        </div>
+
       <hr/>
 
       <table matTableExporter mat-table [dataSource]="dataSource" #exporter="matTableExporter" matSort multiTemplateDataRows class="mat-elevation-z8 my-table">
@@ -28,13 +32,13 @@
         </ng-container>
 
         <!-- sellerName Column -->
-        <ng-container matColumnDef="seller.name">
+        <ng-container matColumnDef="sellerName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Sprzedawca </th>
           <td mat-cell *matCellDef="let element"> {{element.sellerName}} </td>
         </ng-container>
 
         <!-- customer.name Column -->
-        <ng-container matColumnDef="customer.name">
+        <ng-container matColumnDef="customerName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Klient </th>
           <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
         </ng-container>

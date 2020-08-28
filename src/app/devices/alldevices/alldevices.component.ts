@@ -20,6 +20,7 @@ export class AlldevicesComponent implements OnInit {
   }
 
   refreshListTriggered(deviceIdent: number) {
+
     this.expandId = deviceIdent;
     this.downloadDevices();
   }

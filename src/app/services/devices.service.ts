@@ -64,5 +64,13 @@ export class DevicesService {
     return this.http.get<number>(`${environment.apiUrl}devicepart/ReleaseReservation/${deviceId}`, httpOptions);
   }
 
+  getDeviceCount(): Observable<number> {
+    return this.http.get<number>(`${environment.apiUrl}devices/GetCount`, httpOptions);
+  }
+
+  refreshData(): Observable<number> {
+    return this.http.get<number>(`${environment.apiUrl}devices/ClearCache`, httpOptions);
+  }
+
   constructor(private http: HttpClient) {}
 }
