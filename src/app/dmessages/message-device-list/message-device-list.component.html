@@ -2,7 +2,7 @@
   <div class="container">
       <div style="display: flex; flex-flow: wrap row-reverse;">
           <mat-form-field *ngIf="!advancedSearch">
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj1234">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj">
            </mat-form-field>
            <button mat-button color="primary" *ngIf="!advancedSearch" (click)="searchMode()" >Zaawansowane wyszukiwanie</button>
       </div>
