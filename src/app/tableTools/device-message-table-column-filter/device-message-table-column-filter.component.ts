@@ -1,18 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
 import { DeviceShort } from 'src/app/models/Device/deviceShort';
-import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material';
+import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { MessageDevice } from 'src/app/models/messageDevice';
 
 @Component({
-  selector: 'app-device-table-column-filter',
-  templateUrl: './device-table-column-filter.component.html',
-  styleUrls: ['./device-table-column-filter.component.scss']
+  selector: 'app-device-message-table-column-filter',
+  templateUrl: './device-message-table-column-filter.component.html',
+  styleUrls: ['./device-message-table-column-filter.component.scss']
 })
-export class DeviceTableColumnFilterComponent implements OnInit {
+export class DeviceMessageTableColumnFilterComponent implements OnInit {
 
-  @Input() dataSource: MatTableDataSource<DeviceShort>;
+  @Input() dataSource: MatTableDataSource<MessageDevice>;
 
   constructor() { }
 
@@ -39,10 +40,14 @@ export class DeviceTableColumnFilterComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.sellerOptions = Array.from(new Set(this.dataSource.data.filter(x => x.sellerName).map(x => x.sellerName.trim()))).sort();
-    this.customerOptions = Array.from(new Set(this.dataSource.data.filter(x => x.customerName).map(x => x.customerName.trim()))).sort();
-    this.languageOptions = Array.from(new Set(this.dataSource.data.filter(x => x.language).map(x => x.language.trim()))).sort();
-    this.packageOptions = Array.from(new Set(this.dataSource.data.filter(x => x.packageName).map(x => x.packageName.trim()))).sort();
+    this.sellerOptions
+     = Array.from(new Set(this.dataSource.data.filter(x => x.diagprog.sellerName).map(x => x.diagprog.sellerName.trim()))).sort();
+    this.customerOptions
+    = Array.from(new Set(this.dataSource.data.filter(x => x.diagprog.customerName).map(x => x.diagprog.customerName.trim()))).sort();
+    this.languageOptions
+    = Array.from(new Set(this.dataSource.data.filter(x => x.diagprog.language).map(x => x.diagprog.language.trim()))).sort();
+    this.packageOptions
+    = Array.from(new Set(this.dataSource.data.filter(x => x.diagprog.packageName).map(x => x.diagprog.packageName.trim()))).sort();
 
     this.sellerOptions.unshift('');
     this.customerOptions.unshift('');
@@ -53,6 +58,7 @@ export class DeviceTableColumnFilterComponent implements OnInit {
       startWith(''),
       map(value => this._sellerFilter(value))
     );
+
 
     this.filteredCustomerOptions = this.customerControl.valueChanges.pipe(
       startWith(''),
@@ -139,18 +145,22 @@ export class DeviceTableColumnFilterComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filterPredicate =
-    (data: DeviceShort, filtersJson: string) => {
+    (data: MessageDevice, filtersJson: string) => {
 
         const matchFilter = [];
         const filters = JSON.parse(filtersJson);
 
         filters.forEach(filter => {
-          const val = data[filter.id] === null ? '' : data[filter.id];
+
+          const filtered = data.diagprog[filter.id];
+          const val = filtered === null || undefined ? '' : filtered;
           matchFilter.push(val.trim().toLowerCase() === filter.value.trim().toLowerCase());
+
         });
         return matchFilter.every(Boolean);
       };
     this.dataSource.filter = filterValue;
 }
+
 
 }

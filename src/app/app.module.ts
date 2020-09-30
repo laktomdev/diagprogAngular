@@ -14,7 +14,7 @@ import { DeviceTableColumnFilterComponent } from './tableTools/device-table-colu
 
 @NgModule({
    declarations: [
-      AppComponent
+      AppComponent,
    ],
    imports: [
       BrowserModule,

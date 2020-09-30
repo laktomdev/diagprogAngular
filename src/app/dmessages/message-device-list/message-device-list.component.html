@@ -1,8 +1,15 @@
 <div class="lockhigh div-change container-fluid">
   <div class="container">
-    <mat-form-field class="col-md-12">
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj">
-    </mat-form-field>
+      <div style="display: flex; flex-flow: wrap row-reverse;">
+          <mat-form-field *ngIf="!advancedSearch">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj1234">
+           </mat-form-field>
+           <button mat-button color="primary" *ngIf="!advancedSearch" (click)="searchMode()" >Zaawansowane wyszukiwanie</button>
+      </div>
+      <div style="display: flex; flex-flow: wrap row;">
+           <app-device-message-table-column-filter [dataSource]="dataSource" *ngIf="advancedSearch"></app-device-message-table-column-filter>
+           <button mat-button color="primary" *ngIf="advancedSearch" (click)="searchMode()" >Szybkie wyszukiwanie</button>
+      </div>
     <mat-paginator [length]="devices?.length" [pageSizeOptions]="[25, 10, 50, 100, 500, 1000]" showFirstLastButtons>
     </mat-paginator>
   </div>

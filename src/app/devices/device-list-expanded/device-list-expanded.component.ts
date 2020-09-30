@@ -73,15 +73,15 @@ export class DeviceListExpandedComponent implements OnInit, OnChanges {
 
   }
   applyFilter(filterValue: string) {
-          // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
-      // tslint:disable-next-line:no-shadowed-variable
-      this.dataSource.filterPredicate = (data: any, filter) => {
-        const dataStr = JSON.stringify(data).toLowerCase();
-        return dataStr.indexOf(filter) !== -1;
-      };
+    // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
+// tslint:disable-next-line:no-shadowed-variable
+this.dataSource.filterPredicate = (data: any, filter) => {
+  const dataStr = JSON.stringify(data).toLowerCase();
+  return dataStr.indexOf(filter) !== -1;
+};
 
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 
   refreshListTriggered(deviceIdent: number) {
     this.refreshListEmitter.emit(deviceIdent);

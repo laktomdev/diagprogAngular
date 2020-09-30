@@ -13,7 +13,10 @@ export class MessageDeviceListComponent implements OnInit, OnChanges {
 
   dataSource: MatTableDataSource<MessageDevice>;
 
+  advancedSearch = false;
   @Input() devices: MessageDevice[];
+  diagprogs: MatTableDataSource<DeviceShort>;
+
   @Output() selectedDevicesEmitter = new  EventEmitter<DeviceShort[]>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -41,6 +44,13 @@ export class MessageDeviceListComponent implements OnInit, OnChanges {
     }
 
   }
+
+  searchMode() {
+    this.advancedSearch = !this.advancedSearch;
+    this.dataSource.filter = null;
+
+  }
+
 
   isAllSelected() {
     let numSelected = 0;
@@ -93,6 +103,10 @@ export class MessageDeviceListComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource<MessageDevice>(this.devices);
 
+    if( this.devices) {
+      this.diagprogs =  new MatTableDataSource<DeviceShort>(this.devices.map(x => x.diagprog));
+    }
+
     this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = this.sortingDataAccessor;
     this.dataSource.paginator = this.paginator;
@@ -106,6 +120,13 @@ export class MessageDeviceListComponent implements OnInit, OnChanges {
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+    // ustawienie filtrowania wgłąb obiektu https://stackoverflow.com/a/57747792
+// tslint:disable-next-line:no-shadowed-variable
+this.dataSource.filterPredicate = (data: any, filter) => {
+  const dataStr = JSON.stringify(data).toLowerCase();
+  return dataStr.indexOf(filter) !== -1;
+};
+
+this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 }

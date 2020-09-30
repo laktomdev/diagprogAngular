@@ -11,6 +11,8 @@ import { CreateEditMessageComponent } from './create-edit-message/create-edit-me
 import { InsideComponent } from './message-details/message-devices/inside/inside.component';
 import { OutsideComponent } from './message-details/message-devices/outside/outside.component';
 import { MessageDeviceListComponent } from './message-device-list/message-device-list.component';
+// tslint:disable-next-line:max-line-length
+import { DeviceMessageTableColumnFilterComponent } from '../tableTools/device-message-table-column-filter/device-message-table-column-filter.component';
 
 
 
@@ -23,7 +25,8 @@ import { MessageDeviceListComponent } from './message-device-list/message-device
         CreateEditMessageComponent,
       InsideComponent,
       OutsideComponent,
-      MessageDeviceListComponent],
+      MessageDeviceListComponent,
+    DeviceMessageTableColumnFilterComponent],
   imports: [
     CommonModule,
     DmessagesRoutingModule,
