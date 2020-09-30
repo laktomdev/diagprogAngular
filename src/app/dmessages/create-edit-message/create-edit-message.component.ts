@@ -103,7 +103,9 @@ export class CreateEditMessageComponent implements OnInit {
       this.mS.addMessageDefinition(this._messageDef).subscribe(
         (result) => {
           if (result === 200) {
+            console.log(JSON.stringify(this._messageDef));
             this.alertify.success(`Dodano nowy komunikat - ${this._messageDef.description}`);
+            this.passMessageDefToListComponent();
           } else {
             this.alertify.error('Nie udało się dodać komunikatu');
           }
@@ -115,6 +117,26 @@ export class CreateEditMessageComponent implements OnInit {
   cancelChanges() {
     this.messageDef = Object.assign({}, this.oldMessageDef);
     this.changed();
+  }
+
+  removeMessageDef() {
+
+    this.alertify.confirm('Potwierdź usunięcie komunikatu',
+    `Czy chcesz usunąć komunikat ${this._messageDef.description}?`,
+     () => {
+      this.mS.removeMessageDef(this._messageDef.id).subscribe(
+        (result) => {
+          if (result === 200) {
+            this.alertify.success(`Usunięto komunikat - ${this._messageDef.description}`);
+            this.passMessageDefToListComponent();
+          } else {
+            this.alertify.error('Nie udało się usunąć komunikatu');
+          }
+      }
+    );
+     });
+
+
   }
 
 }

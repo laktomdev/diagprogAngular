@@ -89,5 +89,9 @@ export class MessagesService {
     return this.http.get<MessageTranslation[]>(`${environment.apiUrl}messages/MessageTranslations/${messageId}`, httpOptions);
   }
 
+  removeMessageDef(messageDefId: number | string) : Observable<number> {
+    return this.http.get<number>(`${environment.apiUrl}messages/RemoveMessageDef/${messageDefId}`, httpOptions);
+  }
+
   constructor(private http: HttpClient) {}
 }

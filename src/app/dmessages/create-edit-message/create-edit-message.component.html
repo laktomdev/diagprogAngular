@@ -54,6 +54,8 @@
 
               <button mat-raised-button color="primary" type="button" (click)="cancelChanges()" *ngIf="!newRecord" class="col-md-3"  style="justify-content: center; margin-left: 10px;">Odrzuc zmiany</button>
               <button mat-raised-button color="primary" type="button" [mat-dialog-close]="" *ngIf="newRecord" class="col-md-5"  style="justify-content: center; margin-left: 10px;">Anuluj</button>
+
+              <button mat-raised-button color="primary" type="button" (click)="removeMessageDef()" *ngIf="!newRecord" class="col-md-3"  style="justify-content: center; margin-left: 10px;">Usuń komunikat</button>
             </div>
     </form>
 
