@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class CustomersService {
   getAll(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${environment.apiUrl}customers`, httpOptions);
+    return this.http.get<Customer[]>(`${environment.apiUrl}customers/customers`, httpOptions);
   }
 
   getById(id: number | string): Observable<Customer> {

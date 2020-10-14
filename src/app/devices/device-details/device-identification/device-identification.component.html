@@ -5,18 +5,18 @@
   <div class="col-md-5">
     <dl>
         <dt>Nr. urządzenia:</dt>
-        <dd> {{deviceIdent?.deviceNumber}}</dd>
+        <dd> {{deviceIdent?.deviceNumber?.value}}</dd>
         <dt>Real Serial Number:</dt>
-        <dd> {{deviceIdent?.realSN}}</dd>
+        <dd> {{deviceIdent?.realSN?.value}}</dd>
     </dl>
   </div>
 
   <div class="col-md-5 offset-md-2">
       <dl>
           <dt>Wersja bootloadera:</dt>
-          <dd> {{deviceIdent?.bootVersion}}</dd>
+          <dd> {{deviceIdent?.bootVersion?.value}}</dd>
           <dt>Wersja hardware:</dt>
-          <dd> {{deviceIdent?.hardwareVersion}}</dd>
+          <dd> {{deviceIdent?.hardwareVersion?.value}}</dd>
         </dl>
   </div>
 </div>

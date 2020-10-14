@@ -18,7 +18,7 @@ export class SellersService {
   private customers: Seller[] = [];
 
   getAll(): Observable<Seller[]> {
-    return this.http.get<Seller[]>(`${environment.apiUrl}sellers`, httpOptions);
+    return this.http.get<Seller[]>(`${environment.apiUrl}sellers/sellers`, httpOptions);
   }
 
   getById(id: number | string): Observable<Seller> {
