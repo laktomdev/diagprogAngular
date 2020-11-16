@@ -7,7 +7,7 @@ import { ProgramsComponent } from './programs/programs.component';
 const routes: Routes = [
   {path : 'devices',  redirectTo : '/devices', pathMatch: 'full'},
   {path : 'messages',  redirectTo : '/messages', pathMatch: 'full'},
-  {path : 'programs', component : ProgramsComponent}
+  {path : 'programs', redirectTo : '/programs', pathMatch: 'full'}
 ];
 
 @NgModule({

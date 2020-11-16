@@ -4,7 +4,7 @@ import { MessagesDefListComponent } from './messages-def-list/messages-def-list.
 import { CreateEditMessageComponent } from './create-edit-message/create-edit-message.component';
 
 const devicesRoutes: Routes = [
-  { path: 'messages', component: MessagesDefListComponent },
+  { path: 'messages', component: MessagesDefListComponent, data: { animation: 'messages' } },
   { path: 'messages/create', component: CreateEditMessageComponent },
 ];
 

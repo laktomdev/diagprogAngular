@@ -20,6 +20,13 @@
                   #messages="routerLinkActive">Komunikaty</a>
               </span>
             </li>
+            <li [ngClass]="programs.isActive ? 'active' : ''">
+              <span><img src="../../../assets/programs.png" /></span>
+              <span class="navbar-text">
+                <a routerLink="programs" routerLinkActive="router-link-active"
+                  #programs="routerLinkActive">Programy</a>
+              </span>
+            </li>
           </ul>
 
         <!-- <div class="left-navbar-navigation-label" >
