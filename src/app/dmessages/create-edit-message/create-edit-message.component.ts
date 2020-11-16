@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject, Optional, EventEmitter, Output } from
 import { MessageDef } from 'src/app/models/messageDef';
 import {  DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DATA } from '@angular/material';
 import moment from 'moment/src/moment';
+// import * as moment from 'moment';
 import { MessagesService } from 'src/app/services/messages.service';
 import { MomentUtcDateAdapter } from 'src/app/pipes/momentUtcAdapter';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';

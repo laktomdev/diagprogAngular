@@ -5,6 +5,7 @@ import { LockStatus } from 'src/app/models/lockStatus';
 import { MomentUtcDateAdapter } from 'src/app/pipes/momentUtcAdapter';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import moment from 'moment/src/moment';
+// import * as moment from 'moment';
 import { StatusInformation } from 'src/app/models/statusInformation';
 import { LockService } from 'src/app/services/lock.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
