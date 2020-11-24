@@ -1,7 +1,7 @@
 import {PricingInfo} from './pricingInfo';
 export interface Program {
     programIdent: number;
-    programName: string;
+    name: string;
     isActive: boolean;
     createDate: Date;
     menuPositions: number;
