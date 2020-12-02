@@ -1,0 +1,36 @@
+<br />
+<h4 class="text-center">Informacje</h4>
+<hr />
+
+<div class="container-fluid row">
+  <dl class="col-5">
+    <dt>Sprzedawca:</dt>
+    <dd>
+      <div *ngIf="!sellerInEditMode">{{deviceInfo?.seller?.name}}
+        <button *appIfRoles="'Admin, Manager'"  mat-button color="primary" (click)='sellerInEditMode = !sellerInEditMode'>zmień
+        </button>
+      </div>
+      <app-sellers-form *ngIf="sellerInEditMode" (refreshListEmitter)="refreshListTriggered($event)"
+        [selectedSellerUserId]='deviceInfo.seller?.userId' [deviceId]="deviceId"></app-sellers-form>
+    </dd>
+    <dt>Klient:</dt>
+    <dd>
+      <div *ngIf="!customerInEditMode">{{deviceInfo?.customer?.name}}
+        <button  *appIfRoles="'Admin, Manager'"   mat-button color="primary" (click)='customerInEditMode = !customerInEditMode'>zmień
+        </button>
+      </div>
+      <app-customers-form *ngIf="customerInEditMode" (refreshListEmitter)="refreshListTriggered($event)"
+        [selectedCustomerId]='deviceInfo.customer?.id' [deviceId]="deviceId"></app-customers-form>
+    </dd>
+  </dl>
+
+  <dl class="col-5 offset-2">
+    <dt>Pakiet:</dt>
+    <dd> <div>{{deviceInfo?.package?.name}}</div></dd>
+    <dt>Timelock:</dt>
+    <dd>
+      <div>{{deviceInfo?.timeLock | date: 'dd.MM.yyyy'}}</div>
+      <div *ngIf="!deviceInfo?.timeLock">brak</div>
+    </dd>
+  </dl>
+</div>

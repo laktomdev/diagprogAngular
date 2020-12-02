@@ -1,0 +1,48 @@
+<br />
+<h4 class="text-center">Status</h4>
+<hr />
+<div class="row container-fluid">
+  <div class="col-md-5">
+    <dl>
+      <dt>Pierwsza aktywacja:</dt>
+      <dd> {{deviceStatus?.firstActivation | date: 'dd.MM.yyyy'}}</dd>
+      <dt>Ostatnia aktywacja:</dt>
+      <dd> {{deviceStatus?.lastActivation | date: 'dd.MM.yyyy'}}</dd>
+    </dl>
+  </div>
+  <div class="col-md-5 offset-md-2">
+    <dl>
+      <dt>Data stworzenia:</dt>
+      <dd> {{deviceStatus?.createDate | date: 'dd.MM.yyyy'}}</dd>
+      <dt>Rezerwacja:</dt>
+      <dd> {{deviceStatus?.reservationDate | date: 'dd.MM.yyyy'}}</dd>
+      <dt>Status:</dt>
+      <dd> {{deviceStatus?.status | enumAsString: statusEnum}} <button *appIfRoles="'Admin, Manager'" (click)="askIfReleaseReservation()" mat-button color="primary">zwolnij rezerwację</button></dd>
+    </dl>
+  </div>
+
+  <div  class="col-md-12">
+      <h6 class="text-center">Blokady:
+         <button mat-button color="primary" (click)="lockDialog()">Zablokuj</button>
+         <button mat-button color="primary" (click)="unlockDialog()">Odblokuj</button>
+      </h6>
+      <div *ngFor="let item of deviceStatus?.serverLocks" class="serverLocksList">
+            <div class="serverLock">
+                <dt>Stworzono:</dt>
+                <dd>{{item?.createDate | date: 'dd.MM.yyyy HH:mm:ss'}}</dd>
+            </div>
+            <div class="serverLock">
+                <dt>Powód:</dt>
+                <dd>{{item?.statusInformation?.infoDescription}}</dd>
+            </div>
+            <div class="serverLock">
+                <dt>Status:</dt>
+                <dd>{{item?.lockStatus | enumAsString: lockStatus}}</dd>
+            </div>
+            <div class="serverLock">
+                <dt>Od:</dt>
+                <dd>{{item?.blockDate | date: 'dd.MM.yyyy'}}</dd>
+            </div>
+      </div>
+  </div>
+</div>

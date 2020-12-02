@@ -1,0 +1,69 @@
+<mat-form-field>
+  <mat-label>Wyszukaj</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Np. bmw" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID: </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa programu: </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- programIdent Column -->
+    <ng-container matColumnDef="programIdent">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> program Ident: </th>
+      <td mat-cell *matCellDef="let element"> {{element.programIdent}} </td>
+    </ng-container>
+
+    <!-- isActive Column -->
+    <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Aktywny?: </th>
+      <td mat-cell  *matCellDef="let element">
+        <div *ngIf="element.isActive == true; else elseBlock">tak</div>
+        <ng-template #elseBlock>nie</ng-template>
+        </td>
+    </ng-container>
+
+    <!-- isActive Column -->
+    <ng-container matColumnDef="createDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data utworzenia: </th>
+      <td mat-cell *matCellDef="let element"> {{element.createDate | date: 'dd.MM.yyyy' }} r. </td>
+    </ng-container>
+
+     <!-- menuPositions Column -->
+     <ng-container matColumnDef="menuPositions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pozycja w menu: </th>
+      <td mat-cell *matCellDef="let element"> 
+        <!-- <div *ngIf="element.menuPositions == null; else elseBlock">tak</div>
+        <ng-template #elseBlock>nie</ng-template> -->
+        {{element.menuPositions}}
+        </td>
+    </ng-container>
+     <!-- programPackages Column -->
+     <ng-container matColumnDef="programPackages">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Paczka programu: </th>
+      <td mat-cell *matCellDef="let element"> {{element.programPackages}} </td>
+    </ng-container>
+
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  
+</div>

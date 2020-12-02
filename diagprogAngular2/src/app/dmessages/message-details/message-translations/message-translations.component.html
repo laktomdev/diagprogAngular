@@ -1,0 +1,63 @@
+<div class="container-fluid">
+
+  <h4 class="text-center">Wersje językowe</h4>
+  <hr />
+
+  <div class="row" *appIfRoles="'Admin, Manager'">
+    <div class="col-md-5 row">
+      <h6 class="col-md-12">
+        Dodaj nową wersję językową
+        <button mat-button color="primary" *ngIf="!addNewTranslation"
+          (click)="addNewTranslation = !addNewTranslation">Dodaj</button>
+      </h6>
+
+      <div class="col-md-12" *ngIf="addNewTranslation">
+        <mat-form-field class="col-md-8">
+          <mat-select placeholder="Wybierz język" [(ngModel)]="selectedLanguage">
+            <mat-option *ngFor="let item of languagesToAdd" [value]="item">{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button (click)="addLanguage()" mat-button color="primary" class="class col-md-2">Dodaj</button>
+        <button (click)="addNewTranslation = false" mat-button color="primary" class="class col-md-2">Anuluj</button>
+      </div>
+
+    </div>
+
+    <div class="offset-md-2 col-md-5 row">
+      <div class="col-md-12">
+        <h6>Domyślny język komunikatu:
+          <button mat-button color="primary" *ngIf="!editDefault"
+            (click)="editDefault = !editDefault">{{defaultLanguage?.name || 'brak'}}</button>
+        </h6>
+      </div>
+
+      <div class="col-md-12" *ngIf="editDefault">
+        <mat-form-field class="col-md-8">
+          <mat-select placeholder="Wybierz język" [(ngModel)]="defaultLanguage">
+            <mat-option *ngFor="let item of languagesAddedConfirmed" [value]="item">{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-button color="primary" (click)="changeDefault()" class="col-md-2">Zmień</button>
+        <button mat-button color="primary" (click)="cancelDefaultChange()" class="col-md-2">Anuluj</button>
+      </div>
+    </div>
+    <div style="width: 100%" *ngIf="translations?.length != translationsUncofirmed?.length"
+      class="border border-warning container-fluid">
+      Posiadasz nowe ({{translationsUncofirmed?.length - translations?.length}}), niezapisane wersje językowe.
+      Zapisz je, jeśli chcesz oznaczyć jako domyślne
+      Domyślny język komunikatu można wybrać z pośród zapisanych komunikatów.
+    </div>
+  </div>
+  <hr />
+
+
+  <mat-tab-group [selectedIndex]="openTab">
+    <mat-tab *ngFor="let item of translationsUncofirmed" label="{{item.language?.name}}">
+      <br />
+      <app-translation-edit [translation]="item" (refreshListEmitter)="listRefreshTriggered($event)"
+        (changeEmitter)="itemChangeTriggered($event)">
+      </app-translation-edit>
+    </mat-tab>
+  </mat-tab-group>
+</div>

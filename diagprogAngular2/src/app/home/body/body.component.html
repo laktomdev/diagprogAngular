@@ -1,0 +1,32 @@
+<!-- <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+</div> -->
+
+
+  <div class="main-content">
+    <div class="main-inner-content">
+      <div class="main-body ">
+        <div class="page-wrapper ">
+          <div class="page-body navbar-page">
+            <div class="row">
+              <div class="col-md-12">
+                    <div *ngIf="aS.loggedIn()">
+                        <div class="card">
+                        <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                    <div *ngIf="!aS.loggedIn()">
+                      <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="col-md-10 card no-padding login">
+                          Zaloguj się aby korzystać z DiagProg Tools
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

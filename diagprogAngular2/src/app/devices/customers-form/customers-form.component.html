@@ -1,0 +1,23 @@
+<form (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <mat-select [formControl]="customerCtrl" #singleSelect>
+      <ngx-mat-select-search [formControl]="customerFilterCtrl" [placeholderLabel]="'Wyszukaj'"></ngx-mat-select-search>
+      <mat-option *ngFor="let cust of filteredCustomers | async" [value]="cust">
+        {{cust.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <div class="btn-group"> -->
+    <div *ngIf="changed">
+        <button mat-button color="primary" type="submit" (click)="submitted=true">zapisz</button>
+        <button mat-button color="primary" (click)="cancelEdit()" >anuluj</button>
+    </div>
+
+  <!-- </div> -->
+
+
+
+
+</form>

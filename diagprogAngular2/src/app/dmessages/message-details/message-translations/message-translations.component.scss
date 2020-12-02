@@ -1,0 +1,12 @@
+::ng-deep  .edited{
+  background-color: yellow
+}
+
+::ng-deep .mat-tab-label .noedited{
+  background-color: blue;
+}
+
+::ng-deep  .mat-tab-label .edited{
+  border: solid;
+  border-color: yellow;
+ }

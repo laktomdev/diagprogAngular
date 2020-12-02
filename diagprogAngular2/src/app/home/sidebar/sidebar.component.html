@@ -1,0 +1,50 @@
+<nav class="left-navbar">
+  <div class="nav-list">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: 100%; height: 100%;">
+      <div class="left-inner-navbar main-menu" style="overflow: hidden; width: 100%; height: 100%;">
+          <div class="left-navbar-navigation-label">
+            Urządzenia
+          </div>
+          <ul class="left-navbar-item">
+            <li [ngClass]="deviceList.isActive ? 'active' : ''">
+              <span><img src="../../../assets/tablet.png" /></span>
+              <span class="navbar-text">
+                <a routerLink="devices" routerLinkActive="router-link-active" #deviceList="routerLinkActive">Lista
+                  urządzeń</a>
+              </span>
+            </li>
+            <li [ngClass]="messages.isActive ? 'active' : ''">
+              <span><img src="../../../assets/message.png" /></span>
+              <span class="navbar-text">
+                <a routerLink="messages" routerLinkActive="router-link-active"
+                  #messages="routerLinkActive">Komunikaty</a>
+              </span>
+            </li>
+            <li [ngClass]="programs.isActive ? 'active' : ''">
+              <span><img src="../../../assets/programs.png" /></span>
+              <span class="navbar-text">
+                <a routerLink="programs" routerLinkActive="router-link-active"
+                  #programs="routerLinkActive">Programy</a>
+              </span>
+            </li>
+          </ul>
+
+        <!-- <div class="left-navbar-navigation-label" >
+          Programy
+        </div>
+        <ul class="left-navbar-item">
+          <li [ngClass]="deviceList.isActive ? 'active' : ''">
+            <span><img src="../../../assets/tablet.png" /></span>
+            <span class="navbar-text">
+              <a routerLink="programs" >Lista
+                programow</a>
+            </span>
+          </li>
+
+        </ul> -->
+      </div>
+
+
+    </div>
+  </div>
+</nav>

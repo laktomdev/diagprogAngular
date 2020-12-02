@@ -1,0 +1,18 @@
+<mat-tab-group>
+  <mat-tab label="Komunikat dodany do urządzeń">
+    <ng-template matTabContent>
+      <br />
+      <app-inside (itemsRemovedEmitter)="dowloadDevices()" [devicesInside]="devicesInside" [messageId]="messageDefId">
+      </app-inside>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *appIfRoles="'Admin, Manager'" label="Pozostałe urządzenia">
+    <ng-template matTabContent>
+      <br />
+      <app-outside (itemsAddedEmitter)="dowloadDevices()" [devicesOutside]="devicesOutside" [messageId]="messageDefId">
+      </app-outside>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>

@@ -1,0 +1,56 @@
+.mat-column-select {
+  overflow: initial;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding: 5px;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background:  #263544;
+  font-weight: bold;
+
+}
+tr.example-element-row:not(.example-expanded-row):hover td{
+color: white;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 10;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.device-details {
+  padding: 20px;
+  width: 100%;
+}
+
+.div-change{
+  height: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+td {
+  margin: 10px !important;
+  padding-left: 10px !important;
+}

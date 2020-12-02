@@ -1,0 +1,47 @@
+<br/>
+<h4 class="text-center">Komunikaty dodane do urządzenia</h4> <hr/>
+
+<div class="container-fluid">
+
+    <h6 class="text-center">Nowe: </h6>
+    <div *ngIf="messagesFresh?.length > 0">
+        <div class="row">
+          <div class="col-5 font-weight-bold">Nazwa: </div>
+          <div class="col-2 font-weight-bold">Od: </div>
+          <div class="col-2 font-weight-bold">Do: </div>
+          <div class="col-3 font-weight-bold">Pobrano: </div>
+
+          <div *ngFor="let message of messagesFresh" class="row col-md-12">
+            <div class="col-5"> {{message.description}}</div>
+            <div class="col-2"> {{message.validFrom | date: 'dd.MM.yyyy'}}: </div>
+            <div class="col-2"> {{message.validTo |date: 'dd.MM.yyyy'}} </div>
+            <div class="col-3"> {{message.downloadDate |date: 'dd.MM.yyyy hh:mm:ss' }}</div>
+          </div>
+        </div>
+    </div>
+    <div *ngIf="messagesFresh?.length == 0" class="text-center">
+      brak
+    </div>
+    <br/><br/>
+
+    <h6 class="text-center">Przedawnione: </h6>
+    <div  *ngIf="messagesOutdated?.length > 0">
+        <div class="row">
+          <div class="col-5 font-weight-bold">Nazwa: </div>
+          <div class="col-2 font-weight-bold">Od: </div>
+          <div class="col-2 font-weight-bold">Do: </div>
+          <div class="col-3 font-weight-bold">Pobrano: </div>
+
+          <div *ngFor="let message of messagesOutdated" class="row col-md-12">
+            <div class="col-5"> {{message.description}}</div>
+            <div class="col-2"> {{message.validFrom | date: 'dd.MM.yyyy'}}: </div>
+            <div class="col-2"> {{message.validTo |date: 'dd.MM.yyyy'}} </div>
+            <div class="col-3"> {{message.downloadDate |date: 'dd.MM.yyyy hh:mm:ss' }}</div>
+          </div>
+        </div>
+    </div>
+    <div *ngIf="messagesOutdated?.length == 0" class="text-center">
+        brak
+    </div>
+</div>
+<br/>

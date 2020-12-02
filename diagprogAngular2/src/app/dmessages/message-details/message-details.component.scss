@@ -1,0 +1,20 @@
+textarea {
+  resize: none
+}
+
+.mat-tab-header-pagination {
+  display: none !important;
+}
+
+::ng-deep  .mat-tab-labels {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+::ng-deep  .mat-tab-label-active{
+  border: solid;
+  border-color: navy;
+ }
+
+
+

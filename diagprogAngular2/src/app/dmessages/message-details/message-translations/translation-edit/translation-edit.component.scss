@@ -1,0 +1,11 @@
+.translation-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.justified {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
