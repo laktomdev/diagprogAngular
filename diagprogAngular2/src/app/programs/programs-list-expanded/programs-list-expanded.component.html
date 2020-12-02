@@ -55,7 +55,15 @@
       <td mat-cell *matCellDef="let element"> {{element.programPackages}} </td>
     </ng-container>
 
-    
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <app-program-details (refreshListEmitter)="refreshListTriggered($event)" *ngIf="expandedElement==element"
+            class="program-details border border-primary" [programId]="element.id"></app-program-details>
+        </div>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
 
