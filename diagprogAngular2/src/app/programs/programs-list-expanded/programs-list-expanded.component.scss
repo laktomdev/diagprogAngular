@@ -41,13 +41,14 @@ tr.example-element-row:not(.example-expanded-row):active {
   display: flex;
 }
 
-.device-details {
+.program-details {
   padding: 20px;
   width: 100%;
 }
 
 .div-change{
   height: 100%;
+  min-height: 100vh;
 }
 
 th.mat-sort-header-sorted {
@@ -58,3 +59,4 @@ td {
   margin: 10px !important;
   padding-left: 10px !important;
 }
+

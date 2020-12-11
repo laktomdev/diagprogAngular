@@ -47,11 +47,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { ProgramDetailsComponent } from './program-details/program-details.component';
+import { PricingInfoComponent } from './program-details/pricing-info/pricing-info.component';
+import { PackagesComponent } from './program-details/packages/packages.component';
+import { OthersComponent } from './program-details/others/others.component';
 
 
 
 @NgModule({
-  declarations: [ProgramsComponent, ProgramsListExpandedComponent, ProgramDetailsComponent],
+  declarations: [ProgramsComponent, ProgramsListExpandedComponent, ProgramDetailsComponent, PricingInfoComponent, PackagesComponent, OthersComponent],
   imports: [
     CommonModule, SharedModule, ProgramsRoutingModule
   ],

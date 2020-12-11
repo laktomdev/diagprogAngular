@@ -2,10 +2,10 @@
   <mat-label>Wyszukaj</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Np. bmw" #input>
 </mat-form-field>
+<mat-paginator [pageSizeOptions]="[25, 50, 100, 250]"></mat-paginator>
 
 <div class="mat-elevation-z8">
   
-  <mat-paginator [pageSizeOptions]="[25, 50, 100, 250]"></mat-paginator>
   <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
     
     <!-- ID Column -->
@@ -45,7 +45,7 @@
       <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
         <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
           <app-program-details (refreshListEmitter)="refreshListTriggered($event)" *ngIf="expandedElement==element"
-            class="program-details border border-primary" [expandId]="element.id"></app-program-details>
+            class="program-details border border-primary" [expandId]="element.programIdent"></app-program-details>
         </div>
       </td>
     </ng-container>
