@@ -9,14 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DevicesModule } from './devices/devices.module';
 import { DmessagesModule } from './dmessages/dmessages.module';
 import { DeviceTableColumnFilterComponent } from './tableTools/device-table-column-filter/device-table-column-filter.component';
-import { ProgramDetailsComponent } from './programs/program-details/program-details.component';
 
 
 
 @NgModule({
    declarations: [
       AppComponent,
-      ProgramDetailsComponent,
+      
    ],
    imports: [
       BrowserModule,

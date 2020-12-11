@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort} from '@angular/material';
-import { MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource} from '@angular/material';
 import { Program } from '../../models/program';
-import { ProgramsService } from '../../services/programs.service';
+    import { ProgramsService } from '../../services/programs.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { PricingInfo } from 'src/app/models/pricingInfo';
 
 @Component({
   selector: 'app-programs-list-expanded',
@@ -22,19 +24,21 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
   constructor(private pS : ProgramsService) { }
  
   
-  displayedColumns: string[] = [
+  displayedColumns = [
     'id',
     'name',
     'programIdent',
     'isActive',
-    'createDate',
-    'programPackages',
-    'menuPositions'
+    'createDate'
+   // 'programPackages',
+    //'menuPositions',
+  
+
   ];
   expandedElement: Program | null;
   dataSource: MatTableDataSource<Program>;
   @Input() programs: Program[];
-   
+  @Input() programsDetails: PricingInfo[];   
   @Input() expandId: number;
 
   @Output() refreshListEmitter = new EventEmitter<number>(); 
@@ -62,7 +66,19 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
       this.dataSource.filter = newDataSource.filter;
   }
 
- 
+  sortingDataAccessor(item, property) {
+    if (property.includes('.')) {
+
+      const t =  property
+        .split('.')
+        .reduce((object, key) => object[key] || '', item);
+
+      console.log(t);
+      return t;
+    }
+    return item[property];
+  }
+
  ngOnChanges(changes: SimpleChanges) {
   if (!this.dataSource) {
    
