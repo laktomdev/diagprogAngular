@@ -25,11 +25,11 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
  
   
   displayedColumns = [
-    'id',
-    'name',
+    // 'id',
     'programIdent',
+    'name',    
     'isActive',
-    'createDate'
+    'pricingInfo'
    // 'programPackages',
     //'menuPositions',
   
@@ -37,8 +37,7 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
   ];
   expandedElement: Program | null;
   dataSource: MatTableDataSource<Program>;
-  @Input() programs: Program[];
-  @Input() programsDetails: PricingInfo[];   
+  @Input() programs: Program[];  
   @Input() expandId: number;
 
   @Output() refreshListEmitter = new EventEmitter<number>(); 

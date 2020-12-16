@@ -1,1 +1,31 @@
-<p>pricing-info works!</p>
+<div *ngIf="loading" style="display: flex; justify-content: center;">
+  <mat-spinner></mat-spinner>
+</div>
+<br/>
+<div class="row container-fluid" *ngIf="!loading">
+  <dl class="col-md-5">
+    <dt>Jednostki testowe:</dt>
+    <div *ngIf="program?.name && program?.programIdent; else elseBlock">
+      <dd>tak</dd>
+    </div>
+    <!-- tutaj bym sie zastanowil nad rozwizaniem z powielaniem kodu -->
+    <dt>Subskrypcja miesięczna:</dt>
+    <div *ngIf="program?.name 
+    && program?.programIdent 
+    && program?.isActive==true
+    && program?.programPackages; else elseBlock">
+    <!-- sprawdzic czy program dodany do pakietow -->
+    <dd>tak</dd>
+    </div>
+    <!-- tutaj bym sie zastanowil nad rozwizaniem z powielaniem kodu -->
+    <dt>Zamówienie w cenniku:</dt>
+    <div *ngIf="program?.name 
+     && program?.programIdent 
+     && program?.isActive==true
+     && program?.programPackages
+     && program?.pricingInfo.netPrice; else elseBlock">
+      <dd>tak</dd>
+    </div>
+    <ng-template #elseBlock>nie</ng-template>
+  </dl>
+</div>

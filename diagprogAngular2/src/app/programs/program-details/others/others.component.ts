@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./others.component.scss']
 })
 export class OthersComponent implements OnInit {
-
+loading=true;
   constructor() { }
 
   ngOnInit() {
+    this.loading = false;
   }
 
 }

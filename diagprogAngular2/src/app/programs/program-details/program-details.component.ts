@@ -11,7 +11,7 @@ import { ProgramsService } from 'src/app/services/programs.service';
 export class ProgramDetailsComponent implements OnInit {
 
   program: Program;
-
+  loading = true;
 
   @Input() expandId: number;
   @Output() refreshListEmitter = new EventEmitter<number>();
@@ -23,14 +23,7 @@ export class ProgramDetailsComponent implements OnInit {
   constructor(private pS : ProgramsService) { }
 
   ngOnInit() {
-    this.pS.getById(Number(this.expandId)).subscribe(
-      (data) => {
-        this.program = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.loading = false;
    }
 
 }

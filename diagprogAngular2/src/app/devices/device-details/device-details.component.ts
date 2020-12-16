@@ -21,7 +21,7 @@ export class DeviceDetailsComponent implements OnInit {
     this.refreshListEmitter.emit(deviceIdent);
   }
 
-  constructor(private dS: DevicesService) { }
+  constructor(){}//private dS: DevicesService) { }
 
   ngOnInit() {
     // this.dS.getById(Number(this.deviceId)).subscribe(

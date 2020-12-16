@@ -5,13 +5,18 @@
 <mat-paginator [pageSizeOptions]="[25, 50, 100, 250]"></mat-paginator>
 
 <div class="mat-elevation-z8">
-  
+
   <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
-    
+
     <!-- ID Column -->
-    <ng-container matColumnDef="id">
+    <!-- <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID: </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container> -->
+    <!-- programIdent Column -->
+    <ng-container matColumnDef="programIdent">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> program Id: </th>
+      <td mat-cell *matCellDef="let element"> {{element.programIdent}} </td>
     </ng-container>
 
     <!-- Name Column -->
@@ -20,25 +25,21 @@
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <!-- programIdent Column -->
-    <ng-container matColumnDef="programIdent">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> program Ident: </th>
-      <td mat-cell *matCellDef="let element"> {{element.programIdent}} </td>
-    </ng-container>
+
 
     <!-- isActive Column -->
     <ng-container matColumnDef="isActive">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Aktywny?: </th>
-      <td mat-cell  *matCellDef="let element">
+      <td mat-cell *matCellDef="let element">
         <div *ngIf="element.isActive == true; else elseBlock">tak</div>
         <ng-template #elseBlock>nie</ng-template>
-        </td>
+      </td>
     </ng-container>
 
     <!-- isActive Column -->
-    <ng-container matColumnDef="createDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data utworzenia: </th>
-      <td mat-cell *matCellDef="let element"> {{element.createDate | date: 'dd.MM.yyyy' }} r. </td>
+    <ng-container matColumnDef="pricingInfo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cena netto: </th>
+      <td mat-cell *matCellDef="let element"> {{element.pricingInfo.netPrice | currency:'EUR' }}</td>
     </ng-container>
 
     <ng-container matColumnDef="expandedDetail">
@@ -49,15 +50,15 @@
         </div>
       </td>
     </ng-container>
-    
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
-          [class.example-expanded-row]="expandedElement === element"
-          (click)="expandedElement = expandedElement === element ? null : element">
-        </tr>
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
 
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-        <!-- menuPositions Column
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    <!-- menuPositions Column
           <ng-container matColumnDef="menuPositions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Pozycja w menu: </th>
             <td mat-cell *matCellDef="let element"> 
@@ -71,9 +72,9 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Paczka programu: </th>
             <td mat-cell *matCellDef="let element"> {{element.programPackages}} </td>
           </ng-container> -->
-            
-            
-          <!-- <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr> -->
+
+
+    <!-- <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr> -->
 
     <!-- <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
           [class.example-expanded-row]="expandedElement === element"
@@ -87,5 +88,5 @@
     </tr> -->
   </table>
 
-  
+
 </div>
