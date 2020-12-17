@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Program } from 'src/app/models/program';
+import { Program } from 'src/app/models/Program/program';
 import { ProgramsService } from 'src/app/services/programs.service';
 
 
@@ -17,12 +17,23 @@ export class ProgramDetailsComponent implements OnInit {
   @Output() refreshListEmitter = new EventEmitter<number>();
 
 
-  refresListTriggered(programId: number) {
-    this.refreshListEmitter.emit(programId);
-  }
+  // refresListTriggered(programId: number) {
+  //   this.refreshListEmitter.emit(programId);
+  // }
   constructor(private pS : ProgramsService) { }
 
   ngOnInit() {
+     console.log("Pobieram programpricing/"+ this.expandId);
+
+    this.pS.getById(Number(this.expandId)).subscribe(
+      (data) => {
+        this.program = data;
+        this.loading = false;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     this.loading = false;
    }
 

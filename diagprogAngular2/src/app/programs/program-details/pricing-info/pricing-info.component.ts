@@ -1,7 +1,7 @@
 import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
-import { Program } from 'src/app/models/program';
+import { Program } from 'src/app/models/Program/program';
 import { ProgramsService } from 'src/app/services/programs.service';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-pricing-info',
@@ -11,23 +11,13 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 export class PricingInfoComponent implements OnInit {
 
   @Input() expandId: number;
-  loading = true;
-  program: Program;
+  @Input() loading: boolean;
+  @Input() program: Program;
 
   constructor(private pS: ProgramsService) { }
 
   ngOnInit() {
-   // console.log(this.expandId);
 
-    this.pS.getById(Number(this.expandId)).subscribe(
-      (data) => {
-        this.program = data;
-        this.loading = false;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 
   // unitsTests() {
@@ -36,13 +26,13 @@ export class PricingInfoComponent implements OnInit {
   //   else return false;
   // }
   // monthSubscription(){
-    
+
   //   if(this.unitsTests()==true && this.program.programPackages)
   //   return true;
   //   else return false;
   // }
   // orderInPriceList(){
-    
+
   //   if(this.monthSubscription()==true && this.program.pricingInfo.netPrice)
   //   return  true;
   //   else return  false;

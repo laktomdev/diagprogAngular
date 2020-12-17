@@ -1,12 +1,12 @@
 <mat-tab-group>
   <mat-tab label="Informacje o sprzedaży">
     <ng-template matTabContent>
-      <app-pricing-info  [expandId]="expandId" (refreshListEmitter)="refresListTriggered($event)"></app-pricing-info>
+      <app-pricing-info [loading]="loading" [program]="program" [expandId]="expandId" (refreshListEmitter)="refresListTriggered($event)"></app-pricing-info>
     </ng-template>
   </mat-tab>
   <mat-tab label="Pakiety">
     <ng-template matTabContent>
-      <app-packages *ngIf="!loading" (refreshListEmitter)="refresListTriggered($event)"></app-packages>
+      <app-packages [program]="program" [expandId]="expandId" (refreshListEmitter)="refresListTriggered($event)"></app-packages>
     </ng-template>
   </mat-tab>
   <mat-tab label="Inne">

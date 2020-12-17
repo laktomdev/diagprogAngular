@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Program } from '../models/program';
+import { Program } from '../models/Program/program';
 const httpOptions = {
   headers: new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token')

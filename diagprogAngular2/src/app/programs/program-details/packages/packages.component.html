@@ -1,15 +1,13 @@
-
 <br />
 <div class="row container-fluid">
   <dl class="col-md-5">
     <dt>Pakiety:</dt>
-    
-
-    
+    <div *ngIf="program?.programPackages; else elseBlock">
+      <dd>{{program?.programPackages}}</dd>
+    </div>
     <dt>
-        <button mat-raised-button color="primary">Dodaj</button>
+      <button mat-raised-button color="primary">Dodaj</button>
     </dt>
-   
   </dl>
-  
 </div>
+<ng-template #elseBlock>brak</ng-template>

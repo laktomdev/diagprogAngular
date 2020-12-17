@@ -4,10 +4,16 @@
 <br/>
 <div class="row container-fluid" *ngIf="!loading">
   <dl class="col-md-5">
+    <dt> Cena netto: </dt>
+    <dd> {{program?.pricingInfo.netPrice | currency:'EUR' }}</dd>
+    
     <dt>Jednostki testowe:</dt>
     <div *ngIf="program?.name && program?.programIdent; else elseBlock">
       <dd>tak</dd>
     </div>
+    
+     
+    
     <!-- tutaj bym sie zastanowil nad rozwizaniem z powielaniem kodu -->
     <dt>Subskrypcja miesięczna:</dt>
     <div *ngIf="program?.name 

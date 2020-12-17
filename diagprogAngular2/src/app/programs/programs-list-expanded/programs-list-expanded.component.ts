@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort} from '@angular/material';
 import { MatTableDataSource} from '@angular/material';
-import { Program } from '../../models/program';
+import { Program } from '../../models/Program/program';
     import { ProgramsService } from '../../services/programs.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { PricingInfo } from 'src/app/models/pricingInfo';
+import { PricingInfo } from 'src/app/models/Program/pricingInfo';
 
 @Component({
   selector: 'app-programs-list-expanded',
@@ -29,13 +29,13 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
     'programIdent',
     'name',    
     'isActive',
-    'pricingInfo'
+    // 'pricingInfo'
    // 'programPackages',
     //'menuPositions',
   
 
   ];
-  expandedElement: Program | null;
+  //expandedElement: Program | null;
   dataSource: MatTableDataSource<Program>;
   @Input() programs: Program[];  
   @Input() expandId: number;
@@ -57,26 +57,26 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  refreshListTriggered(programIdent: number) {
-      this.refreshListEmitter.emit(programIdent);
-  }
+  // refreshListTriggered(programIdent: number) {
+  //     this.refreshListEmitter.emit(programIdent);
+  // }
   
-  refreshFilterTriggered(newDataSource: MatTableDataSource<Program>) {
-      this.dataSource.filter = newDataSource.filter;
-  }
+  // refreshFilterTriggered(newDataSource: MatTableDataSource<Program>) {
+  //     this.dataSource.filter = newDataSource.filter;
+  // }
 
-  sortingDataAccessor(item, property) {
-    if (property.includes('.')) {
+  // sortingDataAccessor(item, property) {
+  //   if (property.includes('.')) {
 
-      const t =  property
-        .split('.')
-        .reduce((object, key) => object[key] || '', item);
+  //     const t =  property
+  //       .split('.')
+  //       .reduce((object, key) => object[key] || '', item);
 
-      console.log(t);
-      return t;
-    }
-    return item[property];
-  }
+  //     console.log(t);
+  //     return t;
+  //   }
+  //   return item[property];
+  // }
 
  ngOnChanges(changes: SimpleChanges) {
   if (!this.dataSource) {
@@ -90,10 +90,10 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
     this.dataSource.data = this.programs;
   }
 
-  if (this.expandId) {
-    this.expandedElement = this.dataSource.data.find(
-      x => x.id === this.expandedElement.id
-    );
-  }
+  // if (this.expandId) {
+  //   this.expandedElement = this.dataSource.data.find(
+  //     x => x.id === this.expandedElement.id
+  //   );
+  // }
 }
 }
