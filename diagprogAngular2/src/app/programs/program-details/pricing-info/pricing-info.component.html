@@ -1,27 +1,29 @@
 <div *ngIf="loading" style="display: flex; justify-content: center;">
   <mat-spinner></mat-spinner>
 </div>
-<br/>
+<br />
 <div class="row container-fluid" *ngIf="!loading">
   <dl class="col-md-5">
     <dt> Cena netto: </dt>
     <dd> {{program?.pricingInfo.netPrice | currency:'EUR' }}</dd>
-    
+    <dt> W sprzedaży: </dt>
+    <dd *ngIf="program?.isActive == true; else elseBlock">tak
+    </dd>
+  </dl>
+  <dl class="col-5 offset-2">
     <dt>Jednostki testowe:</dt>
     <div *ngIf="program?.name && program?.programIdent; else elseBlock">
       <dd>tak</dd>
     </div>
-    
-     
-    
+
     <!-- tutaj bym sie zastanowil nad rozwizaniem z powielaniem kodu -->
     <dt>Subskrypcja miesięczna:</dt>
     <div *ngIf="program?.name 
     && program?.programIdent 
     && program?.isActive==true
     && program?.programPackages; else elseBlock">
-    <!-- sprawdzic czy program dodany do pakietow -->
-    <dd>tak</dd>
+      <!-- sprawdzic czy program dodany do pakietow -->
+      <dd>tak</dd>
     </div>
     <!-- tutaj bym sie zastanowil nad rozwizaniem z powielaniem kodu -->
     <dt>Zamówienie w cenniku:</dt>

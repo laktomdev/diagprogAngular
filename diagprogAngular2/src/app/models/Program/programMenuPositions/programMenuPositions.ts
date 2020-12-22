@@ -5,11 +5,12 @@ import { programExtensions } from "./programExtensions/programExtensions";
 export interface programMenuPositions {
 
     cableGroupId: number;
-    cableAdapterPairs: cableAdapterPairs;
+    cableAdapterPairs: cableAdapterPairs[];
     documentationNumber: number;
     specials: number;
     programExtensions: programExtensions;
     menuPosition: menuPosition;
+    id:number;
     
 
 }

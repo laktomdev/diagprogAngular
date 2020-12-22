@@ -28,7 +28,7 @@ export class ProgramsListExpandedComponent implements AfterViewInit {
     // 'id',
     'programIdent',
     'name',    
-    'isActive',
+    //'isActive',
     // 'pricingInfo'
    // 'programPackages',
     //'menuPositions',

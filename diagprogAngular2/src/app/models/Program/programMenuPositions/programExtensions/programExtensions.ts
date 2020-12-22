@@ -1,7 +1,7 @@
 export interface programExtensions {
     message: string;
 
-    required: [
+    required: 
         {
             number: number;
             functionality: {
@@ -17,7 +17,7 @@ export interface programExtensions {
                 advFunctions: boolean;
             };
         }
-    ];
-    optional: [];
+    ;
+    optional: {};
 
 }

@@ -1,4 +1,26 @@
 <div *ngIf="loading" style="display: flex; justify-content: center;">
-    <mat-spinner></mat-spinner>
-  </div>
-<p>others works!</p>
+  <mat-spinner></mat-spinner>
+</div>
+<br />
+<div class="row container-fluid" *ngIf="!loading">
+  <dl class="col-md-4">
+    <dt>Kabel + adapter:</dt>
+    <span *ngFor="let menuPosition of menuPositions">
+      <dd *ngFor="let element of menuPosition.cableAdapterPairs">
+        {{element?.cable.name}} + {{element?.adapter.name}}
+      </dd>
+    </span>
+  </dl>
+  <dl class="col-md-4">
+    <dt>Rozszerzenia:</dt>
+    <dd></dd>
+  </dl>
+  <dl class="col-md-4">
+    <dt>Ścieżki w menu:</dt>
+    <dd *ngFor="let menuPosition of menuPositions">
+      <!-- <span *ngFor="let element of menuPosition.menuPosition"> -->
+      {{menuPosition.menuPosition.path}}
+      <!-- </span> -->
+    </dd>
+  </dl>
+</div>
